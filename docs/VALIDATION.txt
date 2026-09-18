@@ -1,0 +1,5 @@
+Sanitization validation: PASS
+No blocked organization-specific identifiers or embedded Basic Authorization payload markers were found in generated JSON/Markdown files.
+
+Datasource placeholders used: REPLACE_ELASTICSEARCH_DATASOURCE_UID, REPLACE_INFINITY_DATASOURCE_UID, REPLACE_PROMETHEUS_DATASOURCE_UID, REPLACE_ZABBIX_DATASOURCE_UID
+Documentation IP substitutions: 192.168.10.20->192.0.2.10, 172.16.45.23->198.51.100.20

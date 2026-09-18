@@ -1,0 +1,1053 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "datasource",
+          "uid": "grafana"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "target": {
+          "limit": 100,
+          "matchAny": false,
+          "tags": [],
+          "type": "dashboard"
+        },
+        "type": "dashboard"
+      }
+    ]
+  },
+  "description": "Public demo dashboard for critical-service observability using Zabbix and Elasticsearch/APM. All environment-specific identifiers were replaced with fictional values.",
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "id": null,
+  "links": [],
+  "panels": [
+    {
+      "datasource": {
+        "type": "datasource",
+        "uid": "-- Mixed --"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 28,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 1,
+      "options": {
+        "SVGBaseFix": true,
+        "add100Percentage": true,
+        "calcsMutation": "standard",
+        "centerAlignContent": true,
+        "codeData": "{\"sourceDashboard\":{\"title\":\"Aplicações\",\"uid\":\"demo-apps-dashboard\"},\"services\":[{\"id\":\"customer-portal\",\"name\":\"CUSTOMER PORTAL\",\"application\":true,\"checks\":[{\"refId\":\"Z_CUSTOMER_PORTAL\",\"kind\":\"failedStep\",\"label\":\"CUSTOMER PORTAL\",\"expectedSeries\":4}],\"diagnostics\":[]},{\"id\":\"service-portal\",\"name\":\"SERVICE PORTAL\",\"application\":true,\"checks\":[{\"refId\":\"Z_SERVICE_PORTAL\",\"kind\":\"failedStep\",\"label\":\"SERVICE PORTAL\",\"expectedSeries\":2}],\"diagnostics\":[]},{\"id\":\"billing\",\"name\":\"BILLING\",\"application\":true,\"checks\":[{\"refId\":\"Z_BILLING_WEB\",\"kind\":\"failedStep\",\"label\":\"BILLING WebLogic\",\"expectedSeries\":8},{\"refId\":\"Z_BILLING_K8S\",\"kind\":\"binaryHttp\",\"label\":\"BILLING Kubernetes\",\"expectedSeries\":2},{\"refId\":\"Z_BILLING_ENDPOINT\",\"kind\":\"endpointSourceMapping\",\"label\":\"BILLING Endpoints Demo Bank\",\"expectedSeries\":2}],\"diagnostics\":[]},{\"id\":\"batch-processor\",\"name\":\"BATCH PROCESSOR\",\"application\":true,\"checks\":[{\"refId\":\"Z_BATCH_STATUS\",\"kind\":\"failedStep\",\"label\":\"BATCH PROCESSOR Job\",\"expectedSeries\":1}],\"diagnostics\":[{\"refId\":\"Z_BATCH_DIAG\",\"kind\":\"diagnostic\",\"label\":\"BATCH PROCESSOR Diagnóstico\",\"expectedSeries\":2}]},{\"id\":\"file-delivery\",\"name\":\"FILE DELIVERY\",\"application\":true,\"checks\":[{\"refId\":\"Z_FILE_DELIVERY\",\"kind\":\"failedStep\",\"label\":\"File Delivery\",\"expectedSeries\":2}],\"diagnostics\":[]},{\"id\":\"payment-intake\",\"name\":\"PAYMENT INTAKE\",\"application\":false,\"checks\":[],\"diagnostics\":[{\"refId\":\"Z_PAYMENT_INTAKE\",\"kind\":\"diagnostic\",\"label\":\"PAYMENT INTAKE\",\"expectedSeries\":8}],\"missingReason\":\"Há consultas de última recepção, mas o JSON não define prazo de atraso nem regra UP/DOWN.\"},{\"id\":\"message-relay\",\"name\":\"MESSAGE RELAY\",\"application\":false,\"checks\":[{\"refId\":\"Z_MESSAGE_RELAY\",\"kind\":\"binary\",\"label\":\"MESSAGE RELAY\",\"expectedSeries\":1}],\"diagnostics\":[]},{\"id\":\"tax-processing\",\"name\":\"TAX PROCESSING\",\"application\":true,\"checks\":[{\"refId\":\"Z_TAX_STATUS\",\"kind\":\"binary\",\"label\":\"TAX PROCESSING\",\"expectedSeries\":1}],\"diagnostics\":[{\"refId\":\"Z_TAX_DIAG\",\"kind\":\"diagnostic\",\"label\":\"TAX PROCESSING Diagnóstico\",\"expectedSeries\":7}]}],\"maxAgeSeconds\":0,\"apm\":{\"failuresRefId\":\"P117_A\",\"totalRefId\":\"P117_B\",\"criticalErrorPct\":5,\"termLimit\":300},\"notes\":{\"availability\":\"Proporção atual de serviços UP entre os serviços com estado conhecido; não é SLA histórico.\",\"impact\":\"Participação nas falhas APM dos serviços retornados, não impacto de negócio.\",\"events\":\"Eventos críticos reconstruídos exclusivamente a partir do histórico das 42 consultas operacionais já existentes. Nenhuma consulta adicional de Problems é enviada ao datasource Zabbix.\",\"freshness\":\"A atualidade segue a própria janela de tempo do Grafana; não é aplicado corte adicional fixo de 300 segundos.\",\"partialData\":\"Serviço com parte das verificações conhecidas e parte sem retorno é classificado como ATENÇÃO, não como SEM DADOS.\",\"eventRefresh\":\"O card é recalculado em cada onRender com os data.frames entregues pelo Grafana. Não existe polling ou timer independente.\",\"eventSafety\":\"A consulta adicional de Problems foi removida após o Query Inspector mostrar erro do plugin enquanto as consultas métricas retornavam resultados.\",\"scope\":\"O dashboard exibe somente serviços com pelo menos uma coleta configurada (checks ou diagnostics). Serviços sem nenhuma coleta foram removidos do mapa e dos indicadores.\",\"refreshBehavior\":\"Durante estados intermediários do refresh do Grafana (Loading/Streaming/NotStarted), o HTML Graphics preserva o último estado visual válido. Somente estados Done/Error são processados. Isso evita falso SEM DADOS durante a atualização, sem timer ou polling paralelo.\",\"mapLayout\":\"Serviços sem coleta não são exibidos. Linhas do fluxo permanecem contínuas nos espaços deixados por nós removidos. TAX PROCESSING centralizado.\",\"animation\":\"Animações visuais somente em CSS/SVG: respiração suave para UP, pulso moderado para ATENÇÃO e pulso mais rápido para DOWN. Sem timers JavaScript e sem interferência no refresh do Grafana.\",\"reducedMotion\":\"As animações são desativadas quando o sistema do usuário informa prefers-reduced-motion: reduce.\",\"lineAnimation\":\"Fluxo luminoso mais visível sobre as linhas do mapa: camada animada com stroke mais espesso, maior contraste e brilho. A linha base permanece contínua. A animação é apenas visual e não representa tráfego medido.\",\"queryConsolidationTest\":\"VERSÃO DE TESTE: 40 targets Zabbix foram consolidados em 12 targets por serviço/família. Os 2 targets Elasticsearch permanecem separados. Total: 14 queries. A V17 permanece como baseline estável.\",\"expectedSeries\":\"Cada família consolidada informa expectedSeries. Se a query retornar menos séries que o esperado, o adaptador adiciona estados UNKNOWN para preservar a detecção de cobertura parcial.\",\"aliases\":\"setAlias foi removido somente dos targets consolidados, pois uma única query pode retornar várias séries. O HTML usa labels/displayNameFromDS para rotulagem.\",\"daePopupV4_3\":\"BILLING mantém as queries originais do mapa. Popup executivo agrupa WebLogic, Kubernetes e Endpoints; hostnames/valores brutos não são exibidos na primeira visão.\",\"daePartialDataRuleV4_3\":\"No BILLING, UNKNOWN isolado não muda o serviço para ATENÇÃO quando existe UP e não há DOWN/ATTENTION comprovado. O missing continua visível como cobertura parcial.\",\"daeDedicatedDashboardReference\":\"A organização foi inspirada no dashboard BILLING - Visão Geral, separando disponibilidade funcional de dados auxiliares, sem importar novas queries para o mapa.\",\"daeApmBridgeV4_4\":\"Saúde Transacional do BILLING executa em bridge Elasticsearch isolado com TX_TOTAL e TX_FAIL. Thresholds do dashboard BILLING dedicado: <1% normal; >=1% atenção; >=5% crítico.\",\"daeFinalStateV4_4\":\"APM WARNING/CRITICAL sem falha funcional deixa BILLING em ATENÇÃO. BILLING só fica DOWN por evidência funcional; APM crítico sozinho não derruba o serviço.\",\"organizedPopupsV4_5\":\"CUSTOMER PORTAL, SERVICE PORTAL, BATCH PROCESSOR, FILE DELIVERY e MESSAGE RELAY usam popup operacional padronizado. Não altera queries, estados ou regras; somente apresentação.\",\"simplesPopupV4_6\":\"TAX PROCESSING passa a usar o mesmo popup operacional organizado de CUSTOMER PORTAL, SERVICE PORTAL, BATCH PROCESSOR, FILE DELIVERY e MESSAGE RELAY. Não altera queries nem criticidade.\",\"drilldownV4_7\":{\"billing\":{\"uid\":\"demo-billing-dashboard\",\"button\":\"Abrir BILLING - Uma Visão Geral\"},\"paymentIntake\":{\"uid\":\"demo-payment-dashboard\",\"button\":\"Abrir dashboard de PAYMENT INTAKE\"},\"behavior\":\"Abre em nova aba e preserva os parâmetros from/to quando presentes.\"}}}",
+        "css": "\n\n#demo-dashboard{--demo-bg:#020910;--demo-cyan:#00e5f3;--demo-line:#07506b;--demo-green:#36c923;--demo-yellow:#ffb800;--demo-red:#ff2925;color:#f5f5f5;background:#020910;position:relative;width:100%;font-family:\"Arial Narrow\",'Arial Narrow',Arial,sans-serif;line-height:1.2;isolation:isolate}\n#demo-dashboard *{box-sizing:border-box}\n#demo-dashboard .demo-canvas{display:block;width:100%;height:100%;aspect-ratio:auto;background:#020910;overflow:visible}\n#demo-dashboard svg text{font-family:\"Arial Narrow\",'Arial Narrow',Arial,sans-serif;fill:#f5f5f5;font-weight:400}\n#demo-dashboard .demo-title{fill:#f5f5f5;font-size:14.4px;font-weight:700}\n#demo-dashboard .demo-node{--node-color:#36c923}\n#demo-dashboard .demo-node[data-status=\"ATTENTION\"]{--node-color:#ffb800}\n#demo-dashboard .demo-node[data-status=\"DOWN\"]{--node-color:#ff2925}\n#demo-dashboard .demo-node[data-status=\"UNKNOWN\"]{--node-color:#8593a1}\n#demo-dashboard .demo-node-shape{stroke:var(--node-color);fill:url(#demo-node-fill);stroke-width:1.15;filter:drop-shadow(0 0 6px color-mix(in srgb,var(--node-color) 22%,transparent))}\n#demo-dashboard .demo-node .demo-node-port{fill:var(--node-color)}\n#demo-dashboard .demo-node .demo-node-state{fill:var(--node-color)}\n#demo-dashboard button{font:inherit;color:inherit;cursor:pointer}\n#demo-dashboard .demo-hit{width:100%;height:100%;border:0;padding:0;margin:0;display:block;background:transparent;border-radius:7px;color:transparent}\n#demo-dashboard .demo-hit:hover{background:rgba(0,229,243,.055)}\n#demo-dashboard .demo-hit:focus-visible{outline:2px solid #fff;outline-offset:-3px;background:rgba(0,229,243,.12)}\n#demo-dashboard .demo-overlay{position:absolute;inset:0;z-index:3;background:rgba(0,5,12,.78);display:flex;align-items:flex-start;justify-content:center;padding:14% 4% 4%;backdrop-filter:blur(3px)}\n#demo-dashboard [hidden]{display:none!important}\n#demo-dashboard .demo-dialog{position:relative;background:#04121e;border:1px solid #08768c;border-radius:10px;width:min(480px,100%);padding:26px;box-shadow:0 16px 80px #000;font-size:18px}\n#demo-dashboard .demo-dialog h2{font:700 20px \"Arial Narrow\",Arial,sans-serif;color:#f5f5f5;margin:0 32px 16px 0}\n#demo-dashboard .demo-dialog p{font:400 15px/1.45 \"Arial Narrow\",Arial,sans-serif;margin:12px 0;color:#dce6ed}\n#demo-dashboard .demo-close{position:absolute;right:14px;top:13px;background:transparent;border:1px solid #246077;border-radius:4px;font-size:23px;width:32px;height:32px}\n#demo-dashboard .demo-dialog small{font-size:12px;color:#9eafbd}\n#demo-dashboard .demo-sr{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}\n@media(prefers-reduced-motion:reduce){#demo-dashboard *{scroll-behavior:auto}}\n\n#demo-dashboard #demo-coverage{font-size:11px!important}#demo-dashboard #demo-app-unknown{font-size:11px!important}#demo-dashboard .demo-dialog-body{white-space:pre-line;overflow-wrap:anywhere}#demo-dashboard .demo-dialog{max-height:72vh;overflow:auto}\n\n/* V14 — animações discretas de status */\n@keyframes demo-up-breathe{\n  0%,100%{transform:scale(1);filter:drop-shadow(0 0 5px rgba(54,201,35,.18))}\n  50%{transform:scale(1.012);filter:drop-shadow(0 0 10px rgba(54,201,35,.34))}\n}\n@keyframes demo-attention-pulse{\n  0%,100%{transform:scale(1);filter:drop-shadow(0 0 5px rgba(255,184,0,.20))}\n  50%{transform:scale(1.016);filter:drop-shadow(0 0 12px rgba(255,184,0,.42))}\n}\n@keyframes demo-down-pulse{\n  0%,100%{transform:scale(1);filter:drop-shadow(0 0 5px rgba(255,41,37,.24))}\n  50%{transform:scale(1.020);filter:drop-shadow(0 0 14px rgba(255,41,37,.52))}\n}\n@keyframes demo-state-text-up{\n  0%,100%{opacity:.82}\n  50%{opacity:1}\n}\n@keyframes demo-state-text-attention{\n  0%,100%{opacity:.78}\n  50%{opacity:1}\n}\n@keyframes demo-state-text-down{\n  0%,100%{opacity:.72}\n  50%{opacity:1}\n}\n\n#demo-dashboard .demo-node-shape{\n  transform-box:fill-box;\n  transform-origin:center;\n  transition:stroke .35s ease, fill .35s ease, filter .35s ease, transform .35s ease;\n}\n#demo-dashboard .demo-node[data-status=\"UP\"] .demo-node-shape{\n  animation:demo-up-breathe 3.8s ease-in-out infinite;\n}\n#demo-dashboard .demo-node[data-status=\"ATTENTION\"] .demo-node-shape{\n  animation:demo-attention-pulse 2.5s ease-in-out infinite;\n}\n#demo-dashboard .demo-node[data-status=\"DOWN\"] .demo-node-shape{\n  animation:demo-down-pulse 1.55s ease-in-out infinite;\n}\n\n#demo-dashboard .demo-node .demo-node-state,\n#demo-dashboard .demo-node .demo-node-port{\n  transition:fill .35s ease, opacity .35s ease;\n}\n#demo-dashboard .demo-node[data-status=\"UP\"] .demo-node-state{\n  animation:demo-state-text-up 3.8s ease-in-out infinite;\n}\n#demo-dashboard .demo-node[data-status=\"ATTENTION\"] .demo-node-state{\n  animation:demo-state-text-attention 2.5s ease-in-out infinite;\n}\n#demo-dashboard .demo-node[data-status=\"DOWN\"] .demo-node-state{\n  animation:demo-state-text-down 1.55s ease-in-out infinite;\n}\n\n/* Transições suaves quando o Grafana entrega novos valores */\n#demo-dashboard svg text,\n#demo-dashboard svg rect,\n#demo-dashboard svg path,\n#demo-dashboard svg line{\n  transition:fill .30s ease, stroke .30s ease, opacity .30s ease, width .30s ease;\n}\n\n/* Destaque sutil do status card sem transformar zero em alerta visual */\n#demo-dashboard [data-status-card]{\n  transition:fill .35s ease, stroke .35s ease, opacity .35s ease;\n}\n\n/* Acessibilidade */\n@media(prefers-reduced-motion:reduce){\n  #demo-dashboard .demo-node-shape,\n  #demo-dashboard .demo-node-state,\n  #demo-dashboard .demo-node-port,\n  #demo-dashboard svg text,\n  #demo-dashboard svg rect,\n  #demo-dashboard svg path,\n  #demo-dashboard svg line,\n  #demo-dashboard [data-status-card]{\n    animation:none!important;\n    transition:none!important;\n  }\n}\n\n/* V16 — fluxo luminoso mais visível sobre as linhas do mapa */\n@keyframes demo-edge-flow{\n  from{stroke-dashoffset:0}\n  to{stroke-dashoffset:-48}\n}\n@keyframes demo-edge-glow{\n  0%,100%{\n    opacity:.34;\n    filter:\n      drop-shadow(0 0 2px rgba(0,229,243,.28))\n      drop-shadow(0 0 5px rgba(0,229,243,.16));\n  }\n  50%{\n    opacity:.82;\n    filter:\n      drop-shadow(0 0 5px rgba(0,229,243,.58))\n      drop-shadow(0 0 10px rgba(0,229,243,.34));\n  }\n}\n\n#demo-dashboard .demo-edge-flow{\n  stroke:#00e5f3;\n  stroke-width:1.65;\n  stroke-dasharray:11 9;\n  stroke-linecap:round;\n  fill:none;\n  opacity:.52;\n  pointer-events:none;\n  animation:\n    demo-edge-flow 2.05s linear infinite,\n    demo-edge-glow 2.35s ease-in-out infinite;\n}\n\n/* Ramificações seguem o mesmo fluxo, levemente mais compacto */\n#demo-dashboard path[data-edge].demo-edge-flow{\n  stroke-dasharray:10 8;\n}\n\n/* Linha estrutural permanece contínua sob a animação */\n#demo-dashboard line[data-edge]:not(.demo-edge-flow),\n#demo-dashboard path[data-edge]:not(.demo-edge-flow){\n  opacity:1;\n}\n\n/* Pequeno realce das linhas-base para o fluxo ficar legível */\n#demo-dashboard line[data-edge]:not(.demo-edge-flow){\n  stroke-width:1.6;\n}\n#demo-dashboard path[data-edge]:not(.demo-edge-flow){\n  stroke-width:1.25;\n}\n\n@media(prefers-reduced-motion:reduce){\n  #demo-dashboard .demo-edge-flow{\n    animation:none!important;\n    opacity:.22;\n    stroke-dashoffset:0;\n  }\n}\n\n/* V4.2 — popup RECBAN isolado */\n#demo-dashboard .demo-dialog-body{white-space:normal;overflow-wrap:anywhere}\n#demo-dashboard .demo-rb-head{display:flex;align-items:center;gap:14px;border:1px solid #0b5069;border-radius:8px;background:#03131d;padding:12px 14px;margin:2px 0 10px}\n#demo-dashboard .demo-rb-icon{font-size:36px;line-height:1;color:#00dff3}\n#demo-dashboard .demo-rb-title{font-size:16px;font-weight:700;min-width:0}\n#demo-dashboard .demo-rb-title strong.up{color:#38ca27}\n#demo-dashboard .demo-rb-title strong.attention{color:#ffb800}\n#demo-dashboard .demo-rb-title strong.down{color:#ff2925}\n#demo-dashboard .demo-rb-title strong.unknown{color:#8997a4}\n#demo-dashboard .demo-rb-title small{display:block;color:#c4d0da;font-size:12px;font-weight:400;margin-top:5px}\n#demo-dashboard .demo-rb-kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin-bottom:10px}\n#demo-dashboard .demo-rb-kpis>div{min-width:0;text-align:center;border:1px solid #18506a;border-radius:7px;background:#03101a;padding:9px 5px}\n#demo-dashboard .demo-rb-kpis b{display:block;font-size:23px;color:#f5f5f5}\n#demo-dashboard .demo-rb-kpis span{display:block;font-size:9px;font-weight:700;margin-top:3px;color:#cdd8e0;line-height:1.2}\n#demo-dashboard .demo-rb-kpis .up b,#demo-dashboard .demo-rb-kpis .up span{color:#38ca27}\n#demo-dashboard .demo-rb-kpis .attention b,#demo-dashboard .demo-rb-kpis .attention span{color:#ffb800}\n#demo-dashboard .demo-rb-kpis .down b,#demo-dashboard .demo-rb-kpis .down span{color:#ff2925}\n#demo-dashboard .demo-rb-latest{display:grid;grid-template-columns:1.5fr .8fr;gap:8px;border:1px solid #0b5069;border-radius:7px;background:#03101a;padding:10px 12px;margin-bottom:10px}\n#demo-dashboard .demo-rb-latest span{display:block;color:#aebbc8;font-size:10px;font-weight:700}\n#demo-dashboard .demo-rb-latest b{display:block;color:#f5f5f5;font-size:22px;margin:4px 0 2px}\n#demo-dashboard .demo-rb-latest small{color:#aebbc8;font-size:10px}\n#demo-dashboard .demo-rb-table{border:1px solid #0b5069;border-radius:7px;overflow:hidden;background:#020c14}\n#demo-dashboard .demo-rb-row{display:grid;grid-template-columns:1.65fr .9fr 1.05fr .6fr;align-items:center;gap:8px;padding:7px 10px;border-bottom:1px solid #123044;font-size:11px}\n#demo-dashboard .demo-rb-row:last-child{border-bottom:0}\n#demo-dashboard .demo-rb-row.head{color:#aebbc8;background:#061724;font-size:9px;font-weight:700}\n#demo-dashboard .demo-rb-bank small{color:#8395a4}\n#demo-dashboard .demo-rb-status{display:flex;align-items:center;gap:6px;font-size:10px;font-weight:800}\n#demo-dashboard .demo-rb-status i{display:block;width:8px;height:8px;border-radius:50%;background:currentColor;box-shadow:0 0 6px currentColor}\n#demo-dashboard .demo-rb-status.up{color:#38ca27}\n#demo-dashboard .demo-rb-status.attention{color:#ffb800}\n#demo-dashboard .demo-rb-status.down{color:#ff2925}\n#demo-dashboard .demo-rb-status.unknown{color:#8997a4}\n#demo-dashboard .demo-rb-row b{text-align:right;color:#f5f5f5;font-size:11px}\n#demo-dashboard .demo-rb-row>span:last-child{text-align:right;color:#c8d3dc}\n#demo-dashboard .demo-rb-section{color:#00dff3;font-size:11px;font-weight:800;margin:12px 0 5px}\n#demo-dashboard .demo-rb-missing{border:1px solid #294656;border-radius:7px;background:#071722;padding:9px 11px;color:#c5d1da;font-size:11px}\n#demo-dashboard .demo-rb-missing.has{border-color:#7c5913;background:#171202;color:#ffd36b}\n#demo-dashboard .demo-rb-note{margin-top:10px;border:1px solid #294656;border-radius:7px;background:#061622;padding:9px 11px;color:#aebbc8;font-size:10px;line-height:1.35}\n\n\n/* V4.3 — Popup executivo do BILLING */\n#demo-dashboard .demo-billing-head{\n  display:flex;align-items:center;gap:14px;\n  border:1px solid #0b5069;border-radius:8px;background:#03131d;\n  padding:12px 14px;margin:2px 0 10px\n}\n#demo-dashboard .demo-billing-symbol{\n  display:grid;place-items:center;width:42px;height:42px;\n  border:1px solid #00dff3;border-radius:50%;\n  color:#00dff3;font-size:24px;\n  box-shadow:0 0 12px rgba(0,223,243,.18)\n}\n#demo-dashboard .demo-billing-status-line{font-size:17px;font-weight:800}\n#demo-dashboard .demo-billing-status-line strong.up{color:#38ca27}\n#demo-dashboard .demo-billing-status-line strong.attention{color:#ffb800}\n#demo-dashboard .demo-billing-status-line strong.down{color:#ff2925}\n#demo-dashboard .demo-billing-status-line strong.unknown{color:#8997a4}\n#demo-dashboard .demo-billing-head small{\n  display:block;margin-top:4px;color:#b8c8d3;font-size:12px\n}\n#demo-dashboard .demo-billing-functional{\n  display:grid;grid-template-columns:1fr 1.5fr;gap:12px;\n  border:1px solid currentColor;border-radius:8px;\n  background:#031019;padding:11px 13px;margin-bottom:12px\n}\n#demo-dashboard .demo-billing-functional.up{color:#38ca27}\n#demo-dashboard .demo-billing-functional.attention{color:#ffb800}\n#demo-dashboard .demo-billing-functional.down{color:#ff2925}\n#demo-dashboard .demo-billing-functional.unknown{color:#8997a4}\n#demo-dashboard .demo-billing-functional span{\n  display:block;font-size:9px;font-weight:800;letter-spacing:.5px;\n  color:#8fa8b8;margin-bottom:4px\n}\n#demo-dashboard .demo-billing-functional b{font-size:18px}\n#demo-dashboard .demo-billing-functional-note{\n  align-self:center;color:#d2dce4;font-size:11px;line-height:1.35\n}\n#demo-dashboard .demo-billing-section{\n  margin:12px 0 6px;color:#00dff3;font-size:11px;font-weight:900;\n  letter-spacing:.3px\n}\n#demo-dashboard .demo-billing-groups{\n  border:1px solid #123a4d;border-radius:7px;overflow:hidden;background:#020c14\n}\n#demo-dashboard .demo-billing-row{\n  display:grid;grid-template-columns:10px minmax(0,1fr) auto;\n  align-items:center;gap:9px;padding:9px 11px;border-bottom:1px solid #123044\n}\n#demo-dashboard .demo-billing-row:last-child{border-bottom:0}\n#demo-dashboard .demo-billing-dot{\n  width:8px;height:8px;border-radius:50%;background:currentColor;\n  box-shadow:0 0 7px currentColor\n}\n#demo-dashboard .demo-billing-dot.up{color:#38ca27}\n#demo-dashboard .demo-billing-dot.attention{color:#ffb800}\n#demo-dashboard .demo-billing-dot.down{color:#ff2925}\n#demo-dashboard .demo-billing-dot.partial{color:#7cc7ff}\n#demo-dashboard .demo-billing-dot.unknown{color:#8997a4}\n#demo-dashboard .demo-billing-row-main b{display:block;font-size:12px;color:#f5f5f5}\n#demo-dashboard .demo-billing-row-main small{\n  display:block;margin-top:2px;font-size:10px;color:#9fb1bd\n}\n#demo-dashboard .demo-billing-badge{\n  border:1px solid currentColor;border-radius:5px;padding:3px 6px;\n  font-size:8px;font-weight:900;white-space:nowrap\n}\n#demo-dashboard .demo-billing-badge.up{color:#38ca27;background:rgba(56,202,39,.08)}\n#demo-dashboard .demo-billing-badge.attention{color:#ffb800;background:rgba(255,184,0,.08)}\n#demo-dashboard .demo-billing-badge.down{color:#ff2925;background:rgba(255,41,37,.08)}\n#demo-dashboard .demo-billing-badge.partial{color:#7cc7ff;background:rgba(124,199,255,.08)}\n#demo-dashboard .demo-billing-badge.unknown{color:#8997a4;background:rgba(137,151,164,.08)}\n#demo-dashboard .demo-billing-attention{\n  border:1px solid #294656;border-radius:7px;background:#071722;\n  padding:10px 12px;color:#cbd7df;font-size:11px;line-height:1.4\n}\n#demo-dashboard .demo-billing-attention.up{border-color:#1d6030;background:#06150a;color:#9de994}\n#demo-dashboard .demo-billing-attention.partial{border-color:#315b76;background:#071621;color:#b5d8ee}\n#demo-dashboard .demo-billing-attention.attention{border-color:#725710;background:#171202;color:#ffd36b}\n#demo-dashboard .demo-billing-attention.down{border-color:#82242a;background:#18090c;color:#ff9d9a}\n#demo-dashboard .demo-billing-footer{\n  display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px\n}\n#demo-dashboard .demo-billing-footer>div{\n  border:1px solid #123a4d;border-radius:7px;background:#03101a;padding:8px 10px\n}\n#demo-dashboard .demo-billing-footer span{\n  display:block;color:#829aaa;font-size:8px;font-weight:900\n}\n#demo-dashboard .demo-billing-footer b{\n  display:block;margin-top:3px;color:#f5f5f5;font-size:14px\n}\n#demo-dashboard .demo-billing-note{\n  margin-top:10px;color:#8ea3b1;font-size:9px;line-height:1.35\n}\n\n\n/* V4.4 — Saúde Transacional BILLING / APM isolado */\n#demo-dashboard .demo-billing-tx-summary{\n  display:grid;grid-template-columns:1.5fr .7fr;gap:8px;\n  border:1px solid currentColor;border-radius:7px;background:#03101a;\n  padding:9px 11px;margin-bottom:7px\n}\n#demo-dashboard .demo-billing-tx-summary.ok{color:#38ca27}\n#demo-dashboard .demo-billing-tx-summary.warn{color:#ffb800}\n#demo-dashboard .demo-billing-tx-summary.crit{color:#ff4a45}\n#demo-dashboard .demo-billing-tx-summary.na{color:#8997a4}\n#demo-dashboard .demo-billing-tx-summary span{\n  display:block;font-size:8px;font-weight:900;color:#8fa8b8\n}\n#demo-dashboard .demo-billing-tx-summary b{\n  display:block;margin-top:3px;font-size:14px\n}\n#demo-dashboard .demo-billing-tx-table{\n  border:1px solid #123a4d;border-radius:7px;overflow:hidden;background:#020c14\n}\n#demo-dashboard .demo-billing-tx-row{\n  display:grid;grid-template-columns:1.35fr .8fr .75fr .7fr .75fr;\n  align-items:center;gap:7px;padding:7px 9px;\n  border-bottom:1px solid #123044;font-size:10px\n}\n#demo-dashboard .demo-billing-tx-row:last-child{border-bottom:0}\n#demo-dashboard .demo-billing-tx-row.head{\n  background:#061724;color:#91a7b5;font-size:8px;font-weight:900\n}\n#demo-dashboard .demo-billing-tx-row .svc{font-weight:800;color:#f5f5f5}\n#demo-dashboard .demo-billing-tx-row .rate.ok,\n#demo-dashboard .demo-billing-tx-row .txstatus.ok{color:#38ca27}\n#demo-dashboard .demo-billing-tx-row .rate.warn,\n#demo-dashboard .demo-billing-tx-row .txstatus.warn{color:#ffb800}\n#demo-dashboard .demo-billing-tx-row .rate.crit,\n#demo-dashboard .demo-billing-tx-row .txstatus.crit{color:#ff4a45}\n#demo-dashboard .demo-billing-tx-row .rate.na,\n#demo-dashboard .demo-billing-tx-row .txstatus.na{color:#8997a4}\n#demo-dashboard .demo-billing-tx-row .txstatus{font-weight:900}\n#demo-dashboard .demo-billing-tx-empty{\n  border:1px solid #294656;border-radius:7px;background:#071722;\n  padding:9px 11px;color:#9dafbc;font-size:10px\n}\n\n\n/* V4.5 — Popups operacionais padronizados */\n#demo-dashboard .demo-service-head{\n  display:flex;align-items:center;gap:14px;\n  border:1px solid #0b5069;border-radius:8px;background:#03131d;\n  padding:12px 14px;margin:2px 0 10px\n}\n#demo-dashboard .demo-service-icon{\n  display:grid;place-items:center;width:42px;height:42px;\n  border:1px solid #00dff3;border-radius:8px;color:#00dff3;\n  font-size:24px;box-shadow:0 0 12px rgba(0,223,243,.16)\n}\n#demo-dashboard .demo-service-status{font-size:17px;font-weight:800}\n#demo-dashboard .demo-service-status strong.up{color:#38ca27}\n#demo-dashboard .demo-service-status strong.attention{color:#ffb800}\n#demo-dashboard .demo-service-status strong.down{color:#ff2925}\n#demo-dashboard .demo-service-status strong.unknown{color:#8997a4}\n#demo-dashboard .demo-service-head small{\n  display:block;margin-top:4px;color:#b8c8d3;font-size:12px\n}\n#demo-dashboard .demo-service-summary{\n  display:grid;grid-template-columns:.8fr 1.5fr;gap:12px;\n  border:1px solid currentColor;border-radius:8px;background:#031019;\n  padding:11px 13px;margin-bottom:12px\n}\n#demo-dashboard .demo-service-summary.up{color:#38ca27}\n#demo-dashboard .demo-service-summary.attention{color:#ffb800}\n#demo-dashboard .demo-service-summary.down{color:#ff2925}\n#demo-dashboard .demo-service-summary.unknown{color:#8997a4}\n#demo-dashboard .demo-service-summary span{\n  display:block;color:#8fa8b8;font-size:9px;font-weight:900;margin-bottom:4px\n}\n#demo-dashboard .demo-service-summary b{font-size:17px}\n#demo-dashboard .demo-service-summary p{\n  align-self:center;margin:0;color:#d2dce4;font-size:11px;line-height:1.4\n}\n#demo-dashboard .demo-service-section{\n  margin:12px 0 6px;color:#00dff3;font-size:11px;font-weight:900\n}\n#demo-dashboard .demo-service-groups{\n  border:1px solid #123a4d;border-radius:7px;overflow:hidden;background:#020c14\n}\n#demo-dashboard .demo-service-row{\n  display:grid;grid-template-columns:10px minmax(0,1fr) auto;\n  align-items:center;gap:9px;padding:9px 11px;border-bottom:1px solid #123044\n}\n#demo-dashboard .demo-service-row:last-child{border-bottom:0}\n#demo-dashboard .demo-service-dot{\n  width:8px;height:8px;border-radius:50%;background:currentColor;\n  box-shadow:0 0 7px currentColor\n}\n#demo-dashboard .demo-service-dot.up{color:#38ca27}\n#demo-dashboard .demo-service-dot.attention{color:#ffb800}\n#demo-dashboard .demo-service-dot.down{color:#ff2925}\n#demo-dashboard .demo-service-dot.partial{color:#7cc7ff}\n#demo-dashboard .demo-service-dot.unknown{color:#8997a4}\n#demo-dashboard .demo-service-main b{display:block;color:#f5f5f5;font-size:12px}\n#demo-dashboard .demo-service-main small{display:block;color:#9fb1bd;font-size:10px;margin-top:2px}\n#demo-dashboard .demo-service-badge{\n  border:1px solid currentColor;border-radius:5px;padding:3px 6px;\n  font-size:8px;font-weight:900;white-space:nowrap\n}\n#demo-dashboard .demo-service-badge.up{color:#38ca27;background:rgba(56,202,39,.08)}\n#demo-dashboard .demo-service-badge.attention{color:#ffb800;background:rgba(255,184,0,.08)}\n#demo-dashboard .demo-service-badge.down{color:#ff2925;background:rgba(255,41,37,.08)}\n#demo-dashboard .demo-service-badge.partial{color:#7cc7ff;background:rgba(124,199,255,.08)}\n#demo-dashboard .demo-service-badge.unknown{color:#8997a4;background:rgba(137,151,164,.08)}\n#demo-dashboard .demo-service-aux{\n  display:grid;grid-template-columns:1fr 1fr;gap:8px\n}\n#demo-dashboard .demo-service-aux>div{\n  border:1px solid #123a4d;border-radius:7px;background:#03101a;padding:8px 10px\n}\n#demo-dashboard .demo-service-aux span{\n  display:block;color:#829aaa;font-size:8px;font-weight:900\n}\n#demo-dashboard .demo-service-aux b{\n  display:block;margin-top:3px;color:#f5f5f5;font-size:14px\n}\n#demo-dashboard .demo-service-aux-note{\n  margin-top:7px;color:#91a5b2;font-size:9px;line-height:1.35\n}\n#demo-dashboard .demo-service-footer{\n  display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:11px\n}\n#demo-dashboard .demo-service-footer>div{\n  border:1px solid #123a4d;border-radius:7px;background:#03101a;padding:8px 10px\n}\n#demo-dashboard .demo-service-footer span{\n  display:block;color:#829aaa;font-size:8px;font-weight:900\n}\n#demo-dashboard .demo-service-footer b{\n  display:block;margin-top:3px;color:#f5f5f5;font-size:14px\n}\n#demo-dashboard .demo-service-note{\n  margin-top:10px;color:#8ea3b1;font-size:9px;line-height:1.35\n}\n#demo-dashboard .demo-service-empty{\n  padding:10px 12px;color:#9dafbc;font-size:10px\n}\n\n\n/* V4.7 — Drill-down para dashboards especializados */\n#demo-dashboard .demo-drilldown{\n  display:flex;\n  align-items:center;\n  justify-content:center;\n  gap:7px;\n  width:100%;\n  margin-top:12px;\n  padding:10px 12px;\n  border:1px solid #08768c;\n  border-radius:7px;\n  background:#06202b;\n  color:#00e5f3;\n  font-size:11px;\n  font-weight:900;\n  text-decoration:none;\n  letter-spacing:.15px;\n  cursor:pointer;\n  transition:background .15s ease,border-color .15s ease,box-shadow .15s ease;\n}\n#demo-dashboard .demo-drilldown:hover{\n  background:#093040;\n  border-color:#00dff3;\n  box-shadow:0 0 12px rgba(0,223,243,.18);\n  color:#fff;\n}\n#demo-dashboard .demo-drilldown:focus-visible{\n  outline:2px solid #00e5f3;\n  outline-offset:2px;\n}\n",
+        "dynamicData": false,
+        "dynamicFieldDisplayValues": false,
+        "dynamicHtmlGraphics": true,
+        "dynamicProps": false,
+        "html": "<div id=\"demo-dashboard\" data-mode=\"nodata\">\n<svg class=\"demo-canvas\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 1536 841\" aria-labelledby=\"demo-svg-title demo-svg-desc\" preserveAspectRatio=\"none\">\n<title id=\"demo-svg-title\">Demo Company — Serviços críticos</title><desc id=\"demo-svg-desc\">Serviços críticos DEMO. Estrutura baseada no diagrama aprovado; consultas do dashboard Aplicações. Sem retorno das fontes, os indicadores exibem SEM DADOS. O diagrama não comprova dependências reais.</desc>\n<defs>\n<radialGradient id=\"demo-background\"><stop stop-color=\"#05101b\" /><stop offset=\"1\" stop-color=\"#01070d\" /></radialGradient>\n<linearGradient id=\"demo-panel\" x2=\".8\" y2=\"1\"><stop stop-color=\"#020c15\" /><stop offset=\".5\" stop-color=\"#02080e\" /><stop offset=\"1\" stop-color=\"#020b14\" /></linearGradient>\n<radialGradient id=\"demo-node-fill\"><stop stop-color=\"#06131c\" /><stop offset=\"1\" stop-color=\"#01070b\" /></radialGradient>\n<linearGradient id=\"demo-ok-card\" x2=\"1\" y2=\"1\"><stop stop-color=\"#001608\" /><stop offset=\".55\" stop-color=\"#030b08\" /><stop offset=\"1\" stop-color=\"#01110a\" /></linearGradient>\n<linearGradient id=\"demo-warn-card\" x2=\"1\" y2=\"1\"><stop stop-color=\"#1b1600\" /><stop offset=\".55\" stop-color=\"#0e0d04\" /><stop offset=\"1\" stop-color=\"#161300\" /></linearGradient>\n<linearGradient id=\"demo-bad-card\" x2=\"1\" y2=\"1\"><stop stop-color=\"#18040a\" /><stop offset=\".55\" stop-color=\"#0b060c\" /><stop offset=\"1\" stop-color=\"#18050d\" /></linearGradient>\n<linearGradient id=\"demo-area-fill\" x1=\"0\" y1=\"0\" x2=\"0\" y2=\"1\"><stop stop-color=\"#f22532\" stop-opacity=\".65\" /><stop offset=\"1\" stop-color=\"#e41634\" stop-opacity=\"0\" /></linearGradient>\n<linearGradient id=\"demo-red-bar\"><stop stop-color=\"#f51e23\" /><stop offset=\".5\" stop-color=\"#ff3030\" /><stop offset=\"1\" stop-color=\"#e91e22\" /></linearGradient>\n<linearGradient id=\"demo-green-bar\"><stop stop-color=\"#24a714\" /><stop offset=\".5\" stop-color=\"#42ce25\" /><stop offset=\"1\" stop-color=\"#2fab16\" /></linearGradient>\n<linearGradient id=\"demo-yellow-bar\"><stop stop-color=\"#fcae00\" /><stop offset=\".5\" stop-color=\"#ffc300\" /><stop offset=\"1\" stop-color=\"#e69c00\" /></linearGradient>\n<marker id=\"demo-arrow\" markerWidth=\"12\" markerHeight=\"12\" refX=\"10\" refY=\"6\" orient=\"auto\"><path d=\"M1 1L11 6 1 11Z\" fill=\"#8d99a0\" /></marker>\n\n<symbol id=\"demo-icon-menu\" viewBox=\"0 0 32 34\"><g fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.05\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M4 6h24M4 16h24M4 26h24\" /></g></symbol>\n<symbol id=\"demo-icon-cube\" viewBox=\"0 0 32 34\"><g fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.05\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"m16 2 13 7v15l-13 7L3 24V9Zm0 0v0M3 9l13 8 13-8M16 17v14M9 6l13 8M8 17v4m14-2v3\" /></g></symbol>\n<symbol id=\"demo-icon-brand\" viewBox=\"0 0 32 34\"><g fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.05\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"m16 1 14 8v15l-14 8L2 24V9Z\" /><path d=\"m9 12 7-4 7 4-7 4Zm0 0v9l7 4 7-4v-9M9 17l7 4 7-4M5 10v3m22 7v3\" /></g></symbol>\n<symbol id=\"demo-icon-monitor\" viewBox=\"0 0 32 34\"><g fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.05\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"3\" y=\"3\" width=\"26\" height=\"20\" rx=\"1\" /><path d=\"M13 23v5m6-5v5M9 29h14M8 18l4-3 4 1 7-8m-4 1 4-1 1 4\" /></g></symbol>\n<symbol id=\"demo-icon-globe\" viewBox=\"0 0 32 34\"><g fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.05\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"16\" cy=\"16\" r=\"14\" /><ellipse cx=\"16\" cy=\"16\" rx=\"6\" ry=\"14\" /><path d=\"M2 16h28M5 8c8 4 14 4 22 0M5 24c8-4 14-4 22 0M16 2v28\" /></g></symbol>\n<symbol id=\"demo-icon-gear\" viewBox=\"0 0 32 34\"><g fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.05\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"m13 2 6 0 1 5 3 2 5-1 3 5-4 3v3l3 4-3 5-5-2-3 2-1 4h-6l-1-5-3-2-5 1-3-5 4-3v-3l-3-4 3-5 5 2 3-2Z\" transform=\"translate(0 -1) scale(.96)\" /><circle cx=\"16\" cy=\"16\" r=\"6\" /></g></symbol>\n<symbol id=\"demo-icon-file\" viewBox=\"0 0 32 34\"><g fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.05\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M6 2h15l6 6v23H6ZM21 2v7h6M10 13h13M10 18h13M10 23h13M10 27h9\" /></g></symbol>\n<symbol id=\"demo-icon-download\" viewBox=\"0 0 32 34\"><g fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.05\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M16 2v21m-8-8 8 8 8-8M4 23v7h24v-7\" /></g></symbol>\n<symbol id=\"demo-icon-bank\" viewBox=\"0 0 32 34\"><g fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.05\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"m2 9 14-8 14 8ZM4 12h24M4 27h24M2 30h28M6 14v11m4-11v11m4-11v11m4-11v11m4-11v11m4-11v11M14 6h4\" /></g></symbol>\n<symbol id=\"demo-icon-rocket\" viewBox=\"0 0 32 34\"><g fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.05\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 22 7 17C12 6 20 3 29 2c0 10-5 19-15 24ZM8 14 3 15l-1 7 6-2M18 25l-1 6 7-2 1-7M7 25l-4 6 7-4\" /><circle cx=\"21\" cy=\"10\" r=\"3\" /></g></symbol>\n<symbol id=\"demo-icon-target\" viewBox=\"0 0 32 34\"><g fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.05\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"16\" cy=\"17\" r=\"13\" /><path d=\"M16 1v8M16 26v6M1 17h7m17 0h7\" /></g></symbol>\n<symbol id=\"demo-icon-user\" viewBox=\"0 0 32 34\"><g fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.05\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"16\" cy=\"9\" r=\"6\" /><path d=\"M6 29v-3c0-6 4-9 10-9s10 3 10 9v3M16 1v2\" /></g></symbol>\n<symbol id=\"demo-icon-users\" viewBox=\"0 0 32 34\"><g fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.05\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"13\" cy=\"10\" r=\"5\" /><path d=\"M3 29v-4c0-6 4-9 10-9s10 3 10 9v4M23 6c7 0 8 10 1 11m2 3c4 1 5 4 5 8\" /></g></symbol>\n<symbol id=\"demo-icon-mail\" viewBox=\"0 0 32 34\"><g fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.05\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"2\" y=\"5\" width=\"28\" height=\"22\" rx=\"3\" /><path d=\"m3 7 13 11L29 7M3 26l9-10m8 0 9 10\" /></g></symbol>\n<symbol id=\"demo-icon-dollar\" viewBox=\"0 0 32 34\"><g fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.05\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"16\" cy=\"16\" r=\"14\" /><path d=\"M21 9c-2-4-12-3-12 2 0 6 14 3 14 10 0 6-12 7-14 1M16 5v22\" /></g></symbol>\n<symbol id=\"demo-icon-pulse\" viewBox=\"0 0 32 34\"><g fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.05\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M1 17h7l3-12 5 23 4-20 3 12 3-3h5\" /></g></symbol>\n<symbol id=\"demo-icon-heart\" viewBox=\"0 0 32 34\"><g fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.05\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M16 30 4 18C-5 8 6-4 16 8 26-4 37 8 28 18Z\" /><path d=\"M2 16h8l3-9 4 17 4-11 2 3h8\" /></g></symbol>\n<symbol id=\"demo-icon-alert\" viewBox=\"0 0 32 34\"><g fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.05\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M14 3c1-2 3-2 4 0l13 24c1 2 0 4-3 4H4c-3 0-4-2-3-4Z\" fill=\"currentColor\" stroke=\"none\" /><path d=\"M16 10v10\" stroke=\"#081017\" stroke-width=\"3\" /><circle cx=\"16\" cy=\"25\" r=\"1.6\" fill=\"#081017\" stroke=\"none\" /></g></symbol>\n<symbol id=\"demo-icon-cross\" viewBox=\"0 0 32 34\"><g fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.05\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"16\" cy=\"16\" r=\"14\" /><path d=\"m9 9 14 14M9 23 23 9\" /></g></symbol>\n<symbol id=\"demo-icon-puzzle\" viewBox=\"0 0 32 34\"><g fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.05\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M13 3c-3-7-8-2-6 2H2v10h5c-4 8 7 8 5 0h6v6c-7-3-8 7 0 6v5h11V21h-5c3-7-7-8-6 0V11h6V3Z\" transform=\"translate(1 1) scale(.93)\" /></g></symbol>\n<symbol id=\"demo-icon-database\" viewBox=\"0 0 32 34\"><g fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.05\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><ellipse cx=\"16\" cy=\"6\" rx=\"13\" ry=\"5\" /><path d=\"M3 6v21c0 7 26 7 26 0V6M3 13c0 7 26 7 26 0M3 20c0 7 26 7 26 0\" /></g></symbol>\n<symbol id=\"demo-icon-refresh\" viewBox=\"0 0 32 34\"><g fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.05\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M28 13A12 12 0 0 0 6 6L3 10m0-7v7h7M4 19a12 12 0 0 0 22 7l3-4m0 7v-7h-7\" /></g></symbol>\n<symbol id=\"demo-icon-clock\" viewBox=\"0 0 32 34\"><g fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.05\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"16\" cy=\"18\" r=\"11\" /><path d=\"M16 10v8l4 3M12 1h8M16 1v5M5 6 2 3m25 3 3-3\" /></g></symbol>\n<symbol id=\"demo-icon-calendar\" viewBox=\"0 0 32 34\"><g fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.05\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"4\" y=\"6\" width=\"24\" height=\"24\" rx=\"3\" /><path d=\"M4 12h24M10 2v8M22 2v8M10 18h4v4h-4Z\" /></g></symbol>\n<symbol id=\"demo-icon-bell\" viewBox=\"0 0 32 34\"><g fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.05\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M4 25h24l-4-6v-7c0-6-3-9-8-9s-8 3-8 9v7ZM13 28c0 4 6 4 6 0M16 1v3\" fill=\"currentColor\" /></g></symbol>\n</defs>\n<rect x=\"0\" y=\"0\" width=\"1536\" height=\"841\" rx=\"0\" fill=\"url(#demo-background)\" stroke=\"none\" stroke-width=\"0.8\" />\n<path d=\"M19 10H1516Q1524 10 1524 19V79Q1524 87 1516 87H19Q11 87 11 79V19Q11 10 19 10Z\" fill=\"url(#demo-panel)\" stroke=\"#086785\" stroke-width=\"0.8\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n\n\n<use href=\"#demo-icon-brand\" x=\"41.1\" y=\"25.099999999999998\" width=\"40.800000000000004\" height=\"40.800000000000004\" style=\"color:#00e5f3\" aria-hidden=\"true\" />\n<image aria-label=\"DEMO — Demo Company\" preserveAspectRatio=\"xMidYMid meet\" height=\"48\" width=\"142\" y=\"20\" x=\"711\" href=\"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMjAiIGhlaWdodD0iOTAiIHZpZXdCb3g9IjAgMCAzMjAgOTAiPjxyZWN0IHdpZHRoPSIzMjAiIGhlaWdodD0iOTAiIHJ4PSIxMiIgZmlsbD0iIzA3MTExZCIvPjxyZWN0IHg9IjIiIHk9IjIiIHdpZHRoPSIzMTYiIGhlaWdodD0iODYiIHJ4PSIxMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMWQ0ZDczIi8+PHRleHQgeD0iMTYwIiB5PSI1MyIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjI0IiBmb250LXdlaWdodD0iNzAwIiBmaWxsPSIjZjRmN2ZiIj5ERU1PIENPTVBBTlk8L3RleHQ+PC9zdmc+\" id=\"demo-official-logo\" /><text x=\"101\" y=\"56\" text-anchor=\"start\" style=\"font-size:24px;fill:#f5f5f5;font-weight:700\">SERVIÇOS CRÍTICOS</text>\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n<rect x=\"11\" y=\"99\" width=\"232\" height=\"170\" rx=\"7\" fill=\"url(#demo-panel)\" stroke=\"#07506b\" stroke-width=\"0.8\" />\n<text class=\"demo-title\" x=\"27\" y=\"122\">ESTADO GERAL</text>\n<g transform=\"translate(127 207) scale(0.85) translate(-127 -207)\" data-compact-art=\"general\"><path d=\"M59 207A68 68 0 0 1 195 207\" fill=\"none\" stroke=\"#162532\" stroke-width=\"14\" stroke-linejoin=\"round\" stroke-linecap=\"round\" /><path d=\"\" fill=\"none\" stroke=\"#35bd23\" stroke-width=\"14\" stroke-linejoin=\"round\" stroke-linecap=\"round\" data-general-arc=\"healthy\" style=\"stroke-linecap:butt\" /><path d=\"\" fill=\"none\" stroke=\"#ff4826\" stroke-width=\"14\" stroke-linejoin=\"round\" stroke-linecap=\"round\" data-general-arc=\"critical\" style=\"stroke-linecap:butt\" /><path d=\"\" fill=\"none\" stroke=\"#ffb500\" stroke-width=\"14\" stroke-linejoin=\"round\" stroke-linecap=\"round\" data-general-arc=\"attention\" style=\"stroke-linecap:butt\" /></g>\n\n\n\n<text x=\"127\" y=\"209\" text-anchor=\"middle\" style=\"font-size:41.6px;fill:#f5f5f5;font-weight:700\" id=\"demo-total\">11</text>\n<text x=\"127\" y=\"239\" text-anchor=\"middle\" style=\"font-size:12.8px;fill:#f5f5f5;font-weight:700\">SERVIÇOS NO MAPA</text>\n<text x=\"127\" y=\"257\" text-anchor=\"middle\" style=\"font-size:12.8px;fill:#f5f5f5;font-weight:700\" id=\"demo-coverage\">0 COM DADOS • 11 SEM DADOS</text>\n<rect data-status-card=\"healthy\" x=\"282.5\" y=\"142\" width=\"120\" height=\"84\" rx=\"6\" fill=\"url(#demo-ok-card)\" stroke=\"#145818\" stroke-width=\"0.8\" />\n<use href=\"#demo-icon-heart\" x=\"296.5\" y=\"152\" width=\"22\" height=\"22\" style=\"color:#37c52a\" aria-hidden=\"true\" />\n<text x=\"342.5\" y=\"165\" text-anchor=\"middle\" style=\"font-size:23px;fill:#37c52a;font-weight:700\" id=\"demo-healthy-count\">—</text>\n<text x=\"342.5\" y=\"184\" text-anchor=\"middle\" style=\"font-size:10px;fill:#37c52a;font-weight:700\">SAUDÁVEIS</text>\n<text x=\"342.5\" y=\"211\" text-anchor=\"middle\" style=\"font-size:18px;fill:#37c52a;font-weight:700\" id=\"demo-healthy-pct\">—</text>\n<rect data-status-card=\"attention\" x=\"461.5\" y=\"142\" width=\"120\" height=\"84\" rx=\"6\" fill=\"url(#demo-warn-card)\" stroke=\"#6d5503\" stroke-width=\"0.8\" />\n<use href=\"#demo-icon-alert\" x=\"475.5\" y=\"152\" width=\"22\" height=\"22\" style=\"color:#ffb800\" aria-hidden=\"true\" />\n<text x=\"521.5\" y=\"165\" text-anchor=\"middle\" style=\"font-size:23px;fill:#ffb800;font-weight:700\" id=\"demo-attention-count\">—</text>\n<text x=\"521.5\" y=\"184\" text-anchor=\"middle\" style=\"font-size:10px;fill:#ffb800;font-weight:700\">ATENÇÃO</text>\n<text x=\"521.5\" y=\"211\" text-anchor=\"middle\" style=\"font-size:18px;fill:#ffb800;font-weight:700\" id=\"demo-attention-pct\">—</text>\n<rect data-status-card=\"critical\" x=\"637.5\" y=\"142\" width=\"120\" height=\"84\" rx=\"6\" fill=\"url(#demo-bad-card)\" stroke=\"#701622\" stroke-width=\"0.8\" />\n<use href=\"#demo-icon-cross\" x=\"651.5\" y=\"152\" width=\"22\" height=\"22\" style=\"color:#ff2b27\" aria-hidden=\"true\" />\n<text x=\"697.5\" y=\"165\" text-anchor=\"middle\" style=\"font-size:23px;fill:#ff2b27;font-weight:700\" id=\"demo-critical-count\">—</text>\n<text x=\"697.5\" y=\"184\" text-anchor=\"middle\" style=\"font-size:10px;fill:#ff2b27;font-weight:700\">CRÍTICOS</text>\n<text x=\"697.5\" y=\"211\" text-anchor=\"middle\" style=\"font-size:18px;fill:#ff2b27;font-weight:700\" id=\"demo-critical-pct\">—</text>\n<rect x=\"11\" y=\"278\" width=\"770\" height=\"552\" rx=\"7\" fill=\"url(#demo-panel)\" stroke=\"#07506b\" stroke-width=\"0.8\" />\n<text class=\"demo-title\" x=\"27\" y=\"304\">MAPA GERAL DE SERVIÇOS CRÍTICOS</text>\n<path d=\"M179 358H158Q147 358 147 370V584Q147 596 159 596H179\" fill=\"none\" stroke=\"#b4bbc1\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />\n<path d=\"M122 473H145\" fill=\"none\" stroke=\"#8a969e\" stroke-width=\"1.1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" marker-end=\"url(#demo-arrow)\" />\n<path d=\"M122 565H145\" fill=\"none\" stroke=\"#8a969e\" stroke-width=\"1.1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" marker-end=\"url(#demo-arrow)\" />\n<line x1=\"147\" y1=\"473\" x2=\"179\" y2=\"473\" stroke=\"#39c722\" stroke-width=\"1.4\" />\n<line x1=\"298\" y1=\"358\" x2=\"361\" y2=\"358\" stroke=\"#8997a4\" stroke-width=\"1.5\" data-edge=\"customer-portal-service-portal\" /><line x1=\"298\" y1=\"358\" x2=\"361\" y2=\"358\" stroke=\"#8997a4\" stroke-width=\"1.5\" data-edge=\"customer-portal-service-portal\"  class=\"demo-edge-flow\" />\n<line x1=\"474\" y1=\"358\" x2=\"647\" y2=\"358\" stroke=\"#8997a4\" stroke-width=\"1.5\" data-edge=\"service-portal-portal\" /><line x1=\"474\" y1=\"358\" x2=\"647\" y2=\"358\" stroke=\"#8997a4\" stroke-width=\"1.5\" data-edge=\"service-portal-portal\"  class=\"demo-edge-flow\" />\n<line x1=\"293\" y1=\"473\" x2=\"361\" y2=\"473\" stroke=\"#8997a4\" stroke-width=\"1.5\" data-edge=\"billing-batch-processor\" /><line x1=\"293\" y1=\"473\" x2=\"361\" y2=\"473\" stroke=\"#8997a4\" stroke-width=\"1.5\" data-edge=\"billing-batch-processor\"  class=\"demo-edge-flow\" />\n<line x1=\"472\" y1=\"473\" x2=\"534\" y2=\"473\" stroke=\"#8997a4\" stroke-width=\"1.5\" data-edge=\"batch-processor-arquivos\" /><line x1=\"472\" y1=\"473\" x2=\"534\" y2=\"473\" stroke=\"#8997a4\" stroke-width=\"1.5\" data-edge=\"batch-processor-arquivos\"  class=\"demo-edge-flow\" />\n<line x1=\"294\" y1=\"596\" x2=\"362\" y2=\"596\" stroke=\"#8997a4\" stroke-width=\"1.5\" data-edge=\"recepcao-message-relay\" /><line x1=\"294\" y1=\"596\" x2=\"362\" y2=\"596\" stroke=\"#8997a4\" stroke-width=\"1.5\" data-edge=\"recepcao-message-relay\"  class=\"demo-edge-flow\" />\n<line x1=\"475\" y1=\"596\" x2=\"649\" y2=\"596\" stroke=\"#8997a4\" stroke-width=\"1.5\" data-edge=\"message-relay-r-retorno\" /><line x1=\"475\" y1=\"596\" x2=\"649\" y2=\"596\" stroke=\"#8997a4\" stroke-width=\"1.5\" data-edge=\"message-relay-r-retorno\"  class=\"demo-edge-flow\" />\n<path d=\"M647 358H676Q687 358 687 370V446Q687 458 699 458H704\" fill=\"none\" stroke=\"#a6afb6\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" marker-end=\"url(#demo-arrow)\" />\n<path d=\"M647 473H704\" fill=\"none\" stroke=\"#a6afb6\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" marker-end=\"url(#demo-arrow)\" />\n<path d=\"M649 596H675Q687 596 687 584V503Q687 491 699 491H704\" fill=\"none\" stroke=\"#a6afb6\" stroke-width=\"1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" marker-end=\"url(#demo-arrow)\" />\n\n<path d=\"M418 639V671Q418 681 408 681H400V693\" fill=\"none\" stroke=\"#8997a4\" stroke-width=\"1.1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" stroke-dasharray=\"4 3\" marker-end=\"url(#demo-arrow)\" data-edge=\"message-relay-simples\" /><path d=\"M418 639V671Q418 681 408 681H400V693\" fill=\"none\" stroke=\"#8997a4\" stroke-width=\"1.1\" stroke-linejoin=\"round\" stroke-linecap=\"round\" data-edge=\"message-relay-simples\"  class=\"demo-edge-flow\" />\n<rect x=\"28\" y=\"432\" width=\"94\" height=\"78\" rx=\"10\" fill=\"url(#demo-node-fill)\" stroke=\"#8d9aa5\" stroke-width=\"0.8\" />\n<use href=\"#demo-icon-user\" x=\"62.2\" y=\"446.2\" width=\"25.6\" height=\"25.6\" style=\"color:#00e5f3\" aria-hidden=\"true\" />\n<text x=\"75.0\" y=\"494\" text-anchor=\"middle\" style=\"font-size:12px;fill:#f5f5f5;font-weight:700\" class=\"demo-service-label\">USUÁRIOS</text>\n<rect x=\"28\" y=\"528\" width=\"94\" height=\"77\" rx=\"10\" fill=\"url(#demo-node-fill)\" stroke=\"#8d9aa5\" stroke-width=\"0.8\" />\n<use href=\"#demo-icon-globe\" x=\"62.2\" y=\"542.2\" width=\"25.6\" height=\"25.6\" style=\"color:#00e5f3\" aria-hidden=\"true\" />\n<text x=\"75.0\" y=\"590\" text-anchor=\"middle\" style=\"font-size:12px;fill:#f5f5f5;font-weight:700\" class=\"demo-service-label\">INTERNET</text>\n<rect x=\"706\" y=\"440\" width=\"69\" height=\"84\" rx=\"10\" fill=\"url(#demo-node-fill)\" stroke=\"#8d9aa5\" stroke-width=\"0.8\" />\n<use href=\"#demo-icon-users\" x=\"727.7\" y=\"454.2\" width=\"25.6\" height=\"25.6\" style=\"color:#00e5f3\" aria-hidden=\"true\" />\n<text x=\"740.5\" y=\"496\" text-anchor=\"middle\" style=\"font-size:12px;fill:#f5f5f5;font-weight:700\" class=\"demo-service-label\">USUÁRIOS</text>\n<text x=\"740.5\" y=\"511\" text-anchor=\"middle\" style=\"font-size:12px;fill:#f5f5f5;font-weight:700\" class=\"demo-service-label\">INTERNOS</text>\n<g class=\"demo-node\" data-service=\"customer-portal\" data-status=\"UNKNOWN\">\n<path class=\"demo-node-shape\" d=\"M209 320H269Q274 320 278 326L297 356Q298 358 297 361L278 393Q275 399 269 399H209Q203 399 200 393L181 361Q180 358 181 355L200 326Q204 320 209 320Z\" />\n<circle class=\"demo-node-port\" cx=\"181\" cy=\"358\" r=\"4.7\" /><circle class=\"demo-node-port\" cx=\"297\" cy=\"358\" r=\"4.7\" />\n<use href=\"#demo-icon-monitor\" x=\"224.6\" y=\"334.6\" width=\"28.8\" height=\"28.8\" style=\"color:#00e5f3\" aria-hidden=\"true\" />\n<text x=\"239\" y=\"386\" text-anchor=\"middle\" style=\"font-size:12px;fill:#f5f5f5;font-weight:700\" class=\"demo-service-label\">CUSTOMER PORTAL</text>\n<text x=\"239\" y=\"416\" text-anchor=\"middle\" class=\"demo-node-state\" style=\"font-size:11.2px;font-weight:400\">SEM DADOS</text>\n<foreignObject x=\"183\" y=\"320\" width=\"112\" height=\"80\"><button xmlns=\"http://www.w3.org/1999/xhtml\" type=\"button\" class=\"demo-hit\" data-action=\"service:customer-portal\" aria-label=\"CUSTOMER PORTAL — SEM DADOS\"></button></foreignObject>\n</g>\n<g class=\"demo-node\" data-service=\"service-portal\" data-status=\"UNKNOWN\">\n<path class=\"demo-node-shape\" d=\"M388 320H448Q453 320 457 326L476 356Q477 358 476 361L457 393Q454 399 448 399H388Q382 399 379 393L360 361Q359 358 360 355L379 326Q383 320 388 320Z\" />\n<circle class=\"demo-node-port\" cx=\"360\" cy=\"358\" r=\"4.7\" /><circle class=\"demo-node-port\" cx=\"476\" cy=\"358\" r=\"4.7\" />\n<use href=\"#demo-icon-cube\" x=\"403.6\" y=\"334.6\" width=\"28.8\" height=\"28.8\" style=\"color:#00e5f3\" aria-hidden=\"true\" />\n<text x=\"418\" y=\"386\" text-anchor=\"middle\" style=\"font-size:12px;fill:#f5f5f5;font-weight:700\" class=\"demo-service-label\">SERVICE PORTAL</text>\n<text x=\"418\" y=\"416\" text-anchor=\"middle\" class=\"demo-node-state\" style=\"font-size:11.2px;font-weight:400\">SEM DADOS</text>\n<foreignObject x=\"362\" y=\"320\" width=\"112\" height=\"80\"><button xmlns=\"http://www.w3.org/1999/xhtml\" type=\"button\" class=\"demo-hit\" data-action=\"service:service-portal\" aria-label=\"SERVICE PORTAL — SEM DADOS\"></button></foreignObject>\n</g>\n\n<g class=\"demo-node\" data-service=\"billing\" data-status=\"UNKNOWN\">\n<path class=\"demo-node-shape\" d=\"M207 432H267Q272 432 276 438L295 471Q296 473 295 476L276 510Q273 516 267 516H207Q201 516 198 510L179 476Q178 473 179 470L198 438Q202 432 207 432Z\" />\n<circle class=\"demo-node-port\" cx=\"179\" cy=\"473\" r=\"4.7\" /><circle class=\"demo-node-port\" cx=\"295\" cy=\"473\" r=\"4.7\" />\n<use href=\"#demo-icon-gear\" x=\"222.6\" y=\"447.6\" width=\"28.8\" height=\"28.8\" style=\"color:#00e5f3\" aria-hidden=\"true\" />\n<text x=\"237\" y=\"501\" text-anchor=\"middle\" style=\"font-size:12px;fill:#f5f5f5;font-weight:700\" class=\"demo-service-label\">BILLING</text>\n<text x=\"237\" y=\"534\" text-anchor=\"middle\" class=\"demo-node-state\" style=\"font-size:11.2px;font-weight:400\">SEM DADOS</text>\n<foreignObject x=\"181\" y=\"435\" width=\"112\" height=\"80\"><button xmlns=\"http://www.w3.org/1999/xhtml\" type=\"button\" class=\"demo-hit\" data-action=\"service:billing\" aria-label=\"BILLING — SEM DADOS\"></button></foreignObject>\n</g>\n<g class=\"demo-node\" data-service=\"batch-processor\" data-status=\"UNKNOWN\">\n<path class=\"demo-node-shape\" d=\"M387 432H447Q452 432 456 438L475 471Q476 473 475 476L456 510Q453 516 447 516H387Q381 516 378 510L359 476Q358 473 359 470L378 438Q382 432 387 432Z\" />\n<circle class=\"demo-node-port\" cx=\"359\" cy=\"473\" r=\"4.7\" /><circle class=\"demo-node-port\" cx=\"475\" cy=\"473\" r=\"4.7\" />\n<use href=\"#demo-icon-file\" x=\"402.6\" y=\"447.6\" width=\"28.8\" height=\"28.8\" style=\"color:#00e5f3\" aria-hidden=\"true\" />\n<text x=\"417\" y=\"501\" text-anchor=\"middle\" style=\"font-size:12px;fill:#f5f5f5;font-weight:700\" class=\"demo-service-label\">BATCH PROCESSOR</text>\n<text x=\"417\" y=\"534\" text-anchor=\"middle\" class=\"demo-node-state\" style=\"font-size:12.8px;font-weight:700\">SEM DADOS</text>\n<foreignObject x=\"361\" y=\"435\" width=\"112\" height=\"80\"><button xmlns=\"http://www.w3.org/1999/xhtml\" type=\"button\" class=\"demo-hit\" data-action=\"service:batch-processor\" aria-label=\"BATCH PROCESSOR — SEM DADOS\"></button></foreignObject>\n</g>\n<g class=\"demo-node\" data-service=\"file-delivery\" data-status=\"UNKNOWN\">\n<path class=\"demo-node-shape\" d=\"M560 432H620Q625 432 629 438L648 471Q649 473 648 476L629 510Q626 516 620 516H560Q554 516 551 510L532 476Q531 473 532 470L551 438Q555 432 560 432Z\" />\n<circle class=\"demo-node-port\" cx=\"532\" cy=\"473\" r=\"4.7\" /><circle class=\"demo-node-port\" cx=\"648\" cy=\"473\" r=\"4.7\" />\n<use href=\"#demo-icon-download\" x=\"575.6\" y=\"447.6\" width=\"28.8\" height=\"28.8\" style=\"color:#00e5f3\" aria-hidden=\"true\" />\n<text x=\"590\" y=\"495\" text-anchor=\"middle\" style=\"font-size:11.2px;fill:#f5f5f5;font-weight:700\" class=\"demo-service-label\">ARQUIVOS</text>\n<text x=\"590\" y=\"510\" text-anchor=\"middle\" style=\"font-size:11.2px;fill:#f5f5f5;font-weight:700\" class=\"demo-service-label\">DOWNLOAD</text>\n<text x=\"590\" y=\"534\" text-anchor=\"middle\" class=\"demo-node-state\" style=\"font-size:11.2px;font-weight:400\">SEM DADOS</text>\n<foreignObject x=\"534\" y=\"435\" width=\"112\" height=\"80\"><button xmlns=\"http://www.w3.org/1999/xhtml\" type=\"button\" class=\"demo-hit\" data-action=\"service:file-delivery\" aria-label=\"FILE DELIVERY — SEM DADOS\"></button></foreignObject>\n</g>\n<g class=\"demo-node\" data-service=\"payment-intake\" data-status=\"UNKNOWN\">\n<path class=\"demo-node-shape\" d=\"M207 552H267Q272 552 276 558L295 594Q296 596 295 599L276 633Q273 639 267 639H207Q201 639 198 633L179 599Q178 596 179 593L198 558Q202 552 207 552Z\" />\n<circle class=\"demo-node-port\" cx=\"179\" cy=\"596\" r=\"4.7\" /><circle class=\"demo-node-port\" cx=\"295\" cy=\"596\" r=\"4.7\" />\n<use href=\"#demo-icon-bank\" x=\"222.6\" y=\"567.6\" width=\"28.8\" height=\"28.8\" style=\"color:#00e5f3\" aria-hidden=\"true\" />\n<text x=\"237\" y=\"618\" text-anchor=\"middle\" style=\"font-size:11.2px;fill:#f5f5f5;font-weight:700\" class=\"demo-service-label\">RECEPÇÃO</text>\n<text x=\"237\" y=\"633\" text-anchor=\"middle\" style=\"font-size:11.2px;fill:#f5f5f5;font-weight:700\" class=\"demo-service-label\">BANCÁRIA</text>\n<text x=\"237\" y=\"657\" text-anchor=\"middle\" class=\"demo-node-state\" style=\"font-size:12.8px;font-weight:700\">SEM DADOS</text>\n<foreignObject x=\"181\" y=\"558\" width=\"112\" height=\"80\"><button xmlns=\"http://www.w3.org/1999/xhtml\" type=\"button\" class=\"demo-hit\" data-action=\"service:payment-intake\" aria-label=\"PAYMENT INTAKE — SEM DADOS\"></button></foreignObject>\n</g>\n<g class=\"demo-node\" data-service=\"message-relay\" data-status=\"UNKNOWN\">\n<path class=\"demo-node-shape\" d=\"M388 552H448Q453 552 457 558L476 594Q477 596 476 599L457 633Q454 639 448 639H388Q382 639 379 633L360 599Q359 596 360 593L379 558Q383 552 388 552Z\" />\n<circle class=\"demo-node-port\" cx=\"360\" cy=\"596\" r=\"4.7\" /><circle class=\"demo-node-port\" cx=\"476\" cy=\"596\" r=\"4.7\" />\n<use href=\"#demo-icon-rocket\" x=\"403.6\" y=\"567.6\" width=\"28.8\" height=\"28.8\" style=\"color:#00e5f3\" aria-hidden=\"true\" />\n<text x=\"418\" y=\"624\" text-anchor=\"middle\" style=\"font-size:12px;fill:#f5f5f5;font-weight:700\" class=\"demo-service-label\">MESSAGE RELAY</text>\n<text x=\"418\" y=\"657\" text-anchor=\"middle\" class=\"demo-node-state\" style=\"font-size:12.8px;font-weight:700\">SEM DADOS</text>\n<foreignObject x=\"362\" y=\"558\" width=\"112\" height=\"80\"><button xmlns=\"http://www.w3.org/1999/xhtml\" type=\"button\" class=\"demo-hit\" data-action=\"service:message-relay\" aria-label=\"MESSAGE RELAY — SEM DADOS\"></button></foreignObject>\n</g>\n\n<rect x=\"300\" y=\"695\" width=\"200\" height=\"71\" rx=\"12\" fill=\"url(#demo-node-fill)\" stroke=\"#8b98a1\" stroke-width=\"0.8\" stroke-dasharray=\"3 2\" />\n\n<g class=\"demo-node\" data-service=\"tax-processing\" data-status=\"UNKNOWN\">\n<use href=\"#demo-icon-dollar\" x=\"386.4\" y=\"701.5\" width=\"27.2\" height=\"27.2\" style=\"color:#00e5f3\" aria-hidden=\"true\" />\n<text x=\"400\" y=\"744\" text-anchor=\"middle\" style=\"font-size:12px;fill:#f5f5f5;font-weight:700\" class=\"demo-service-label\">TAX PROCESSING</text>\n<text x=\"400\" y=\"760\" text-anchor=\"middle\" class=\"demo-node-state\" style=\"font-size:11.2px\">SEM DADOS</text>\n<foreignObject x=\"306\" y=\"699\" width=\"188\" height=\"64\"><button xmlns=\"http://www.w3.org/1999/xhtml\" type=\"button\" class=\"demo-hit\" data-action=\"service:tax-processing\" aria-label=\"TAX PROCESSING — SEM DADOS\"></button></foreignObject>\n</g>\n<circle cx=\"275\" cy=\"798\" r=\"7\" fill=\"#36c627\" />\n<text x=\"293\" y=\"803\" text-anchor=\"start\" style=\"font-size:12.8px;fill:#f5f5f5;font-weight:400\">UP</text>\n<circle cx=\"366\" cy=\"798\" r=\"7\" fill=\"#ffb500\" />\n<text x=\"384\" y=\"803\" text-anchor=\"start\" style=\"font-size:12.8px;fill:#f5f5f5;font-weight:400\">ATENÇÃO</text>\n<circle cx=\"492\" cy=\"798\" r=\"7\" fill=\"#fa2927\" />\n<text x=\"510\" y=\"803\" text-anchor=\"start\" style=\"font-size:12.8px;fill:#f5f5f5;font-weight:400\">DOWN</text>\n<rect x=\"790\" y=\"278\" width=\"734\" height=\"232\" rx=\"7\" fill=\"url(#demo-panel)\" stroke=\"#07506b\" stroke-width=\"0.8\" />\n<text aria-label=\"Ranking por taxa de erro APM; impacto é a participação nas falhas dos serviços retornados; P95 não disponível na origem.\" class=\"demo-title\" x=\"806\" y=\"304\">TOP 5 MAIORES IMPACTOS</text>\n<rect x=\"804\" y=\"314\" width=\"710\" height=\"192\" rx=\"5\" fill=\"#020a11\" stroke=\"#092539\" stroke-width=\"0.8\" />\n<rect x=\"804\" y=\"314\" width=\"710\" height=\"30\" rx=\"5\" fill=\"#061623\" stroke=\"none\" stroke-width=\"0.8\" />\n<line x1=\"977\" y1=\"314\" x2=\"977\" y2=\"506\" stroke=\"#072338\" stroke-width=\"0.8\" />\n<line x1=\"1083\" y1=\"314\" x2=\"1083\" y2=\"506\" stroke=\"#072338\" stroke-width=\"0.8\" />\n<line x1=\"1326\" y1=\"314\" x2=\"1326\" y2=\"506\" stroke=\"#072338\" stroke-width=\"0.8\" />\n\n<line x1=\"804\" y1=\"344\" x2=\"1514\" y2=\"344\" stroke=\"#082235\" stroke-width=\"0.8\" />\n<line x1=\"804\" y1=\"378\" x2=\"1514\" y2=\"378\" stroke=\"#082235\" stroke-width=\"0.8\" />\n<line x1=\"804\" y1=\"410\" x2=\"1514\" y2=\"410\" stroke=\"#082235\" stroke-width=\"0.8\" />\n<line x1=\"804\" y1=\"442\" x2=\"1514\" y2=\"442\" stroke=\"#082235\" stroke-width=\"0.8\" />\n<line x1=\"804\" y1=\"474\" x2=\"1514\" y2=\"474\" stroke=\"#082235\" stroke-width=\"0.8\" />\n<line x1=\"804\" y1=\"506\" x2=\"1514\" y2=\"506\" stroke=\"#082235\" stroke-width=\"0.8\" />\n<text x=\"890.5\" y=\"335\" text-anchor=\"middle\" style=\"font-size:12px;fill:#f5f5f5;font-weight:400\" class=\"demo-table-head\">SERVIÇO</text>\n<text x=\"1030\" y=\"335\" text-anchor=\"middle\" style=\"font-size:12px;fill:#f5f5f5;font-weight:400\" class=\"demo-table-head\">STATUS</text>\n<text x=\"1204.5\" y=\"335\" text-anchor=\"middle\" style=\"font-size:12px;fill:#f5f5f5;font-weight:400\" class=\"demo-table-head\">IMPACTO</text>\n<text x=\"1420\" y=\"335\" text-anchor=\"middle\" style=\"font-size:12px;fill:#f5f5f5;font-weight:400\" class=\"demo-table-head\">ERRO (%)</text>\n\n<g data-impact-row=\"0\">\n<text aria-label=\"—\" x=\"890.5\" y=\"366\" text-anchor=\"middle\" style=\"font-size:12.8px;fill:#f5f5f5;font-weight:400\" data-field=\"service\" class=\"demo-service-label\">—</text>\n<rect x=\"995\" y=\"351\" width=\"69\" height=\"23\" rx=\"4\" fill=\"#8997a422\" stroke=\"none\" stroke-width=\"0.8\" data-field=\"badge\" />\n<text x=\"1029\" y=\"366\" text-anchor=\"middle\" style=\"font-size:12.8px;fill:#8997a4;font-weight:400\" data-field=\"status\">—</text>\n<rect x=\"1102\" y=\"356\" width=\"156\" height=\"12\" rx=\"3\" fill=\"#0c1722\" stroke=\"none\" stroke-width=\"0.8\" />\n<rect x=\"1102\" y=\"356\" width=\"0\" height=\"12\" rx=\"3\" fill=\"#8997a4\" stroke=\"none\" stroke-width=\"0.8\" data-field=\"bar\" />\n<text x=\"1307\" y=\"366\" text-anchor=\"end\" style=\"font-size:12.8px;fill:#f5f5f5;font-weight:400\" data-field=\"impact\">—</text>\n<text x=\"1385\" y=\"366\" text-anchor=\"middle\" style=\"font-size:12.8px;fill:#f5f5f5;font-weight:400\" data-field=\"error\">—</text>\n\n</g>\n<g data-impact-row=\"1\">\n<text aria-label=\"—\" x=\"890.5\" y=\"398\" text-anchor=\"middle\" style=\"font-size:12.8px;fill:#f5f5f5;font-weight:400\" data-field=\"service\" class=\"demo-service-label\">—</text>\n<rect x=\"995\" y=\"383\" width=\"69\" height=\"23\" rx=\"4\" fill=\"#8997a422\" stroke=\"none\" stroke-width=\"0.8\" data-field=\"badge\" />\n<text x=\"1029\" y=\"398\" text-anchor=\"middle\" style=\"font-size:12.8px;fill:#8997a4;font-weight:400\" data-field=\"status\">—</text>\n<rect x=\"1102\" y=\"388\" width=\"156\" height=\"12\" rx=\"3\" fill=\"#0c1722\" stroke=\"none\" stroke-width=\"0.8\" />\n<rect x=\"1102\" y=\"388\" width=\"0\" height=\"12\" rx=\"3\" fill=\"#8997a4\" stroke=\"none\" stroke-width=\"0.8\" data-field=\"bar\" />\n<text x=\"1307\" y=\"398\" text-anchor=\"end\" style=\"font-size:12.8px;fill:#f5f5f5;font-weight:400\" data-field=\"impact\">—</text>\n<text x=\"1385\" y=\"398\" text-anchor=\"middle\" style=\"font-size:12.8px;fill:#f5f5f5;font-weight:400\" data-field=\"error\">—</text>\n\n</g>\n<g data-impact-row=\"2\">\n<text aria-label=\"—\" x=\"890.5\" y=\"430\" text-anchor=\"middle\" style=\"font-size:12.8px;fill:#f5f5f5;font-weight:400\" data-field=\"service\" class=\"demo-service-label\">—</text>\n<rect x=\"995\" y=\"415\" width=\"69\" height=\"23\" rx=\"4\" fill=\"#8997a422\" stroke=\"none\" stroke-width=\"0.8\" data-field=\"badge\" />\n<text x=\"1029\" y=\"430\" text-anchor=\"middle\" style=\"font-size:12.8px;fill:#8997a4;font-weight:400\" data-field=\"status\">—</text>\n<rect x=\"1102\" y=\"420\" width=\"156\" height=\"12\" rx=\"3\" fill=\"#0c1722\" stroke=\"none\" stroke-width=\"0.8\" />\n<rect x=\"1102\" y=\"420\" width=\"0\" height=\"12\" rx=\"3\" fill=\"#8997a4\" stroke=\"none\" stroke-width=\"0.8\" data-field=\"bar\" />\n<text x=\"1307\" y=\"430\" text-anchor=\"end\" style=\"font-size:12.8px;fill:#f5f5f5;font-weight:400\" data-field=\"impact\">—</text>\n<text x=\"1385\" y=\"430\" text-anchor=\"middle\" style=\"font-size:12.8px;fill:#f5f5f5;font-weight:400\" data-field=\"error\">—</text>\n\n</g>\n<g data-impact-row=\"3\">\n<text aria-label=\"—\" x=\"890.5\" y=\"462\" text-anchor=\"middle\" style=\"font-size:12.8px;fill:#f5f5f5;font-weight:400\" data-field=\"service\" class=\"demo-service-label\">—</text>\n<rect x=\"995\" y=\"447\" width=\"69\" height=\"23\" rx=\"4\" fill=\"#8997a422\" stroke=\"none\" stroke-width=\"0.8\" data-field=\"badge\" />\n<text x=\"1029\" y=\"462\" text-anchor=\"middle\" style=\"font-size:12.8px;fill:#8997a4;font-weight:400\" data-field=\"status\">—</text>\n<rect x=\"1102\" y=\"452\" width=\"156\" height=\"12\" rx=\"3\" fill=\"#0c1722\" stroke=\"none\" stroke-width=\"0.8\" />\n<rect x=\"1102\" y=\"452\" width=\"0\" height=\"12\" rx=\"3\" fill=\"#8997a4\" stroke=\"none\" stroke-width=\"0.8\" data-field=\"bar\" />\n<text x=\"1307\" y=\"462\" text-anchor=\"end\" style=\"font-size:12.8px;fill:#f5f5f5;font-weight:400\" data-field=\"impact\">—</text>\n<text x=\"1385\" y=\"462\" text-anchor=\"middle\" style=\"font-size:12.8px;fill:#f5f5f5;font-weight:400\" data-field=\"error\">—</text>\n\n</g>\n<g data-impact-row=\"4\">\n<text aria-label=\"—\" x=\"890.5\" y=\"494\" text-anchor=\"middle\" style=\"font-size:12.8px;fill:#f5f5f5;font-weight:400\" data-field=\"service\" class=\"demo-service-label\">—</text>\n<rect x=\"995\" y=\"479\" width=\"69\" height=\"23\" rx=\"4\" fill=\"#8997a422\" stroke=\"none\" stroke-width=\"0.8\" data-field=\"badge\" />\n<text x=\"1029\" y=\"494\" text-anchor=\"middle\" style=\"font-size:12.8px;fill:#8997a4;font-weight:400\" data-field=\"status\">—</text>\n<rect x=\"1102\" y=\"484\" width=\"156\" height=\"12\" rx=\"3\" fill=\"#0c1722\" stroke=\"none\" stroke-width=\"0.8\" />\n<rect x=\"1102\" y=\"484\" width=\"0\" height=\"12\" rx=\"3\" fill=\"#8997a4\" stroke=\"none\" stroke-width=\"0.8\" data-field=\"bar\" />\n<text x=\"1307\" y=\"494\" text-anchor=\"end\" style=\"font-size:12.8px;fill:#f5f5f5;font-weight:400\" data-field=\"impact\">—</text>\n<text x=\"1385\" y=\"494\" text-anchor=\"middle\" style=\"font-size:12.8px;fill:#f5f5f5;font-weight:400\" data-field=\"error\">—</text>\n\n</g>\n<g data-panel=\"applications\" transform=\"translate(0 -572)\">\n<rect x=\"790\" y=\"671\" width=\"405\" height=\"170\" rx=\"7\" fill=\"url(#demo-panel)\" stroke=\"#07506b\" stroke-width=\"0.8\" />\n<text class=\"demo-title\" x=\"806\" y=\"695\">APLICAÇÕES POR STATUS</text>\n<g transform=\"translate(899 765) scale(0.72) translate(-899 -765)\" data-compact-art=\"applications\"><circle cx=\"899\" cy=\"765\" r=\"52\" fill=\"none\" stroke=\"#162530\" stroke-width=\"16\" /><circle style=\"display:none\" cx=\"899\" cy=\"765\" r=\"52\" fill=\"none\" stroke=\"#ff3025\" stroke-width=\"16\" stroke-dasharray=\"0 326.7256359733385\" stroke-dashoffset=\"0\" transform=\"rotate(-54 899 765)\" data-donut=\"#ff3025\" /><circle style=\"display:none\" cx=\"899\" cy=\"765\" r=\"52\" fill=\"none\" stroke=\"#ffb800\" stroke-width=\"16\" stroke-dasharray=\"0 326.7256359733385\" stroke-dashoffset=\"0\" transform=\"rotate(-54 899 765)\" data-donut=\"#ffb800\" /><circle style=\"display:none\" cx=\"899\" cy=\"765\" r=\"52\" fill=\"none\" stroke=\"#34bf23\" stroke-width=\"16\" stroke-dasharray=\"0 326.7256359733385\" stroke-dashoffset=\"0\" transform=\"rotate(-54 899 765)\" data-donut=\"#34bf23\" /></g>\n\n\n\n<text dominant-baseline=\"central\" x=\"899\" y=\"765\" text-anchor=\"middle\" style=\"font-size:28px;fill:#f5f5f5;font-weight:700\" id=\"demo-app-total\">7</text>\n<text x=\"899\" y=\"826\" text-anchor=\"middle\" style=\"font-size:12.8px;fill:#f5f5f5;font-weight:400\" id=\"demo-app-unknown\">7 SEM DADOS</text>\n<circle cx=\"1018\" cy=\"721\" r=\"5.5\" fill=\"#39c82a\" />\n<text dominant-baseline=\"central\" x=\"1039\" y=\"721\" text-anchor=\"start\" style=\"font-size:16.8px;fill:#39c82a;font-weight:700\" id=\"demo-app-count-0\">—</text>\n<text dominant-baseline=\"central\" x=\"1060\" y=\"721\" text-anchor=\"start\" style=\"font-size:11px;fill:#39c82a;font-weight:400\">SAUDÁVEIS</text>\n<text dominant-baseline=\"central\" x=\"1173\" y=\"721\" text-anchor=\"end\" style=\"font-size:14.4px;fill:#39c82a;font-weight:700\" id=\"demo-app-pct-0\">—</text>\n<circle cx=\"1018\" cy=\"762\" r=\"5.5\" fill=\"#ffb500\" />\n<text dominant-baseline=\"central\" x=\"1039\" y=\"762\" text-anchor=\"start\" style=\"font-size:16.8px;fill:#ffb500;font-weight:700\" id=\"demo-app-count-1\">—</text>\n<text dominant-baseline=\"central\" x=\"1060\" y=\"762\" text-anchor=\"start\" style=\"font-size:11px;fill:#ffb500;font-weight:400\">ATENÇÃO</text>\n<text dominant-baseline=\"central\" x=\"1173\" y=\"762\" text-anchor=\"end\" style=\"font-size:14.4px;fill:#ffb500;font-weight:700\" id=\"demo-app-pct-1\">—</text>\n<circle cx=\"1018\" cy=\"803\" r=\"5.5\" fill=\"#ff2925\" />\n<text dominant-baseline=\"central\" x=\"1039\" y=\"803\" text-anchor=\"start\" style=\"font-size:16.8px;fill:#ff2925;font-weight:700\" id=\"demo-app-count-2\">—</text>\n<text dominant-baseline=\"central\" x=\"1060\" y=\"803\" text-anchor=\"start\" style=\"font-size:11px;fill:#ff2925;font-weight:400\">CRÍTICOS</text>\n<text dominant-baseline=\"central\" x=\"1173\" y=\"803\" text-anchor=\"end\" style=\"font-size:14.4px;fill:#ff2925;font-weight:700\" id=\"demo-app-pct-2\">—</text>\n</g><g data-panel=\"availability\" transform=\"translate(0 -572)\">\n<rect x=\"1205\" y=\"671\" width=\"319\" height=\"170\" rx=\"7\" fill=\"url(#demo-panel)\" stroke=\"#07506b\" stroke-width=\"0.8\" />\n<text class=\"demo-title\" x=\"1222\" y=\"695\">DISPONIBILIDADE GERAL</text>\n<g transform=\"translate(1359 783) scale(0.72) translate(-1359 -783)\" data-compact-art=\"availability\"><path d=\"M1277 783A82 82 0 0 1 1441 783\" fill=\"none\" stroke=\"#192935\" stroke-width=\"18\" stroke-linejoin=\"round\" stroke-linecap=\"round\" /><path d=\"\" fill=\"none\" stroke=\"#38ca27\" stroke-width=\"18\" stroke-linejoin=\"round\" stroke-linecap=\"round\" id=\"demo-availability-arc\" /></g>\n\n<text x=\"1360\" y=\"776\" text-anchor=\"middle\" style=\"font-size:28px;fill:#f5f5f5;font-weight:700\" id=\"demo-availability\">—</text>\n<text x=\"1360\" y=\"798\" text-anchor=\"middle\" style=\"font-size:12.8px;fill:#f5f5f5;font-weight:400\">UP / COM DADOS</text>\n<text x=\"1360\" y=\"820\" text-anchor=\"end\" style=\"font-size:12.8px;fill:#f5f5f5;font-weight:400\">DADOS:</text>\n<text x=\"1364\" y=\"820\" text-anchor=\"start\" style=\"font-size:12.8px;fill:#8997a4;font-weight:400\" id=\"demo-availability-target\">0/11</text>\n</g>\n<rect x=\"790\" y=\"520\" width=\"734\" height=\"150\" rx=\"7\" fill=\"url(#demo-panel)\" stroke=\"#07506b\" stroke-width=\"0.8\" />\n<text aria-label=\"Transições UP para DOWN observadas nas séries; não são eventos nativos do Zabbix.\" class=\"demo-title\" x=\"806\" y=\"545\">EVENTOS CRÍTICOS RECENTES</text>\n<use href=\"#demo-icon-bell\" x=\"1044\" y=\"528\" width=\"18\" height=\"18\" style=\"color:#ff342d\" aria-hidden=\"true\" />\n<text x=\"1075\" y=\"544\" text-anchor=\"start\" style=\"font-size:13.6px;fill:#f5f5f5;font-weight:400\" id=\"demo-event-count\">—</text>\n<rect x=\"804\" y=\"555\" width=\"710\" height=\"109\" rx=\"5\" fill=\"#020a11\" stroke=\"none\" stroke-width=\"0.8\" />\n<rect x=\"804\" y=\"555\" width=\"710\" height=\"27\" rx=\"5\" fill=\"#061623\" stroke=\"none\" stroke-width=\"0.8\" />\n<text x=\"825\" y=\"575\" text-anchor=\"start\" style=\"font-size:12px;fill:#f5f5f5;font-weight:400\" class=\"demo-table-head\">HORA</text>\n<text x=\"918\" y=\"575\" text-anchor=\"start\" style=\"font-size:12px;fill:#f5f5f5;font-weight:400\" class=\"demo-table-head\">SERVIÇO</text>\n<text x=\"1120\" y=\"575\" text-anchor=\"start\" style=\"font-size:12px;fill:#f5f5f5;font-weight:400\" class=\"demo-table-head\">EVENTO</text>\n<text x=\"1425\" y=\"575\" text-anchor=\"start\" style=\"font-size:12px;fill:#f5f5f5;font-weight:400\" class=\"demo-table-head\">DURAÇÃO</text>\n<line x1=\"904\" y1=\"555\" x2=\"904\" y2=\"663\" stroke=\"#092638\" stroke-width=\"0.8\" />\n<line x1=\"1106\" y1=\"555\" x2=\"1106\" y2=\"663\" stroke=\"#092638\" stroke-width=\"0.8\" />\n<line x1=\"1411\" y1=\"555\" x2=\"1411\" y2=\"663\" stroke=\"#092638\" stroke-width=\"0.8\" />\n<g data-event-row=\"0\">\n<circle cx=\"817\" cy=\"597\" r=\"6.5\" fill=\"#8997a4\" data-field=\"dot\" />\n<text aria-label=\"—\" x=\"831\" y=\"602\" text-anchor=\"start\" style=\"font-size:12.8px;fill:#f5f5f5;font-weight:400\" data-field=\"time\">—</text>\n<text aria-label=\"—\" x=\"918\" y=\"602\" text-anchor=\"start\" style=\"font-size:12.8px;fill:#f5f5f5;font-weight:400\" data-field=\"service\">—</text>\n<text aria-label=\"—\" x=\"1120\" y=\"602\" text-anchor=\"start\" style=\"font-size:12.8px;fill:#f5f5f5;font-weight:400\" data-field=\"message\">—</text>\n<text aria-label=\"—\" x=\"1425\" y=\"602\" text-anchor=\"start\" style=\"font-size:12.8px;fill:#f5f5f5;font-weight:400\" data-field=\"duration\">—</text>\n<line x1=\"804\" y1=\"610\" x2=\"1514\" y2=\"610\" stroke=\"#082235\" stroke-width=\"0.8\" />\n</g>\n<g data-event-row=\"1\">\n<circle cx=\"817\" cy=\"623\" r=\"6.5\" fill=\"#8997a4\" data-field=\"dot\" />\n<text aria-label=\"—\" x=\"831\" y=\"628\" text-anchor=\"start\" style=\"font-size:12.8px;fill:#f5f5f5;font-weight:400\" data-field=\"time\">—</text>\n<text aria-label=\"—\" x=\"918\" y=\"628\" text-anchor=\"start\" style=\"font-size:12.8px;fill:#f5f5f5;font-weight:400\" data-field=\"service\">—</text>\n<text aria-label=\"—\" x=\"1120\" y=\"628\" text-anchor=\"start\" style=\"font-size:12.8px;fill:#f5f5f5;font-weight:400\" data-field=\"message\">—</text>\n<text aria-label=\"—\" x=\"1425\" y=\"628\" text-anchor=\"start\" style=\"font-size:12.8px;fill:#f5f5f5;font-weight:400\" data-field=\"duration\">—</text>\n<line x1=\"804\" y1=\"636\" x2=\"1514\" y2=\"636\" stroke=\"#082235\" stroke-width=\"0.8\" />\n</g>\n<g data-event-row=\"2\">\n<circle cx=\"817\" cy=\"649\" r=\"6.5\" fill=\"#8997a4\" data-field=\"dot\" />\n<text aria-label=\"—\" x=\"831\" y=\"654\" text-anchor=\"start\" style=\"font-size:12.8px;fill:#f5f5f5;font-weight:400\" data-field=\"time\">—</text>\n<text aria-label=\"—\" x=\"918\" y=\"654\" text-anchor=\"start\" style=\"font-size:12.8px;fill:#f5f5f5;font-weight:400\" data-field=\"service\">—</text>\n<text aria-label=\"—\" x=\"1120\" y=\"654\" text-anchor=\"start\" style=\"font-size:12.8px;fill:#f5f5f5;font-weight:400\" data-field=\"message\">—</text>\n<text aria-label=\"—\" x=\"1425\" y=\"654\" text-anchor=\"start\" style=\"font-size:12.8px;fill:#f5f5f5;font-weight:400\" data-field=\"duration\">—</text>\n<line x1=\"804\" y1=\"662\" x2=\"1514\" y2=\"662\" stroke=\"#082235\" stroke-width=\"0.8\" />\n</g>\n<rect x=\"790\" y=\"680\" width=\"734\" height=\"150\" rx=\"7\" fill=\"url(#demo-panel)\" stroke=\"#07506b\" stroke-width=\"0.8\" />\n<text class=\"demo-title\" x=\"806\" y=\"705\">ÚLTIMAS ATUALIZAÇÕES</text>\n<rect x=\"804\" y=\"715\" width=\"710\" height=\"109\" rx=\"5\" fill=\"#020a11\" stroke=\"none\" stroke-width=\"0.8\" />\n<rect x=\"804\" y=\"715\" width=\"710\" height=\"27\" rx=\"5\" fill=\"#061623\" stroke=\"none\" stroke-width=\"0.8\" />\n<text x=\"854\" y=\"735\" text-anchor=\"middle\" style=\"font-size:12px;fill:#f5f5f5;font-weight:400\" class=\"demo-table-head\">HORA</text>\n<text x=\"1005\" y=\"735\" text-anchor=\"middle\" style=\"font-size:12px;fill:#f5f5f5;font-weight:400\" class=\"demo-table-head\">SERVIÇO</text>\n<text x=\"1151\" y=\"735\" text-anchor=\"middle\" style=\"font-size:12px;fill:#f5f5f5;font-weight:400\" class=\"demo-table-head\">STATUS</text>\n<text x=\"1355\" y=\"735\" text-anchor=\"middle\" style=\"font-size:12px;fill:#f5f5f5;font-weight:400\" class=\"demo-table-head\">MENSAGEM</text>\n<line x1=\"904\" y1=\"715\" x2=\"904\" y2=\"823\" stroke=\"#092638\" stroke-width=\"0.8\" />\n<line x1=\"1106\" y1=\"715\" x2=\"1106\" y2=\"823\" stroke=\"#092638\" stroke-width=\"0.8\" />\n<line x1=\"1196\" y1=\"715\" x2=\"1196\" y2=\"823\" stroke=\"#092638\" stroke-width=\"0.8\" />\n<g data-update-row=\"0\">\n<text aria-label=\"—\" x=\"854\" y=\"762\" text-anchor=\"middle\" style=\"font-size:12.8px;fill:#f5f5f5;font-weight:400\" data-field=\"time\">—</text>\n<text aria-label=\"—\" x=\"1005\" y=\"762\" text-anchor=\"middle\" style=\"font-size:12.8px;fill:#f5f5f5;font-weight:400\" data-field=\"service\">—</text>\n<rect x=\"1124.5\" y=\"747\" width=\"53\" height=\"21\" rx=\"3\" fill=\"#8997a422\" stroke=\"none\" stroke-width=\"0.8\" data-field=\"badge\" />\n<text x=\"1151\" y=\"762\" text-anchor=\"middle\" style=\"font-size:12.8px;fill:#8997a4;font-weight:400\" data-field=\"status\">—</text>\n<text aria-label=\"—\" x=\"1355\" y=\"762\" text-anchor=\"middle\" style=\"font-size:12.8px;fill:#f5f5f5;font-weight:400\" data-field=\"message\">—</text>\n<line x1=\"804\" y1=\"770\" x2=\"1514\" y2=\"770\" stroke=\"#082235\" stroke-width=\"0.8\" />\n</g>\n<g data-update-row=\"1\">\n<text aria-label=\"—\" x=\"854\" y=\"788\" text-anchor=\"middle\" style=\"font-size:12.8px;fill:#f5f5f5;font-weight:400\" data-field=\"time\">—</text>\n<text aria-label=\"—\" x=\"1005\" y=\"788\" text-anchor=\"middle\" style=\"font-size:12.8px;fill:#f5f5f5;font-weight:400\" data-field=\"service\">—</text>\n<rect x=\"1124.5\" y=\"773\" width=\"53\" height=\"21\" rx=\"3\" fill=\"#8997a422\" stroke=\"none\" stroke-width=\"0.8\" data-field=\"badge\" />\n<text x=\"1151\" y=\"788\" text-anchor=\"middle\" style=\"font-size:12.8px;fill:#8997a4;font-weight:400\" data-field=\"status\">—</text>\n<text aria-label=\"—\" x=\"1355\" y=\"788\" text-anchor=\"middle\" style=\"font-size:12.8px;fill:#f5f5f5;font-weight:400\" data-field=\"message\">—</text>\n<line x1=\"804\" y1=\"796\" x2=\"1514\" y2=\"796\" stroke=\"#082235\" stroke-width=\"0.8\" />\n</g>\n<g data-update-row=\"2\">\n<text aria-label=\"—\" x=\"854\" y=\"814\" text-anchor=\"middle\" style=\"font-size:12.8px;fill:#f5f5f5;font-weight:400\" data-field=\"time\">—</text>\n<text aria-label=\"—\" x=\"1005\" y=\"814\" text-anchor=\"middle\" style=\"font-size:12.8px;fill:#f5f5f5;font-weight:400\" data-field=\"service\">—</text>\n<rect x=\"1124.5\" y=\"799\" width=\"53\" height=\"21\" rx=\"3\" fill=\"#8997a422\" stroke=\"none\" stroke-width=\"0.8\" data-field=\"badge\" />\n<text x=\"1151\" y=\"814\" text-anchor=\"middle\" style=\"font-size:12.8px;fill:#8997a4;font-weight:400\" data-field=\"status\">—</text>\n<text aria-label=\"—\" x=\"1355\" y=\"814\" text-anchor=\"middle\" style=\"font-size:12.8px;fill:#f5f5f5;font-weight:400\" data-field=\"message\">—</text>\n<line x1=\"804\" y1=\"822\" x2=\"1514\" y2=\"822\" stroke=\"#082235\" stroke-width=\"0.8\" />\n</g>\n\n</svg>\n<div class=\"demo-overlay\" hidden>\n<section class=\"demo-dialog\" role=\"dialog\" aria-modal=\"true\" aria-labelledby=\"demo-dialog-title\">\n<button class=\"demo-close\" type=\"button\" aria-label=\"Fechar detalhes\">×</button>\n<h2 id=\"demo-dialog-title\"></h2><div class=\"demo-dialog-body\"></div><small class=\"demo-dialog-note\">CONSULTAS DO PRIMEIRO JSON • AGUARDANDO RETORNO DO GRAFANA</small>\n</section></div><span class=\"demo-sr\" role=\"status\" aria-live=\"polite\">Aguardando dados das consultas do Grafana.</span>\n</div>",
+        "onInit": "/* HTML Graphics > onInit. Scoped to this panel's ShadowRoot. */\n(() => {\n  const root = htmlNode.querySelector('#demo-dashboard');\n  if (!root || root.demo) return;\n  const $ = selector => root.querySelector(selector);\n  const $$ = selector => [...root.querySelectorAll(selector)];\n  const colors = { UP: '#38ca27', ATTENTION: '#ffb800', DOWN: '#ff2925', UNKNOWN: '#8997a4' };\n  const names = { UP: 'UP', ATTENTION: 'ATENÇÃO', DOWN: 'DOWN', UNKNOWN: 'SEM DADOS' };\n  const statusOf = value => Object.hasOwn(colors, value) ? value : 'UNKNOWN';\n  const number = value => typeof value === 'number' && Number.isFinite(value) ? value : null;\n  const fmt = (value, precision = 0, suffix = '') => number(value) === null ? '—' : value.toFixed(precision) + suffix;\n  const clamp = (value, low, high) => Math.max(low, Math.min(high, value));\n  const fit = (el, value, max) => { const full=String(value ?? '—'); el.textContent=full.length>max ? full.slice(0,max-1)+'…' : full; el.setAttribute('aria-label',full); if(full.length>max){ const t=document.createElementNS('http://www.w3.org/2000/svg','title');t.textContent=full;el.appendChild(t); } };\n  const set = (selector, value) => { const node = $(selector); if (node) node.textContent = value; };\n  let current = null;\n  let previousFocus = null;\n  const diagnosticText = () => {\n    const info=current?.queryDiagnostics;\n    if(!info)return 'Ainda não há diagnóstico das consultas.';\n    return `Estado do Grafana: ${info.state}\\nSéries recebidas: ${info.frames}\\nConsultas com séries: ${info.refs.join(', ') || 'nenhuma'}\\n${info.errors.length ? '\\nErros:\\n'+info.errors.join('\\n') : '\\nNenhum erro informado pelo Grafana.'}${info.globalError ? '\\n\\nNão foi possível identificar a consulta que falhou. Os estados ficam SEM DADOS por segurança. Abra Inspecionar > Consulta e copie a resposta da requisição com erro.' : ''}`;\n  };\n  const overlay = $('.demo-overlay');\n  const closeButton = $('.demo-close');\n  const geometry = $$('[data-general-arc], [data-edge], [data-donut], [data-field=\"bar\"], #demo-availability-arc').map(el => ({\n    el, attributes: Object.fromEntries(['d', 'width', 'fill', 'stroke', 'stroke-dasharray', 'stroke-dashoffset', 'x', 'y', 'y1', 'y2'].map(key => [key, el.getAttribute(key)])),\n    text: el.tagName.toLowerCase() === 'text' ? el.textContent : null\n  }));\n\n  const esc = value => String(value ?? '')\n    .replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;')\n    .replaceAll('\"','&quot;').replaceAll(\"'\",\"&#39;\");\n  function open(title, body, asHtml = false) {\n    previousFocus = root.getRootNode().activeElement || document.activeElement;\n    set('#demo-dialog-title', title);\n    const target = $('.demo-dialog-body');\n    if(target){\n      if(asHtml)target.innerHTML=body;\n      else target.textContent=body;\n    }\n    set('.demo-dialog-note', root.dataset.mode === 'live' ? 'DADOS RECEBIDOS DO PAINEL • VERIFIQUE A ATUALIDADE NA FONTE' : 'CONSULTAS CONFIGURADAS • SEM RETORNO DAS FONTES');\n    overlay.hidden = false;\n    closeButton.focus();\n  }\n  function close() {\n    overlay.hidden = true;\n    if (previousFocus?.isConnected) previousFocus.focus();\n  }\n\n  function dashboardUrl(uid, slug) {\n    const params = new URLSearchParams(window.location.search || '');\n    const keep = new URLSearchParams();\n    for (const key of ['from','to']) {\n      const value = params.get(key);\n      if (value) keep.set(key, value);\n    }\n    const qs = keep.toString();\n    return `/d/${encodeURIComponent(uid)}/${encodeURIComponent(slug)}${qs ? `?${qs}` : ''}`;\n  }\n\n  function click(event) {\n    if (event.target === overlay || event.target.closest('.demo-close')) { close(); return; }\n    const button = event.target.closest('[data-action]');\n    if (!button) return;\n    const action = button.dataset.action;\n    if (action.startsWith('service:')) {\n      const key = action.slice(8);\n      const group = $(`[data-service=\"${key}\"]`);\n      const service = current?.services?.[key];\n      const state = statusOf(service?.status || ('UNKNOWN'));\n      const label = service?.name || button.getAttribute('aria-label').split(' — ')[0];\n      const stateLabel = service?.sourceMissing ? 'SEM COLETA' : names[state];\n      if(['customer-portal','service-portal','batch-processor','file-delivery','message-relay','tax-processing'].includes(key) && service){\n        const groups=Array.isArray(service.checkGroups)?service.checkGroups:[];\n        const total=Number(service.checks||0);\n        const up=Number(service.up||0);\n        const known=Number(service.known||0);\n        const missing=Math.max(0,total-known);\n        const diagnostics=Array.isArray(service.diagnosticItems)?service.diagnosticItems:[];\n\n        const stateClass=state==='DOWN'?'down':state==='ATTENTION'?'attention':state==='UP'?'up':'unknown';\n\n        const serviceLabelMap={\n          'customer-portal':'CUSTOMER PORTAL',\n          'service-portal':'SERVICE PORTAL',\n          'batch-processor':'BATCH PROCESSOR',\n          'file-delivery':'FILE DELIVERY',\n          'message-relay':'MESSAGE RELAY',\n          'tax-processing':'TAX PROCESSING'\n        };\n\n        const groupName=label=>{\n          const s=String(label||'');\n          if(key==='customer-portal')return 'CUSTOMER PORTAL';\n          if(key==='service-portal')return 'SERVICE PORTAL';\n          if(key==='batch-processor')return 'BATCH PROCESSOR Job';\n          if(key==='file-delivery')return 'File Delivery';\n          if(key==='message-relay')return 'Serviço MESSAGE RELAY';\n          if(key==='tax-processing')return 'TAX PROCESSING';\n          return s;\n        };\n\n        const statusText=s=>s==='DOWN'?'CRÍTICO':\n          s==='ATTENTION'?'ATENÇÃO':\n          s==='PARTIAL'?'COBERTURA PARCIAL':\n          s==='UP'?'UP':'SEM DADOS';\n\n        const rows=groups.map(g=>{\n          const cls=g.status==='DOWN'?'down':\n            g.status==='ATTENTION'?'attention':\n            g.status==='PARTIAL'?'partial':\n            g.status==='UP'?'up':'unknown';\n          const coverage=`${g.up}/${g.total} UP`+\n            (g.down?` • ${g.down} falha`:'')+\n            (g.attention?` • ${g.attention} atenção`:'')+\n            (g.unknown?` • ${g.unknown} sem dados`:'');\n          return `<div class=\"demo-service-row\">\n            <span class=\"demo-service-dot ${cls}\"></span>\n            <div class=\"demo-service-main\">\n              <b>${esc(groupName(g.label))}</b>\n              <small>${esc(coverage)}</small>\n            </div>\n            <span class=\"demo-service-badge ${cls}\">${esc(statusText(g.status))}</span>\n          </div>`;\n        }).join('');\n\n        const auxFresh=diagnostics.filter(x=>x?.fresh && x?.value!=null);\n        const auxMissing=diagnostics.length-auxFresh.length;\n        const last=Math.max(\n          Number(service.lastUpdate||0),\n          ...groups.map(g=>Number(g.latest||0)),\n          ...diagnostics.map(d=>Number(d.time||0))\n        );\n        const lastText=last\n          ? new Date(last).toLocaleTimeString('pt-BR',{hour12:false})\n          : '—';\n\n        let summaryText='';\n        if(state==='DOWN'){\n          summaryText='Há falha comprovada em uma ou mais verificações críticas.';\n        }else if(state==='ATTENTION'){\n          summaryText='O serviço está disponível, mas existe degradação ou cobertura parcial que requer acompanhamento.';\n        }else if(state==='UP' && missing>0){\n          summaryText=`Serviço operacional. ${missing} verificação(ões) sem retorno não indicam falha comprovada.`;\n        }else if(state==='UP'){\n          summaryText='Serviço operacional, sem falhas nas verificações principais.';\n        }else{\n          summaryText='Não há informação suficiente para concluir o estado do serviço.';\n        }\n\n        const auxBlock = diagnostics.length ? `\n          <div class=\"demo-service-section\">INFORMAÇÕES AUXILIARES</div>\n          <div class=\"demo-service-aux\">\n            <div><span>COLETAS RECEBIDAS</span><b>${auxFresh.length}/${diagnostics.length}</b></div>\n            <div><span>SEM RETORNO</span><b>${auxMissing}</b></div>\n          </div>\n          <div class=\"demo-service-aux-note\">\n            Dados auxiliares ajudam no diagnóstico e não alteram o estado funcional sem regra específica.\n          </div>\n        ` : '';\n\n        const body=`\n          <div class=\"demo-service-head\">\n            <div class=\"demo-service-icon\">${key==='message-relay'?'➤':key==='batch-processor'?'▤':key==='file-delivery'?'⇩':key==='service-portal'?'◇':key==='tax-processing'?'$':'▣'}</div>\n            <div>\n              <div class=\"demo-service-status\">Status: <strong class=\"${stateClass}\">${esc(stateLabel)}</strong></div>\n              <small>${up}/${total} verificações UP${missing?` • ${missing} sem dados`:''}</small>\n            </div>\n          </div>\n\n          <div class=\"demo-service-summary ${stateClass}\">\n            <div>\n              <span>ESTADO OPERACIONAL</span>\n              <b>${esc(state==='UP'?'OPERACIONAL':state==='DOWN'?'INDISPONÍVEL':state==='ATTENTION'?'DEGRADADO':'SEM DADOS')}</b>\n            </div>\n            <p>${esc(summaryText)}</p>\n          </div>\n\n          <div class=\"demo-service-section\">VERIFICAÇÕES PRINCIPAIS</div>\n          <div class=\"demo-service-groups\">\n            ${rows || '<div class=\"demo-service-empty\">Nenhuma verificação principal retornada.</div>'}\n          </div>\n\n          ${auxBlock}\n\n          <div class=\"demo-service-footer\">\n            <div><span>ÚLTIMA ATUALIZAÇÃO</span><b>${esc(lastText)}</b></div>\n            <div><span>COBERTURA</span><b>${up}/${total}</b></div>\n          </div>\n\n          <div class=\"demo-service-note\">\n            ⓘ O popup mostra somente o resumo operacional. Hostnames, valores brutos e detalhes técnicos permanecem disponíveis nas fontes de monitoramento.\n          </div>\n        `;\n        open(serviceLabelMap[key]||label,body,true);\n      }else if(key==='dae' && service){\n        const groups=Array.isArray(service.checkGroups)?service.checkGroups:[];\n        const total=Number(service.checks||0);\n        const up=Number(service.up||0);\n        const missing=Number(service.missing ?? Math.max(0,total-Number(service.known||0)));\n\n        const functionalState=statusOf(service.functionalStatus||state);\n        const functionalLabel=functionalState==='DOWN'?'INDISPONÍVEL':\n          functionalState==='ATTENTION'?'DEGRADADO':\n          functionalState==='UP'?'DISPONÍVEL':'SEM DADOS';\n\n        const functionalClass=functionalState==='DOWN'?'down':\n          functionalState==='ATTENTION'?'attention':\n          functionalState==='UP'?'up':'unknown';\n\n        const groupName=label=>{\n          const s=String(label||'');\n          if(/weblogic/i.test(s))return 'WebLogic API';\n          if(/kubernetes/i.test(s))return 'Kubernetes';\n          if(/endpoint/i.test(s))return 'Endpoints Demo Bank';\n          return s;\n        };\n\n        const groupRows=groups.map(g=>{\n          const cls=g.status==='DOWN'?'down':\n            g.status==='ATTENTION'?'attention':\n            g.status==='PARTIAL'?'partial':\n            g.status==='UP'?'up':'unknown';\n\n          const statusText=g.status==='DOWN'?'CRÍTICO':\n            g.status==='ATTENTION'?'ATENÇÃO':\n            g.status==='PARTIAL'?'COBERTURA PARCIAL':\n            g.status==='UP'?'UP':'SEM DADOS';\n\n          const coverage=`${g.up}/${g.total} UP` +\n            (g.down?` • ${g.down} falha`:'') +\n            (g.attention?` • ${g.attention} atenção`:'') +\n            (g.unknown?` • ${g.unknown} sem dados`:'');\n\n          return `<div class=\"demo-billing-row\">\n            <span class=\"demo-billing-dot ${cls}\"></span>\n            <div class=\"demo-billing-row-main\">\n              <b>${esc(groupName(g.label))}</b>\n              <small>${esc(coverage)}</small>\n            </div>\n            <span class=\"demo-billing-badge ${cls}\">${esc(statusText)}</span>\n          </div>`;\n        }).join('');\n\n        const last=service.lastUpdate\n          ? new Date(service.lastUpdate).toLocaleTimeString('pt-BR',{hour12:false})\n          : '—';\n\n        let attentionText='';\n        const tx=service.transactional;\n        if(functionalState==='DOWN'){\n          attentionText='Há falha funcional comprovada em uma ou mais verificações críticas.';\n        }else if(functionalState==='ATTENTION'){\n          attentionText='Existe degradação funcional que requer acompanhamento.';\n        }else if(tx?.severity==='CRITICAL'){\n          attentionText=`Saúde transacional crítica no APM (${tx.worstRate.toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2})}% de falhas no pior serviço), porém sem indisponibilidade funcional comprovada.`;\n        }else if(tx?.severity==='WARNING'){\n          attentionText=`Saúde transacional degradada no APM (${tx.worstRate.toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2})}% de falhas no pior serviço).`;\n        }else if(missing>0){\n          attentionText=`${missing} verificação(ões) sem retorno. Sem evidência de indisponibilidade funcional nas verificações recebidas.`;\n        }else{\n          attentionText='Nenhum ponto de atenção nas verificações consolidadas.';\n        }\n\n        const body=`\n          <div class=\"demo-billing-head\">\n            <div class=\"demo-billing-symbol\">⚙</div>\n            <div>\n              <div class=\"demo-billing-status-line\">\n                Status: <strong class=\"${functionalClass}\">${esc(stateLabel)}</strong>\n              </div>\n              <small>${up}/${total} verificações UP${missing?` • ${missing} sem dados`:''}</small>\n            </div>\n          </div>\n\n          <div class=\"demo-billing-functional ${functionalClass}\">\n            <div>\n              <span>DISPONIBILIDADE FUNCIONAL</span>\n              <b>${esc(functionalLabel)}</b>\n            </div>\n            <div class=\"demo-billing-functional-note\">\n              ${functionalState==='UP'\n                ? 'As verificações recebidas não indicam indisponibilidade funcional.'\n                : functionalState==='ATTENTION'\n                  ? 'Há degradação funcional, mas não uma queda total comprovada.'\n                  : functionalState==='DOWN'\n                    ? 'Existe falha crítica ativa em verificação funcional.'\n                    : 'Não há informação funcional suficiente para concluir o estado.'}\n            </div>\n          </div>\n\n          <div class=\"demo-billing-section\">VERIFICAÇÕES PRINCIPAIS</div>\n          <div class=\"demo-billing-groups\">\n            ${groupRows || '<div class=\"demo-billing-empty\">Nenhuma verificação retornada.</div>'}\n          </div>\n\n          <div class=\"demo-billing-section\">SAÚDE TRANSACIONAL • APM / ELASTIC</div>\n          ${service.transactional ? `\n            <div class=\"demo-billing-tx-summary ${service.transactional.severityClass}\">\n              <div>\n                <span>ESTADO TRANSACIONAL</span>\n                <b>${esc(service.transactional.label)}</b>\n              </div>\n              <div>\n                <span>SERVIÇOS COM DADOS</span>\n                <b>${service.transactional.received}/3</b>\n              </div>\n            </div>\n            <div class=\"demo-billing-tx-table\">\n              <div class=\"demo-billing-tx-row head\">\n                <span>SERVIÇO</span><span>TRANSAÇÕES</span><span>LATÊNCIA</span><span>FALHAS</span><span>STATUS</span>\n              </div>\n              ${(service.transactional.services||[]).map(tx=>`\n                <div class=\"demo-billing-tx-row\">\n                  <span class=\"svc\">${esc(tx.name)}</span>\n                  <span>${tx.total===null?'—':Number(tx.total).toLocaleString('pt-BR')}</span>\n                  <span>${tx.latencyMs===null?'—':Math.round(tx.latencyMs).toLocaleString('pt-BR')+' ms'}</span>\n                  <span class=\"rate ${tx.severityClass}\">${tx.failureRate===null?'—':tx.failureRate.toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2})+'%'}</span>\n                  <span class=\"txstatus ${tx.severityClass}\">${esc(tx.label)}</span>\n                </div>`).join('')}\n            </div>\n          ` : `\n            <div class=\"demo-billing-tx-empty\">Aguardando dados do APM / Elasticsearch.</div>\n          `}\n\n          <div class=\"demo-billing-section\">PONTO DE ATENÇÃO</div>\n          <div class=\"demo-billing-attention ${functionalState==='DOWN'?'down':\n            functionalState==='ATTENTION'?'attention':\n            service.transactional?.severity==='CRITICAL'?'attention':\n            service.transactional?.severity==='WARNING'?'attention':\n            missing?'partial':'up'}\">\n            ${esc(attentionText)}\n          </div>\n\n          <div class=\"demo-billing-footer\">\n            <div><span>ÚLTIMA ATUALIZAÇÃO</span><b>${esc(last)}</b></div>\n            <div><span>COBERTURA</span><b>${up}/${total}</b></div>\n          </div>\n\n          <div class=\"demo-billing-note\">\n            ⓘ O popup mostra somente o resumo operacional. Hostnames e valores brutos continuam disponíveis nas fontes de monitoramento para diagnóstico.\n          </div>\n\n          <a class=\"demo-drilldown\"\n             href=\"${dashboardUrl('demo-billing-dashboard','demo-dae')}\"\n             target=\"_blank\"\n             rel=\"noopener noreferrer\">\n            ↗ Abrir BILLING - Uma Visão Geral\n          </a>\n        `;\n        open(label,body,true);\n      }else if(key==='payment-intake' && service?.bankReception){\n        const rb=service.bankReception;\n        const latest=rb.latestReception;\n        const rows=(rb.banks||[]).map(bank=>{\n          const st=statusOf(bank.status);\n          const last=bank.lastReceptionStamp\n            ? new Date(bank.lastReceptionStamp).toLocaleTimeString('pt-BR',{hour12:false})\n            : '—';\n          return `<div class=\"demo-rb-row\">\n            <span class=\"demo-rb-bank\">${esc(bank.name)} <small>(${esc(bank.code)})</small></span>\n            <span class=\"demo-rb-status ${st.toLowerCase()}\"><i></i>${esc(names[st])}</span>\n            <b>${esc(last)}</b>\n            <span>${esc(bank.elapsed||'—')}</span>\n          </div>`;\n        }).join('');\n        const missing=(rb.banks||[]).filter(b=>!b.hasReception);\n        const cls=state.toLowerCase();\n        const body=`\n          <div class=\"demo-rb-head\">\n            <div class=\"demo-rb-icon\">▥</div>\n            <div class=\"demo-rb-title\">\n              <div>Status: <strong class=\"${cls}\">${esc(stateLabel)}</strong></div>\n              <small>${esc(service.message||'')}</small>\n            </div>\n          </div>\n          <div class=\"demo-rb-kpis\">\n            <div><b>${rb.total}</b><span>BANCOS<br>MONITORADOS</span></div>\n            <div class=\"up\"><b>${rb.healthy}</b><span>SAUDÁVEIS</span></div>\n            <div class=\"attention\"><b>${rb.attention}</b><span>EM ATENÇÃO</span></div>\n            <div class=\"down\"><b>${rb.critical}</b><span>EM FALHA</span></div>\n          </div>\n          <div class=\"demo-rb-latest\">\n            <div>\n              <span>ÚLTIMA RECEPÇÃO IDENTIFICADA</span>\n              <b>${latest?esc(latest.time):'—'}</b>\n              <small>${latest?`${esc(latest.bank)} (${esc(latest.code)}) • ${esc(latest.date)}`:'Sem dado válido'}</small>\n            </div>\n            <div>\n              <span>TEMPO DESDE A ÚLTIMA</span>\n              <b>${latest?esc(latest.elapsed):'—'}</b>\n            </div>\n          </div>\n          <div class=\"demo-rb-table\">\n            <div class=\"demo-rb-row head\"><span>BANCO</span><span>STATUS</span><b>ÚLTIMA RECEPÇÃO</b><span>TEMPO</span></div>\n            ${rows}\n          </div>\n          <div class=\"demo-rb-section\">SEM RETORNO DE ÚLTIMA RECEPÇÃO</div>\n          <div class=\"demo-rb-missing ${missing.length?'has':'none'}\">${missing.length?missing.map(b=>`${esc(b.name)} (${esc(b.code)})`).join(', '):'Nenhum banco sem retorno no momento.'}</div>\n          <div class=\"demo-rb-note\">ⓘ &nbsp; Status bancário: DISASTER = DOWN; HIGH = ATENÇÃO; sem HIGH/DISASTER ativo = UP. A criticidade vem do painel RECBAN isolado.</div>\n\n          <a class=\"demo-drilldown\"\n             href=\"${dashboardUrl('demo-payment-dashboard','demo-emissao-e-payment-intake')}\"\n             target=\"_blank\"\n             rel=\"noopener noreferrer\">\n            ↗ Abrir dashboard de PAYMENT INTAKE\n          </a>\n        `;\n        open(label,body,true);\n      }else{\n        open(label, `Estado: ${stateLabel}. ${service?.message || (root.dataset.mode === 'demo' ? 'Este estado reproduz a imagem de referência e não é uma leitura ao vivo.' : 'Consulte a origem do monitoramento para o diagnóstico e a hora da última amostra.')}`);\n      }\n    } else if (action === 'overview') {\n      open('Serviços críticos • DEMO', diagnosticText()+'\\n\\nSelecione um serviço para ver suas verificações. A disponibilidade é atual, não um SLA histórico. P95 não existe na origem.');\n    }\n  }\n\n  function applyRecban(payload){\n    if(!payload?.usable || !current?.services?.['payment-intake'])return;\n\n    const d=current;\n    const service=d.services['payment-intake'];\n    const diagnostics=Array.isArray(service.diagnosticItems)?service.diagnosticItems:[];\n\n    function bankCode(text){\n      const s=String(text||'').toUpperCase();\n      if(s.includes('001')||s.includes('BANK A'))return '001';\n      if(s.includes('033')||s.includes('BANK B'))return '033';\n      if(s.includes('037')||s.includes('DEMO BANK')||s.includes('DEMO BANK')||s.includes('ESTADO DO PARA'))return '037';\n      if(s.includes('104')||s.includes('CAIXA'))return '104';\n      if(s.includes('237')||s.includes('BANK D'))return '237';\n      if(s.includes('341')||s.includes('BANK E')||s.includes('BANK E'))return '341';\n      if(s.includes('756')||s.includes('BANK F'))return '756';\n      return '';\n    }\n\n    function valueStamp(v){\n      if(v==null||v==='')return null;\n      if(typeof v==='number'&&Number.isFinite(v)){\n        const d=new Date(v>=1e9&&v<1e11?v*1000:v);\n        return Number.isNaN(d.getTime())?null:d.getTime();\n      }\n      const s=String(v).trim();\n      let m=s.match(/^(\\d{2})\\/(\\d{2})\\/(\\d{4})\\s+(\\d{2}):(\\d{2})(?::(\\d{2}))?$/);\n      if(m){\n        const dt=new Date(+m[3],+m[2]-1,+m[1],+m[4],+m[5],+(m[6]||0));\n        return Number.isNaN(dt.getTime())?null:dt.getTime();\n      }\n      m=s.match(/^(\\d{4})-(\\d{2})-(\\d{2})[ T](\\d{2}):(\\d{2})(?::(\\d{2}))?/);\n      if(m){\n        const dt=new Date(+m[1],+m[2]-1,+m[3],+m[4],+m[5],+(m[6]||0));\n        return Number.isNaN(dt.getTime())?null:dt.getTime();\n      }\n      const x=Date.parse(s);return Number.isNaN(x)?null:x;\n    }\n\n    const reception={};\n    diagnostics.forEach(item=>{\n      const code=bankCode(item?.label);\n      if(!code)return;\n      const stamp=valueStamp(item?.value);\n      if(stamp!==null)reception[code]=stamp;\n    });\n\n    const now=Date.now();\n    const elapsed=stamp=>{\n      if(stamp==null)return '—';\n      let sec=Math.max(0,Math.floor((now-stamp)/1000));\n      const day=Math.floor(sec/86400);sec%=86400;\n      const h=Math.floor(sec/3600);sec%=3600;\n      const m=Math.floor(sec/60);\n      return day?`${day}d ${h}h`:h?`${h}h ${m}m`:m?`${m} min`:'<1 min';\n    };\n\n    const banks=(payload.banks||[]).map(b=>{\n      const stamp=reception[b.code]??null;\n      return {...b,lastReceptionStamp:stamp,hasReception:stamp!==null,elapsed:elapsed(stamp)};\n    });\n\n    const healthy=banks.filter(b=>b.status==='UP').length;\n    const attention=banks.filter(b=>b.status==='ATTENTION').length;\n    const critical=banks.filter(b=>b.status==='DOWN').length;\n    const unknown=banks.filter(b=>b.status==='UNKNOWN').length;\n\n    let state='UNKNOWN';\n    if(critical)state='DOWN';\n    else if(attention)state='ATTENTION';\n    else if(!unknown)state='UP';\n\n    const latest=banks.filter(b=>b.lastReceptionStamp!==null).sort((a,b)=>b.lastReceptionStamp-a.lastReceptionStamp)[0]||null;\n\n    service.status=state;\n    service.sourceMissing=false;\n    service.message=critical?`${critical} banco(s) com problema DISASTER ativo.`:\n      attention?`${attention} banco(s) com problema HIGH ativo.`:\n      unknown?'Status bancário parcialmente indisponível.':\n      'Nenhum problema HIGH/DISASTER ativo nos bancos monitorados.';\n    service.bankReception={\n      total:banks.length,healthy,attention,critical,unknown,\n      withData:banks.filter(b=>b.hasReception).length,\n      missing:banks.filter(b=>!b.hasReception).length,\n      banks,\n      latestReception:latest?{\n        bank:latest.name,code:latest.code,\n        time:new Date(latest.lastReceptionStamp).toLocaleTimeString('pt-BR',{hour12:false}),\n        date:new Date(latest.lastReceptionStamp).toLocaleDateString('pt-BR'),\n        elapsed:latest.elapsed\n      }:null\n    };\n\n    // Recalcula apenas o resumo executivo, sem tocar nas queries/aplicações.\n    const vals=Object.values(d.services||{});\n    const summary={total:vals.length,healthy:0,attention:0,critical:0,unknown:0,known:0};\n    vals.forEach(x=>summary[x.status==='UP'?'healthy':x.status==='DOWN'?'critical':x.status==='ATTENTION'?'attention':'unknown']++);\n    summary.known=summary.total-summary.unknown;\n    d.summary=summary;\n    d.availability={...(d.availability||{}),value:summary.known?summary.healthy/summary.known*100:null,known:summary.known,total:summary.total};\n\n    const msg=`${healthy}/${banks.length} bancos saudáveis • ${attention} atenção • ${critical} falha`;\n    const idx=(d.updates||[]).findIndex(x=>x.service==='PAYMENT INTAKE');\n    const row={stamp:payload.updatedAt||Date.now(),time:new Date(payload.updatedAt||Date.now()).toLocaleTimeString('pt-BR',{hour12:false}),service:'PAYMENT INTAKE',status:state,message:msg};\n    if(idx>=0)d.updates[idx]=row;else(d.updates||(d.updates=[])).push(row);\n\n    update(d);\n  }\n\n  const payment-intakeHandler = event => applyRecban(event?.detail);\n  globalThis.addEventListener?.('demo-payment-intake-status',payment-intakeHandler);\n\n\n  function applyBillingApm(payload){\n    if(!payload?.usable || !current?.services?.billing)return;\n\n    const d=current;\n    const service=d.services.dae;\n    const functional=statusOf(service.functionalStatus||service.status||'UNKNOWN');\n    const severity=payload.severity||'UNKNOWN';\n\n    // Regra:\n    // - falha funcional comprovada continua DOWN\n    // - degradação funcional continua ATTENTION\n    // - APM WARNING ou CRITICAL, sem falha funcional, vira ATTENTION\n    // - APM CRITICAL sozinho NÃO transforma o BILLING em DOWN\n    let finalStatus=functional;\n    if(functional==='DOWN')finalStatus='DOWN';\n    else if(functional==='ATTENTION')finalStatus='ATTENTION';\n    else if(severity==='WARNING'||severity==='CRITICAL')finalStatus='ATTENTION';\n    else if(functional==='UP')finalStatus='UP';\n\n    service.status=finalStatus;\n    service.transactional=payload;\n    service.message =\n      functional==='DOWN' ? 'Indisponibilidade funcional comprovada no BILLING.' :\n      functional==='ATTENTION' ? 'BILLING funcionalmente degradado.' :\n      severity==='CRITICAL' ? `Disponibilidade funcional preservada; APM crítico (${payload.worstRate.toFixed(2)}% de falhas no pior serviço).` :\n      severity==='WARNING' ? `Disponibilidade funcional preservada; APM em atenção (${payload.worstRate.toFixed(2)}% de falhas no pior serviço).` :\n      'Disponibilidade funcional e saúde transacional sem degradação relevante.';\n\n    // Atualiza a linha do BILLING em \"Últimas atualizações\".\n    const idx=(d.updates||[]).findIndex(x=>x.service==='BILLING');\n    const txMsg=severity==='CRITICAL'\n      ? `APM CRÍTICO • ${payload.worstRate.toFixed(2)}% falhas • funcional ${names[functional]}`\n      : severity==='WARNING'\n        ? `APM ATENÇÃO • ${payload.worstRate.toFixed(2)}% falhas • funcional ${names[functional]}`\n        : `APM OK • funcional ${names[functional]}`;\n    const row={\n      stamp:payload.updatedAt||Date.now(),\n      time:new Date(payload.updatedAt||Date.now()).toLocaleTimeString('pt-BR',{hour12:false}),\n      service:'BILLING',status:finalStatus,message:txMsg\n    };\n    if(idx>=0)d.updates[idx]=row;else(d.updates||(d.updates=[])).push(row);\n\n    // Recalcula apenas os resumos executivos com o status final do BILLING.\n    const vals=Object.values(d.services||{});\n    const sum={total:vals.length,healthy:0,attention:0,critical:0,unknown:0,known:0};\n    vals.forEach(x=>sum[x.status==='UP'?'healthy':x.status==='DOWN'?'critical':x.status==='ATTENTION'?'attention':'unknown']++);\n    sum.known=sum.total-sum.unknown;\n    d.summary=sum;\n\n    const appVals=['customer-portal','service-portal','dae','batch-processor','file-delivery','tax-processing']\n      .map(k=>d.services?.[k]).filter(Boolean);\n    const apps={total:appVals.length,healthy:0,attention:0,critical:0,unknown:0,known:0};\n    appVals.forEach(x=>apps[x.status==='UP'?'healthy':x.status==='DOWN'?'critical':x.status==='ATTENTION'?'attention':'unknown']++);\n    apps.known=apps.total-apps.unknown;\n    d.applications=apps;\n\n    d.availability={\n      ...(d.availability||{}),\n      value:sum.known?sum.healthy/sum.known*100:null,\n      known:sum.known,total:sum.total\n    };\n\n    update(d);\n  }\n\n  const daeApmHandler = event => applyBillingApm(event?.detail);\n  globalThis.addEventListener?.('demo-billing-apm',daeApmHandler);\n\n  function keydown(event) {\n    if (overlay.hidden) return;\n    if (event.key === 'Escape') { event.preventDefault(); close(); }\n    if (event.key === 'Tab') { event.preventDefault(); closeButton.focus(); }\n  }\n\n  function update(payload, options = {}) {\n    const d = payload && typeof payload === 'object' && !Array.isArray(payload) ? payload : {};\n    current = d;\n    root.dataset.mode = payload?.hasData ? 'live' : 'nodata';\n    const demo = false;\n    if (demo) geometry.forEach(({el, attributes, text}) => {\n      for (const [key, value] of Object.entries(attributes)) value === null ? el.removeAttribute(key) : el.setAttribute(key, value);\n      if (text !== null) el.textContent = text;\n    });\n    const summary = d.summary || {};\n    set('#demo-total', fmt(summary.total));\n    set('#demo-coverage', `${summary.known ?? 0} COM DADOS • ${summary.unknown ?? 11} SEM DADOS`);\n    for (const key of ['healthy', 'attention', 'critical']) {\n      set(`#demo-${key}-count`, fmt(summary[key]));\n      set(`#demo-${key}-pct`, number(summary.total) !== null && summary.total > 0 && number(summary[key]) !== null ? fmt(summary[key] / summary.total * 100, 1, '%') : '—');\n    }\n    if (!demo) {\n      let progress = 0;\n      for (const key of ['healthy', 'critical', 'attention']) {\n        const fraction = summary.total > 0 && number(summary[key]) !== null ? clamp(summary[key]/summary.total, 0, 1-progress) : 0;\n        const start = Math.PI * (1-progress);\n        const end = Math.PI * (1-progress-fraction);\n        const arc = $(`[data-general-arc=\"${key}\"]`);\n        arc.setAttribute('d', fraction > 0 ? `M${127+68*Math.cos(start)} ${207-68*Math.sin(start)}A68 68 0 0 1 ${127+68*Math.cos(end)} ${207-68*Math.sin(end)}` : '');\n        progress += fraction;\n      }\n    }\n    $$('.demo-node').forEach(group => {\n      const item = d.services?.[group.dataset.service];\n      const status = statusOf(item?.status);\n      group.dataset.status = status;\n      const displayState = item?.sourceMissing ? 'SEM COLETA' : names[status];\n      const label = group.querySelector('.demo-node-state');\n      if (label) label.textContent = displayState;\n      const hit = group.querySelector('button');\n      if (hit) hit.setAttribute('aria-label', `${item?.name || hit.getAttribute('aria-label').split(' — ')[0]} — ${displayState}`);\n    });\n    if (!demo) {\n      $$('[data-edge]').forEach(edge => { edge.setAttribute('stroke', colors[statusOf(d.links?.[edge.dataset.edge])]); });\n    }\n    $$('[data-impact-row]').forEach((row, i) => {\n      const item = d.impacts?.[i];\n      const status = statusOf(item?.status);\n      const field = key => row.querySelector(`[data-field=\"${key}\"]`);\n      fit(field('service'), item?.service ? String(item.service).toUpperCase() : '—', 24);\n      field('service').setAttribute('x','890.5');\n      field('service').setAttribute('text-anchor','middle');\n      field('status').textContent = item ? (status === 'UP' ? 'SAUDÁVEL' : status === 'DOWN' ? 'CRÍTICO' : names[status]) : '—';\n      field('status').style.fill = colors[status];\n      field('badge').setAttribute('fill', colors[status] + '22');\n      field('impact').textContent = fmt(item?.impact, 0, ' %');\n      field('error').textContent = fmt(item?.error, 2);\n      if (!demo) {\n        field('bar').setAttribute('width', number(item?.impact) !== null ? 156 * clamp(item.impact, 0, 100) / 100 : 0);\n        field('bar').setAttribute('fill', colors[status]);\n      }\n    });\n    const app = d.applications || {};\n    set('#demo-app-total', fmt(app.total));\n    set('#demo-app-unknown', app.unknown ? `${app.unknown} SEM DADOS` : 'TOTAL');\n    const appKeys = ['healthy', 'attention', 'critical'];\n    appKeys.forEach((key, i) => {\n      set(`#demo-app-count-${i}`, fmt(app[key]));\n      set(`#demo-app-pct-${i}`, number(app.total) !== null && app.total > 0 && number(app[key]) !== null ? fmt(app[key]/app.total*100, 0, '%') : '—');\n    });\n    if (!demo) {\n      const segments = $$('[data-donut]');\n      let offset = 0;\n      ['critical', 'attention', 'healthy'].forEach((key, i) => {\n        const length = app.total > 0 && number(app[key]) !== null ? clamp(app[key]/app.total, 0, 1) * 2*Math.PI*52 : 0;\n        segments[i].style.display = length > 0 ? '' : 'none';\n        segments[i].setAttribute('stroke-dasharray', `${length} ${2*Math.PI*52-length}`);\n        segments[i].setAttribute('stroke-dashoffset', -offset);\n        offset += length;\n      });\n    }\n    const availability = number(d.availability?.value);\n    set('#demo-availability', fmt(availability, 1, '%'));\n    set('#demo-availability-target', `${d.availability?.known ?? 0}/${d.availability?.total ?? 11}`);\n    $('#demo-availability-target').style.fill = !d.availability?.known ? colors.UNKNOWN : d.availability.known < d.availability.total ? colors.ATTENTION : colors.UP;\n    if (!demo) {\n      const angle = Math.PI * (1-clamp(availability ?? 0,0,100)/100);\n      const x = 1359 + 82*Math.cos(angle), y = 783 - 82*Math.sin(angle);\n      $('#demo-availability-arc').setAttribute('d', availability === null || availability <= 0 ? '' : `M1277 783A82 82 0 0 1 ${x} ${y}`);\n      $('#demo-availability-arc').setAttribute('stroke', availability !== null && number(d.availability?.target) !== null && availability < d.availability.target ? colors.ATTENTION : colors.UP);\n    }\n    set('#demo-event-count', d.hasData && Array.isArray(d.events) ? d.events.length : '—');\n    for (const [kind, items] of [['event', d.events], ['update', d.updates]]) {\n      $$(`[data-${kind}-row]`).forEach((row, i) => {\n        const item = Array.isArray(items) ? items[i] : null;\n        row.querySelectorAll('[data-field]').forEach(el => {\n          const key = el.dataset.field;\n          const status = statusOf(item?.status);\n          if (key === 'dot') el.setAttribute('fill', colors[status]);\n          else if (key === 'badge') el.setAttribute('fill', colors[status] + '22');\n          else if (key === 'status') { el.textContent = item ? names[status] : '—'; el.style.fill = colors[status]; }\n          else fit(el, item?.[key] ?? '—', key === 'message' ? 42 : key === 'service' ? 28 : 20);\n        });\n      });\n    }\n    set('.demo-sr', d.hasData ? 'Indicadores atualizados.' : 'Aguardando dados das consultas do Grafana.');\n  }\n  root.addEventListener('click', click);\n  root.addEventListener('keydown', keydown);\n  const cleanup = () => {\n    root.removeEventListener('click', click);\n    root.removeEventListener('keydown', keydown);\n    globalThis.removeEventListener?.('demo-payment-intake-status',payment-intakeHandler);\n    globalThis.removeEventListener?.('demo-billing-apm',daeApmHandler);\n    htmlNode.removeEventListener?.('panelwillunmount', cleanup);\n    delete root.demo;\n  };\n  htmlNode.addEventListener?.('panelwillunmount', cleanup);\n  root.demo = { update, cleanup, open, close, applyRecban, applyBillingApm };\n  update(null);\n})();\n",
+        "onInitOnResize": false,
+        "onRender": "/* Pure adapter: raw Grafana DataFrames -> approved DEMO drawing.\n * Queries and status encodings are traced in mapeamento-consultas.json.\n */\nfunction buildDemoData(panelData, config, clock = Date.now()) {\n  const pd = panelData || {};\n  const cfg = config || {};\n  const inventory = Array.isArray(cfg.services) ? cfg.services : [];\n  const settled = pd.state === 'Done' || pd.state === 'Error';\n  const frames = Array.isArray(pd.series) ? pd.series : [];\n  const values = field => {\n    const v = field?.values;\n    if (!v || !Number.isInteger(v.length)) return [];\n    return Array.from({length:v.length}, (_,i) => typeof v.get === 'function' ? v.get(i) : v[i]);\n  };\n  const numeric = v => {\n    if (v === null || v === undefined || v === '' || typeof v === 'boolean') return null;\n    if (typeof v === 'string' && !/^[+-]?(?:\\d+\\.?\\d*|\\.\\d+)(?:e[+-]?\\d+)?$/i.test(v.trim())) return null;\n    const n=Number(v);return Number.isFinite(n) ? n : null;\n  };\n  const millis = v => {\n    if (v == null) return null;\n    const n = typeof v === 'object' && typeof v.valueOf === 'function' ? v.valueOf() : v;\n    const x = typeof n === 'number' ? n : typeof n === 'string' ? Date.parse(n) : NaN;\n    return Number.isFinite(x) ? (x >= 1e9 && x < 1e11 ? x*1000 : x) : null;\n  };\n  const end = millis(pd.timeRange?.to) ?? clock;\n  const start = millis(pd.timeRange?.from) ?? end-900000;\n  const ageSeconds = numeric(cfg.maxAgeSeconds);\n  const maxAge = ageSeconds !== null && ageSeconds > 0 ? ageSeconds*1000 : end-start;\n  const errorRefs=new Set();let globalError=false;\n  const queryErrors=[];\n  const errors=[pd.error,...(Array.isArray(pd.errors)?pd.errors:[])].filter(Boolean);\n  for (const e of errors) {\n    const ref=e.refId || e.data?.refId;\n    if(ref)errorRefs.add(ref);else globalError=true;\n    const message=String(e.message || e.data?.message || e.statusText || 'Erro sem detalhes').slice(0,300);\n    const detail=`${ref || 'Consulta não identificada'}: ${message}`;\n    if(!queryErrors.includes(detail))queryErrors.push(detail);\n  }\n  // Error can include successful frames from other queries. Block only the\n  // failed refId when it is known; never trust cached frames on an unscoped error.\n  if(pd.state==='Error' && !errors.length){globalError=true;queryErrors.push('Erro sem consulta identificada. Abra Inspecionar > Consulta para obter a resposta.');}\n  const forRef = ref => frames.filter(f => f.refId === ref);\n  // Em painel Mixed, um target pode falhar enquanto os demais entregam frames válidos.\n  // Erro global sem refId não invalida refs que efetivamente retornaram dados.\n  const usable = ref => settled && !errorRefs.has(ref) && (!globalError || forRef(ref).length > 0);\n  function classify(v,kind) {\n    const n=numeric(v);\n    if(kind==='failedStep')return n===0?'UP':n!==null && Number.isInteger(n) && n>0?'DOWN':'UNKNOWN';\n    if(kind==='binary')return n===1?'UP':n===0?'DOWN':'UNKNOWN';\n    if(kind==='binaryHttp')return n===1||n===200?'UP':n===0?'DOWN':'UNKNOWN';\n    if(kind==='endpointSourceMapping')return n===200||n===400||v==='1.30.1'?'UP':[0,403,404].includes(n)?'DOWN':'UNKNOWN';\n    return 'UNKNOWN';\n  }\n  const time = stamp => stamp === null ? '—' : new Date(stamp).toLocaleTimeString('pt-BR',{hour12:false});\n  const duration = delta => {\n    const seconds=Math.max(0,Math.floor(delta/1000));\n    return [Math.floor(seconds/3600),Math.floor(seconds/60)%60,seconds%60].map(x=>String(x).padStart(2,'0')).join(':');\n  };\n  const eventList=[];\n  function readCheck(check, serviceName, diagnostic=false) {\n    const all=[];\n    if (!usable(check.refId))return [{\n      status:'UNKNOWN',time:null,label:check.label,\n      reason:'Consulta pendente ou com erro',history:[]\n    }];\n\n    for (const frame of forRef(check.refId)) {\n      const fields=Array.isArray(frame.fields)?frame.fields:[];\n      const tf=fields.find(f=>f.type==='time'||/^(time|timestamp|@timestamp)$/i.test(f.name));\n      const stamps=values(tf);\n\n      for(const field of fields.filter(f=>f!==tf && (f.type==='number'||f.type==='string'))) {\n        if(['host','item','item_key'].includes(field.name))continue;\n\n        const vals=values(field);\n        const history=vals\n          .map((value,i)=>({value,time:millis(stamps[i])}))\n          .filter(p=>p.time!==null&&p.time>=start&&p.time<=end)\n          .sort((a,b)=>a.time-b.time);\n\n        const latest=history.at(-1);\n        const fresh=!!latest && end-latest.time<=maxAge;\n        const status=fresh&&!diagnostic?classify(latest.value,check.kind):'UNKNOWN';\n        const label=field.labels?.host || field.config?.displayNameFromDS || check.label || field.name;\n        const reason=!latest?'Sem amostra com horário válido':\n          !fresh?'Amostra anterior ao limite de atualidade':\n          latest.value==null?'Última amostra nula':\n          status==='UNKNOWN'&&!diagnostic?'Valor sem mapeamento de estado':\n          diagnostic?'Informação auxiliar; sem regra UP/DOWN':'';\n\n        all.push({\n          status,time:latest?.time??null,fresh,label,\n          value:latest?.value,reason,history\n        });\n\n        // EVENTOS CRÍTICOS RECENTES\n        // Usa somente o histórico da mesma consulta que alimenta o serviço.\n        if(!diagnostic && history.length){\n          let active=null;\n          let previous='UNKNOWN';\n          let previousTime=null;\n\n          for(const point of history){\n            if(maxAge>0 && previousTime!==null && point.time-previousTime>maxAge){\n              if(active){\n                eventList.push(active);\n                active=null;\n              }\n              previous='UNKNOWN';\n            }\n\n            const state=classify(point.value,check.kind);\n\n            if(state==='DOWN' && previous!=='DOWN'){\n              active={\n                stamp:point.time,\n                time:time(point.time),\n                service:serviceName,\n                status:'DOWN',\n                message:`Falha observada: ${check.label}`,\n                end:null\n              };\n            }\n\n            if(active && previous==='DOWN' && state==='UP'){\n              active.end=point.time;\n              eventList.push(active);\n              active=null;\n            }\n\n            if(active && state==='UNKNOWN'){\n              eventList.push(active);\n              active=null;\n            }\n\n            previous=state;\n            previousTime=point.time;\n          }\n\n          if(active)eventList.push(active);\n        }\n      }\n    }\n\n    const expected=Math.max(0,Number(check.expectedSeries)||0);\n    if(expected>all.length){\n      const missing=expected-all.length;\n      for(let i=0;i<missing;i++){\n        all.push({\n          status:'UNKNOWN',\n          time:null,\n          fresh:false,\n          label:`${check.label} • série esperada ${all.length+1}/${expected}`,\n          value:null,\n          reason:'Série esperada não retornada pela query consolidada',\n          history:[]\n        });\n      }\n    }\n\n    return all.length?all:[{\n      status:'UNKNOWN',time:null,label:check.label,\n      reason:'Consulta sem séries',history:[]\n    }];\n  }\n  function aggregate(checks) {\n    const counts={UP:0,DOWN:0,ATTENTION:0,UNKNOWN:0};checks.forEach(c=>counts[c.status]++);\n    if(!checks.length)return 'UNKNOWN';\n    // Prioridade operacional: qualquer falha crítica ativa prevalece.\n    if(counts.DOWN)return 'DOWN';\n    if(counts.ATTENTION)return 'ATTENTION';\n    // Parte da coleta conhecida + parte sem retorno não deve apagar\n    // o estado inteiro do serviço. Mantemos ATENÇÃO por cobertura parcial.\n    if(counts.UNKNOWN && (counts.UP || counts.DOWN || counts.ATTENTION))return 'ATTENTION';\n    if(counts.UNKNOWN)return 'UNKNOWN';\n    return 'UP';\n  }\n  const services={};const updates=[];let sawSample=false;\n  for(const service of inventory){\n    const checkGroups=(service.checks||[]).map(c=>{\n      const items=readCheck(c,service.name);\n      const counts={UP:0,DOWN:0,ATTENTION:0,UNKNOWN:0};\n      items.forEach(x=>counts[x.status]++);\n      const latest=Math.max(0,...items.map(x=>x.time||0));\n      const groupStatus=counts.DOWN?'DOWN':\n        counts.ATTENTION?'ATTENTION':\n        (counts.UNKNOWN&&counts.UP)?'PARTIAL':\n        counts.UNKNOWN?'UNKNOWN':'UP';\n      return {\n        label:c.label,refId:c.refId,items,\n        total:items.length,up:counts.UP,down:counts.DOWN,\n        attention:counts.ATTENTION,unknown:counts.UNKNOWN,\n        status:groupStatus,latest:latest||null\n      };\n    });\n    const checks=checkGroups.flatMap(g=>g.items);\n    const diagnostics=(service.diagnostics||[]).flatMap(c=>readCheck(c,service.name,true));\n    const all=[...checks,...diagnostics];\n    const fresh=all.filter(c=>c.fresh&&c.value!=null);\n    const freshDiagnostics=diagnostics.filter(c=>c.fresh&&c.value!=null);\n    let state=aggregate(checks);\n\n    // BILLING: uma ausência isolada de coleta NÃO significa degradação funcional.\n    // Se existe dado UP e não existe DOWN/ATTENTION comprovado, permanece UP.\n    // O sem-dados continua visível no popup como ponto de observação.\n    if(service.id==='dae'){\n      const hasDown=checks.some(c=>c.status==='DOWN');\n      const hasAttention=checks.some(c=>c.status==='ATTENTION');\n      const hasUp=checks.some(c=>c.status==='UP');\n      const hasUnknown=checks.some(c=>c.status==='UNKNOWN');\n      if(!hasDown && !hasAttention && hasUp && hasUnknown)state='UP';\n    }\n    // Há serviços cuja origem fornece somente informação operacional\n    // (ex.: última recepção), sem regra nativa UP/DOWN. Se a coleta existe,\n    // mostramos ATENÇÃO em vez de afirmar falsamente que está UP.\n    if(!checks.length && freshDiagnostics.length)state='ATTENTION';\n    if(fresh.length)sawSample=true;\n    const known=checks.filter(c=>c.status!=='UNKNOWN').length;\n    const up=checks.filter(c=>c.status==='UP').length;\n    const missingCount=checks.length-known;\n    const brief=checks.length\n      ? (service.id==='dae' && missingCount>0 && state==='UP'\n          ? `${up}/${checks.length} verificações UP; ${missingCount} sem dados • sem evidência de falha funcional`\n          : `${up}/${checks.length} verificações UP; ${missingCount} sem dados`)\n      : (freshDiagnostics.length ? `${freshDiagnostics.length} coleta(s) disponível(is); sem regra UP/DOWN na origem` : 'Sem consulta de status na origem');\n    const details=[service.missingReason||brief,...all.slice(0,20).map(c=>`${c.label}: ${c.value==null?'—':String(c.value).slice(0,150)}${c.time?' • '+time(c.time):''}${c.reason?' • '+c.reason:''}`)].join('\\n');\n    const lastUpdate=Math.max(0,...all.map(c=>c.time||0))||null;\n    services[service.id]={\n      name:service.name,status:state,functionalStatus:(service.id==='dae'?state:null),message:details,\n      checks:checks.length,known,up,missing:missingCount,\n      diagnostics:diagnostics.length,lastUpdate,\n      checkGroups:checkGroups.map(g=>({\n        label:g.label,refId:g.refId,total:g.total,up:g.up,down:g.down,\n        attention:g.attention,unknown:g.unknown,status:g.status,latest:g.latest\n      })),\n      diagnosticItems:diagnostics.map(c=>({\n        label:c.label,value:c.value,time:c.time,fresh:c.fresh,reason:c.reason\n      })),\n      sourceMissing:!checks.length&&!diagnostics.length\n    };\n    if(fresh.length){const stamp=Math.max(...fresh.map(c=>c.time));updates.push({stamp,time:time(stamp),service:service.name,status:state,message:brief});}\n  }\n  function countState(entries){\n    const out={total:entries.length,healthy:0,attention:0,critical:0,unknown:0,known:0};\n    for(const x of entries)out[x.status==='UP'?'healthy':x.status==='DOWN'?'critical':x.status==='ATTENTION'?'attention':'unknown']++;\n    out.known=out.total-out.unknown;\n    // Blank metrics until at least one service has a known state.\n    if(!out.known){out.healthy=null;out.attention=null;out.critical=null;}\n    return out;\n  }\n  const summary=countState(Object.values(services));\n  const applications=countState(inventory.filter(s=>s.application).map(s=>services[s.id]));\n  function readTerms(ref){\n    const map=new Map();let parsedRows=0;let valid=true;\n    if(!usable(ref))return {map,valid:false,parsedRows};\n    for(const frame of forRef(ref)){\n      const fields=frame.fields||[];\n      const nameField=fields.find(f=>f.name==='service.name'||f.config?.displayName==='service.name');\n      const names=values(nameField);\n      const counts=fields.filter(f=>f.type==='number' && f!==nameField && !/^(time|timestamp)$/i.test(f.name));\n      if(!counts.length&&fields.length){valid=false;continue;}\n      for(const field of counts){\n        const countValues=values(field);\n        for(let i=0;i<countValues.length;i++){\n          const name=names[i]??field.labels?.['service.name']??frame.labels?.['service.name'];\n          const count=numeric(countValues[i]);\n          if(typeof name!=='string'||!name||count===null||count<0){valid=false;continue;}\n          parsedRows++;map.set(name,(map.get(name)||0)+count);\n        }\n      }\n    }\n    return {map,valid,parsedRows};\n  }\n  const failures=readTerms(cfg.apm?.failuresRefId), totals=readTerms(cfg.apm?.totalRefId);\n  const impacts=[];\n  const apmReady=totals.valid&&totals.parsedRows>0&&failures.valid;\n  if(apmReady){\n    const failureSum=[...failures.map.values()].reduce((a,b)=>a+b,0);\n    const threshold=numeric(cfg.apm?.criticalErrorPct)??5;\n    // Missing failure buckets mean zero only for a successful, non-truncated failure query.\n    const completeFailureList=failures.map.size<(numeric(cfg.apm?.termLimit)??300);\n    for(const [name,total] of totals.map){\n      if(!(total>0))continue;\n      const failed=failures.map.has(name)?failures.map.get(name):completeFailureList?0:null;\n      if(failed===null||failed>total)continue;\n      const error=failed/total*100;\n      impacts.push({service:name,status:error>=threshold?'DOWN':error>0?'ATTENTION':'UP',impact:failureSum?failed/failureSum*100:0,error,p95:null,failures:failed,total});\n    }\n    impacts.sort((a,b)=>b.error-a.error||b.failures-a.failures||a.service.localeCompare(b.service));\n  }\n  const hasData=sawSample||apmReady;\n  const minutes=Math.round((end-start)/60000);\n  const relative=typeof pd.timeRange?.raw?.from==='string'&&pd.timeRange.raw.from.startsWith('now');\n  const rangeLabel=relative&&minutes<=120?`Últimos ${minutes} minutos`:'Período do Grafana';\n  return {\n    hasData,updatedAt:hasData?time(millis(pd.request?.endTime)??clock):'—',rangeLabel,\n    summary,services,applications,\n    availability:{value:summary.known?(summary.healthy||0)/summary.known*100:null,known:summary.known,total:summary.total,target:null},\n    impacts:impacts.slice(0,5),\n    events:(()=>{\n      const seen=new Set();\n      return eventList\n        .sort((a,b)=>b.stamp-a.stamp)\n        .filter(e=>{\n          const key=`${e.service}|${e.message}|${e.stamp}`;\n          if(seen.has(key))return false;\n          seen.add(key);\n          return true;\n        })\n        .slice(0,20)\n        .map(e=>({\n          ...e,\n          duration:e.end===null\n            ? duration(Math.max(0,end-e.stamp))\n            : duration(Math.max(0,e.end-e.stamp))\n        }));\n    })(), eventsReady:true,\n    updates:updates.sort((a,b)=>b.stamp-a.stamp),\n    links:{}, apmReady,\n    queryDiagnostics:{state:pd.state || 'NotStarted',frames:frames.length,refs:[...new Set(frames.map(f=>f.refId).filter(Boolean))],errors:queryErrors,globalError}\n  };\n}\n\n\n(() => {\n  const root=htmlNode.querySelector('#demo-dashboard');\n  if(!root?.demo)return;\n\n  // O refresh continua 100% controlado pelo Grafana.\n  // Durante Loading/Streaming/NotStarted, preservamos o último estado\n  // renderizado em vez de converter temporariamente tudo para SEM DADOS.\n  const panelData=htmlGraphics.data||{};\n  const state=panelData.state||'NotStarted';\n  const settled=state==='Done'||state==='Error';\n\n  if(!settled){\n    root.dataset.refreshing='true';\n    return;\n  }\n\n  root.dataset.refreshing='false';\n  const next=buildDemoData(panelData,htmlGraphics.customProperties);\n  root.demo.update(next);\n  // O bridge RECBAN é outro painel/consulta. Assim Problems nunca participa\n  // do mesmo lote Zabbix das 14 queries do mapa.\n  if(globalThis.__demoRecbanProblems){\n    root.demo.applyRecban?.(globalThis.__demoRecbanProblems);\n  }\n  if(globalThis.__demoBillingApm){\n    root.demo.applyBillingApm?.(globalThis.__demoBillingApm);\n  }\n})();\n",
+        "overflow": "hidden",
+        "panelupdateOnMount": true,
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ]
+        },
+        "renderOnMount": true,
+        "rootCSS": "\n",
+        "useGrafanaScrollbar": false
+      },
+      "targets": [
+        {
+          "application": {
+            "filter": ""
+          },
+          "countTriggersBy": "",
+          "datasource": {
+            "type": "alexanderzobnin-zabbix-datasource",
+            "uid": "REPLACE_ZABBIX_DATASOURCE_UID"
+          },
+          "evaltype": "0",
+          "functions": [],
+          "group": {
+            "filter": "Production WebLogic Servers"
+          },
+          "host": {
+            "filter": "/^lab-wls-portal-node0(1|2)$/"
+          },
+          "item": {
+            "filter": "/^Failed step of scenario \"customer-portal-(api|ui)\"\\.$/"
+          },
+          "itemTag": {
+            "filter": ""
+          },
+          "macro": {
+            "filter": ""
+          },
+          "options": {
+            "count": false,
+            "disableDataAlignment": false,
+            "showDisabledItems": false,
+            "skipEmptyValues": false,
+            "useTrends": "default",
+            "useZabbixValueMapping": false
+          },
+          "proxy": {
+            "filter": ""
+          },
+          "queryType": "0",
+          "refId": "Z_CUSTOMER_PORTAL",
+          "resultFormat": "time_series",
+          "schema": 12,
+          "table": {
+            "skipEmptyValues": false
+          },
+          "tags": {
+            "filter": ""
+          },
+          "textFilter": "",
+          "trigger": {
+            "filter": ""
+          }
+        },
+        {
+          "application": {
+            "filter": ""
+          },
+          "countTriggersBy": "",
+          "datasource": {
+            "type": "alexanderzobnin-zabbix-datasource",
+            "uid": "REPLACE_ZABBIX_DATASOURCE_UID"
+          },
+          "evaltype": "0",
+          "functions": [],
+          "group": {
+            "filter": "Production WebLogic Servers"
+          },
+          "host": {
+            "filter": "/^lab-wls-service-node0(1|2)$/"
+          },
+          "item": {
+            "filter": "Failed step of scenario \"service-portal\"."
+          },
+          "itemTag": {
+            "filter": ""
+          },
+          "macro": {
+            "filter": ""
+          },
+          "options": {
+            "count": false,
+            "disableDataAlignment": false,
+            "showDisabledItems": false,
+            "skipEmptyValues": false,
+            "useTrends": "default",
+            "useZabbixValueMapping": false
+          },
+          "proxy": {
+            "filter": ""
+          },
+          "queryType": "0",
+          "refId": "Z_SERVICE_PORTAL",
+          "resultFormat": "time_series",
+          "schema": 12,
+          "table": {
+            "skipEmptyValues": false
+          },
+          "tags": {
+            "filter": ""
+          },
+          "textFilter": "",
+          "trigger": {
+            "filter": ""
+          }
+        },
+        {
+          "application": {
+            "filter": ""
+          },
+          "countTriggersBy": "",
+          "datasource": {
+            "type": "alexanderzobnin-zabbix-datasource",
+            "uid": "REPLACE_ZABBIX_DATASOURCE_UID"
+          },
+          "evaltype": "0",
+          "functions": [],
+          "group": {
+            "filter": "Production WebLogic Servers"
+          },
+          "host": {
+            "filter": "/^lab-wls-billing-node0(1|2)$/"
+          },
+          "item": {
+            "filter": "/^Failed step of scenario \"billing-(service|api)\"\\.$/"
+          },
+          "itemTag": {
+            "filter": ""
+          },
+          "macro": {
+            "filter": ""
+          },
+          "options": {
+            "count": false,
+            "disableDataAlignment": false,
+            "showDisabledItems": false,
+            "skipEmptyValues": false,
+            "useTrends": "default",
+            "useZabbixValueMapping": false
+          },
+          "proxy": {
+            "filter": ""
+          },
+          "queryType": "0",
+          "refId": "Z_BILLING_WEB",
+          "resultFormat": "time_series",
+          "schema": 12,
+          "table": {
+            "skipEmptyValues": false
+          },
+          "tags": {
+            "filter": ""
+          },
+          "textFilter": "",
+          "trigger": {
+            "filter": ""
+          }
+        },
+        {
+          "application": {
+            "filter": ""
+          },
+          "countTriggersBy": "",
+          "datasource": {
+            "type": "alexanderzobnin-zabbix-datasource",
+            "uid": "REPLACE_ZABBIX_DATASOURCE_UID"
+          },
+          "evaltype": "0",
+          "functions": [],
+          "group": {
+            "filter": "Kubernetes Services"
+          },
+          "host": {
+            "filter": "Kubernetes Apps - PROD"
+          },
+          "item": {
+            "filter": "/^Application billing-(api|ui) \\(demo-platform\\)$/"
+          },
+          "itemTag": {
+            "filter": ""
+          },
+          "macro": {
+            "filter": ""
+          },
+          "options": {
+            "count": false,
+            "disableDataAlignment": false,
+            "showDisabledItems": false,
+            "skipEmptyValues": false,
+            "useTrends": "default",
+            "useZabbixValueMapping": false
+          },
+          "proxy": {
+            "filter": ""
+          },
+          "queryType": "0",
+          "refId": "Z_BILLING_K8S",
+          "resultFormat": "time_series",
+          "schema": 12,
+          "table": {
+            "skipEmptyValues": false
+          },
+          "tags": {
+            "filter": ""
+          },
+          "textFilter": "",
+          "trigger": {
+            "filter": ""
+          }
+        },
+        {
+          "application": {
+            "filter": ""
+          },
+          "countTriggersBy": "",
+          "datasource": {
+            "type": "alexanderzobnin-zabbix-datasource",
+            "uid": "REPLACE_ZABBIX_DATASOURCE_UID"
+          },
+          "evaltype": "0",
+          "functions": [],
+          "group": {
+            "filter": "Synthetic Monitoring"
+          },
+          "hide": false,
+          "host": {
+            "filter": "Billing Monitor"
+          },
+          "item": {
+            "filter": "/^demo-bank - (auth|payments)\\.api\\.example\\.net$/"
+          },
+          "itemTag": {
+            "filter": ""
+          },
+          "macro": {
+            "filter": ""
+          },
+          "options": {
+            "count": false,
+            "disableDataAlignment": false,
+            "showDisabledItems": false,
+            "skipEmptyValues": false,
+            "useTrends": "default",
+            "useZabbixValueMapping": false
+          },
+          "proxy": {
+            "filter": ""
+          },
+          "queryType": "0",
+          "refId": "Z_BILLING_ENDPOINT",
+          "resultFormat": "time_series",
+          "schema": 12,
+          "table": {
+            "skipEmptyValues": false
+          },
+          "tags": {
+            "filter": ""
+          },
+          "textFilter": "",
+          "trigger": {
+            "filter": ""
+          }
+        },
+        {
+          "application": {
+            "filter": ""
+          },
+          "countTriggersBy": "",
+          "datasource": {
+            "type": "alexanderzobnin-zabbix-datasource",
+            "uid": "REPLACE_ZABBIX_DATASOURCE_UID"
+          },
+          "evaltype": "0",
+          "functions": [],
+          "group": {
+            "filter": "Production WebLogic Servers"
+          },
+          "host": {
+            "filter": "lab-wls-batch-node02"
+          },
+          "item": {
+            "filter": "Failed step of scenario \"batch-job\"."
+          },
+          "itemTag": {
+            "filter": ""
+          },
+          "macro": {
+            "filter": ""
+          },
+          "options": {
+            "count": false,
+            "disableDataAlignment": false,
+            "showDisabledItems": false,
+            "skipEmptyValues": false,
+            "useTrends": "default",
+            "useZabbixValueMapping": false
+          },
+          "proxy": {
+            "filter": ""
+          },
+          "queryType": "0",
+          "refId": "Z_BATCH_STATUS",
+          "resultFormat": "time_series",
+          "schema": 12,
+          "table": {
+            "skipEmptyValues": false
+          },
+          "tags": {
+            "filter": ""
+          },
+          "textFilter": "",
+          "trigger": {
+            "filter": ""
+          }
+        },
+        {
+          "application": {
+            "filter": ""
+          },
+          "countTriggersBy": "",
+          "datasource": {
+            "type": "alexanderzobnin-zabbix-datasource",
+            "uid": "REPLACE_ZABBIX_DATASOURCE_UID"
+          },
+          "evaltype": "0",
+          "functions": [],
+          "group": {
+            "filter": "Synthetic Monitoring"
+          },
+          "hide": false,
+          "host": {
+            "filter": "Document Processing Monitor"
+          },
+          "item": {
+            "filter": "/^Batch_(Transmit|Processing)$/"
+          },
+          "itemTag": {
+            "filter": ""
+          },
+          "macro": {
+            "filter": ""
+          },
+          "options": {
+            "count": false,
+            "disableDataAlignment": false,
+            "showDisabledItems": false,
+            "skipEmptyValues": false,
+            "useTrends": "default",
+            "useZabbixValueMapping": false
+          },
+          "proxy": {
+            "filter": ""
+          },
+          "queryType": "0",
+          "refId": "Z_BATCH_DIAG",
+          "resultFormat": "time_series",
+          "schema": 12,
+          "table": {
+            "skipEmptyValues": false
+          },
+          "tags": {
+            "filter": ""
+          },
+          "textFilter": "",
+          "trigger": {
+            "filter": ""
+          }
+        },
+        {
+          "application": {
+            "filter": ""
+          },
+          "countTriggersBy": "",
+          "datasource": {
+            "type": "alexanderzobnin-zabbix-datasource",
+            "uid": "REPLACE_ZABBIX_DATASOURCE_UID"
+          },
+          "evaltype": "0",
+          "functions": [],
+          "group": {
+            "filter": "Production WebLogic Servers"
+          },
+          "host": {
+            "filter": "/.*/"
+          },
+          "item": {
+            "filter": "/^Failed step of scenario \"file-delivery-(api|ui)\"\\.$/"
+          },
+          "itemTag": {
+            "filter": ""
+          },
+          "macro": {
+            "filter": ""
+          },
+          "options": {
+            "count": false,
+            "disableDataAlignment": false,
+            "showDisabledItems": false,
+            "skipEmptyValues": false,
+            "useTrends": "default",
+            "useZabbixValueMapping": false
+          },
+          "proxy": {
+            "filter": ""
+          },
+          "queryType": "0",
+          "refId": "Z_FILE_DELIVERY",
+          "resultFormat": "time_series",
+          "schema": 12,
+          "table": {
+            "skipEmptyValues": false
+          },
+          "tags": {
+            "filter": ""
+          },
+          "textFilter": "",
+          "trigger": {
+            "filter": ""
+          }
+        },
+        {
+          "application": {
+            "filter": ""
+          },
+          "countTriggersBy": "",
+          "datasource": {
+            "type": "alexanderzobnin-zabbix-datasource",
+            "uid": "REPLACE_ZABBIX_DATASOURCE_UID"
+          },
+          "evaltype": "0",
+          "functions": [],
+          "group": {
+            "filter": "Synthetic Monitoring"
+          },
+          "hide": false,
+          "host": {
+            "filter": "/.*/"
+          },
+          "item": {
+            "filter": "/^(Payment_Online|Bank_A intake|Bank_B intake|Bank_C intake)$/"
+          },
+          "itemTag": {
+            "filter": ""
+          },
+          "macro": {
+            "filter": ""
+          },
+          "options": {
+            "count": false,
+            "disableDataAlignment": false,
+            "showDisabledItems": false,
+            "skipEmptyValues": false,
+            "useTrends": "default",
+            "useZabbixValueMapping": false
+          },
+          "proxy": {
+            "filter": ""
+          },
+          "queryType": "2",
+          "refId": "Z_PAYMENT_INTAKE",
+          "resultFormat": "time_series",
+          "schema": 12,
+          "table": {
+            "skipEmptyValues": false
+          },
+          "tags": {
+            "filter": ""
+          },
+          "textFilter": "",
+          "trigger": {
+            "filter": ""
+          }
+        },
+        {
+          "application": {
+            "filter": ""
+          },
+          "countTriggersBy": "",
+          "datasource": {
+            "type": "alexanderzobnin-zabbix-datasource",
+            "uid": "REPLACE_ZABBIX_DATASOURCE_UID"
+          },
+          "evaltype": "0",
+          "functions": [],
+          "group": {
+            "filter": "Windows Servers"
+          },
+          "hide": false,
+          "host": {
+            "filter": "lab-payment-node01"
+          },
+          "item": {
+            "filter": "Service MESSAGE_RELAY"
+          },
+          "itemTag": {
+            "filter": ""
+          },
+          "macro": {
+            "filter": ""
+          },
+          "options": {
+            "count": false,
+            "disableDataAlignment": false,
+            "showDisabledItems": false,
+            "skipEmptyValues": false,
+            "useTrends": "default",
+            "useZabbixValueMapping": false
+          },
+          "proxy": {
+            "filter": ""
+          },
+          "queryType": "0",
+          "refId": "Z_MESSAGE_RELAY",
+          "resultFormat": "time_series",
+          "schema": 12,
+          "table": {
+            "skipEmptyValues": false
+          },
+          "tags": {
+            "filter": ""
+          },
+          "textFilter": "",
+          "trigger": {
+            "filter": ""
+          }
+        },
+        {
+          "application": {
+            "filter": ""
+          },
+          "countTriggersBy": "",
+          "datasource": {
+            "type": "alexanderzobnin-zabbix-datasource",
+            "uid": "REPLACE_ZABBIX_DATASOURCE_UID"
+          },
+          "evaltype": "0",
+          "functions": [],
+          "group": {
+            "filter": "Production WebLogic Servers"
+          },
+          "hide": false,
+          "host": {
+            "filter": "lab-wls-tax-node01"
+          },
+          "item": {
+            "filter": "Status Managed Server tax-processing01"
+          },
+          "itemTag": {
+            "filter": ""
+          },
+          "macro": {
+            "filter": ""
+          },
+          "options": {
+            "count": false,
+            "disableDataAlignment": false,
+            "showDisabledItems": false,
+            "skipEmptyValues": false,
+            "useTrends": "default",
+            "useZabbixValueMapping": false
+          },
+          "proxy": {
+            "filter": ""
+          },
+          "queryType": "0",
+          "refId": "Z_TAX_STATUS",
+          "resultFormat": "time_series",
+          "schema": 12,
+          "table": {
+            "skipEmptyValues": false
+          },
+          "tags": {
+            "filter": ""
+          },
+          "textFilter": "",
+          "trigger": {
+            "filter": ""
+          }
+        },
+        {
+          "application": {
+            "filter": ""
+          },
+          "countTriggersBy": "",
+          "datasource": {
+            "type": "alexanderzobnin-zabbix-datasource",
+            "uid": "REPLACE_ZABBIX_DATASOURCE_UID"
+          },
+          "evaltype": "0",
+          "functions": [],
+          "group": {
+            "filter": "Production WebLogic Servers"
+          },
+          "hide": false,
+          "host": {
+            "filter": "lab-wls-tax-node01"
+          },
+          "item": {
+            "filter": "/^(PROCESS_A|PROCESS_B|PROCESS_C|PROCESS_D)$/"
+          },
+          "itemTag": {
+            "filter": ""
+          },
+          "macro": {
+            "filter": ""
+          },
+          "options": {
+            "count": false,
+            "disableDataAlignment": false,
+            "showDisabledItems": false,
+            "skipEmptyValues": false,
+            "useTrends": "default",
+            "useZabbixValueMapping": false
+          },
+          "proxy": {
+            "filter": ""
+          },
+          "queryType": "2",
+          "refId": "Z_TAX_DIAG",
+          "resultFormat": "time_series",
+          "schema": 12,
+          "table": {
+            "skipEmptyValues": false
+          },
+          "tags": {
+            "filter": ""
+          },
+          "textFilter": "",
+          "trigger": {
+            "filter": ""
+          }
+        },
+        {
+          "alias": "",
+          "bucketAggs": [
+            {
+              "field": "service.name",
+              "id": "2",
+              "settings": {
+                "min_doc_count": "1",
+                "order": "desc",
+                "orderBy": "_term",
+                "size": "300"
+              },
+              "type": "terms"
+            }
+          ],
+          "datasource": {
+            "type": "elasticsearch",
+            "uid": "REPLACE_ELASTICSEARCH_DATASOURCE_UID"
+          },
+          "hide": false,
+          "metrics": [
+            {
+              "id": "1",
+              "type": "count"
+            }
+          ],
+          "query": "processor.event:\"transaction\" AND event.outcome:\"failure\" AND service.environment:production\n",
+          "refId": "P117_A",
+          "timeField": "@timestamp"
+        },
+        {
+          "alias": "",
+          "bucketAggs": [
+            {
+              "field": "service.name",
+              "id": "2",
+              "settings": {
+                "min_doc_count": "1",
+                "order": "desc",
+                "orderBy": "_term",
+                "size": "300"
+              },
+              "type": "terms"
+            }
+          ],
+          "datasource": {
+            "type": "elasticsearch",
+            "uid": "REPLACE_ELASTICSEARCH_DATASOURCE_UID"
+          },
+          "hide": false,
+          "metrics": [
+            {
+              "id": "1",
+              "type": "count"
+            }
+          ],
+          "query": "processor.event:\"transaction\" AND service.environment:production\n",
+          "refId": "P117_B",
+          "timeField": "@timestamp"
+        }
+      ],
+      "transparent": true,
+      "type": "gapit-htmlgraphics-panel"
+    },
+    {
+      "datasource": {
+        "type": "alexanderzobnin-zabbix-datasource",
+        "uid": "REPLACE_ZABBIX_DATASOURCE_UID"
+      },
+      "description": "Hidden technical bridge: Problems for Payment Intake. Not part of the main Zabbix batch.",
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 28
+      },
+      "id": 999,
+      "options": {
+        "SVGBaseFix": true,
+        "add100Percentage": true,
+        "calcsMutation": "standard",
+        "centerAlignContent": false,
+        "codeData": "{\"bridge\":\"payment-intake-problems\",\"version\":\"V4.2\"}",
+        "css": "#demo-payment-intake-bridge{display:none!important}",
+        "dynamicData": false,
+        "dynamicFieldDisplayValues": false,
+        "dynamicHtmlGraphics": true,
+        "dynamicProps": false,
+        "html": "<div id=\"demo-payment-intake-bridge\" style=\"display:none\"></div>",
+        "onInit": "",
+        "onInitOnResize": false,
+        "onRender": "\n(() => {\n  const pd = htmlGraphics.data || {};\n  const state = pd.state || 'NotStarted';\n  if(state!=='Done' && state!=='Error')return;\n\n  const frames = Array.isArray(pd.series)?pd.series:[];\n  const errors=[pd.error,...(Array.isArray(pd.errors)?pd.errors:[])].filter(Boolean);\n  const failed = errors.length>0 || (state==='Error' && !frames.length);\n\n  const banks=[\n    {code:'001',name:'Banco do Brasil'},\n    {code:'033',name:'Santander'},\n    {code:'037',name:'Demo Bank'},\n    {code:'104',name:'Caixa'},\n    {code:'237',name:'Bradesco'},\n    {code:'341',name:'Itaú'},\n    {code:'756',name:'Sicoob'}\n  ];\n\n  const arr=v=>{\n    if(v==null)return[];\n    if(Array.isArray(v))return v;\n    if(typeof v.toArray==='function')return v.toArray();\n    const out=[];for(let i=0;i<(v.length||0);i++)out.push(v.get?v.get(i):v[i]);return out;\n  };\n  const bankFromText=value=>{\n    const s=String(value||'').toUpperCase();\n    const rules=[\n      ['001',['001','BANK A']],\n      ['033',['033','BANK B']],\n      ['037',['037','DEMO BANK','DEMO BANK','BANK H']],\n      ['104',['104','CAIXA']],\n      ['237',['237','BANK D']],\n      ['341',['341','BANK E','BANK E']],\n      ['756',['756','BANK F']]\n    ];\n    for(const [code,terms] of rules)if(terms.some(t=>s.includes(t)))return code;\n    return '';\n  };\n  const severity=v=>{\n    const n=Number(v);\n    if(Number.isFinite(n))return ['NOT CLASSIFIED','INFORMATION','WARNING','AVERAGE','HIGH','DISASTER'][n]||String(v);\n    const s=String(v||'').toUpperCase();\n    if(s.includes('DISASTER'))return 'DISASTER';\n    if(s.includes('HIGH')||s.includes('ALTA'))return 'HIGH';\n    return s;\n  };\n  const pick=(o,names)=>{\n    for(const n of names){\n      if(o[n]!==undefined&&o[n]!==null&&o[n]!=='')return o[n];\n      const k=Object.keys(o).find(k=>k.toLowerCase()===String(n).toLowerCase());\n      if(k&&o[k]!==undefined&&o[k]!==null&&o[k]!=='')return o[k];\n    }\n    return null;\n  };\n\n  const ranks={},problems={};\n  if(!failed){\n    for(const frame of frames){\n      const fields=Array.isArray(frame.fields)?frame.fields:[];\n      const cols=fields.map(f=>({name:f.name||'',values:arr(f.values),labels:f.labels||{}}));\n      const count=Math.max(0,...cols.map(c=>c.values.length));\n      for(let i=0;i<count;i++){\n        const row={_frameName:frame.name||frame.schema?.name||''};\n        cols.forEach(c=>{\n          row[c.name]=c.values[i];\n          Object.entries(c.labels||{}).forEach(([k,v])=>{if(row[k]===undefined)row[k]=v;});\n          const x=c.values[i];\n          if(x&&typeof x==='object'&&!Array.isArray(x))Object.entries(x).forEach(([k,v])=>{if(row[k]===undefined)row[k]=v;});\n        });\n        const desc=String(pick(row,['Problem','problem','Name','name','Description','description','Trigger','trigger','problem_name','event_name','Event name'])||row._frameName||'');\n        if(!desc.toLowerCase().includes('recep'))continue;\n        const code=bankFromText(desc);if(!code)continue;\n        const sev=severity(pick(row,['Severity','severity','Priority','priority','Problem severity','problem_severity','trigger_priority','Trigger severity']));\n        const rank=sev==='DISASTER'?5:sev==='HIGH'?4:0;\n        if(rank>(ranks[code]||0)){ranks[code]=rank;problems[code]=desc;}\n      }\n    }\n  }\n\n  const payload={\n    usable:!failed,\n    updatedAt:Date.now(),\n    banks:banks.map(b=>{\n      if(failed)return {...b,status:'UNKNOWN',problem:''};\n      const r=ranks[b.code]||0;\n      return {...b,status:r>=5?'DOWN':r===4?'ATTENTION':'UP',problem:problems[b.code]||''};\n    })\n  };\n\n  globalThis.__demoRecbanProblems=payload;\n  try{\n    globalThis.dispatchEvent(new CustomEvent('demo-payment-intake-status',{detail:payload}));\n  }catch(_){}\n})();\n",
+        "overflow": "hidden",
+        "panelupdateOnMount": true,
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ]
+        },
+        "renderOnMount": true,
+        "rootCSS": "width:100%;height:100%;overflow:hidden;background:transparent;",
+        "useGrafanaScrollbar": false
+      },
+      "targets": [
+        {
+          "application": {
+            "filter": ""
+          },
+          "datasource": {
+            "type": "alexanderzobnin-zabbix-datasource",
+            "uid": "REPLACE_ZABBIX_DATASOURCE_UID"
+          },
+          "evaltype": "0",
+          "functions": [],
+          "group": {
+            "filter": "/.*/"
+          },
+          "host": {
+            "filter": "Payment Intake"
+          },
+          "item": {
+            "filter": ""
+          },
+          "itemTag": {
+            "filter": ""
+          },
+          "macro": {
+            "filter": ""
+          },
+          "options": {
+            "acknowledged": 2,
+            "count": false,
+            "hostProxy": false,
+            "hostsInMaintenance": false,
+            "limit": 100,
+            "minSeverity": 4,
+            "sortProblems": "severity",
+            "useTimeRange": false
+          },
+          "proxy": {
+            "filter": ""
+          },
+          "queryType": "5",
+          "refId": "P_PAYMENT",
+          "resultFormat": "table",
+          "schema": 12,
+          "showProblems": "problems",
+          "table": {
+            "skipEmptyValues": false
+          },
+          "tags": {
+            "filter": ""
+          },
+          "textFilter": "",
+          "trigger": {
+            "filter": ""
+          }
+        }
+      ],
+      "transparent": true,
+      "type": "gapit-htmlgraphics-panel"
+    },
+    {
+      "datasource": {
+        "type": "elasticsearch",
+        "uid": "REPLACE_ELASTICSEARCH_DATASOURCE_UID"
+      },
+      "description": "Hidden technical bridge: Billing transactional health from Elasticsearch.",
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 29
+      },
+      "id": 998,
+      "options": {
+        "SVGBaseFix": true,
+        "add100Percentage": true,
+        "calcsMutation": "standard",
+        "centerAlignContent": false,
+        "codeData": "{\"bridge\":\"billing-apm\",\"version\":\"V4.4\",\"warningPct\":1,\"criticalPct\":5}",
+        "css": "#demo-billing-apm-bridge{display:none!important}",
+        "dynamicData": false,
+        "dynamicFieldDisplayValues": false,
+        "dynamicHtmlGraphics": true,
+        "dynamicProps": false,
+        "html": "<div id=\"demo-billing-apm-bridge\" style=\"display:none\"></div>",
+        "onInit": "",
+        "onInitOnResize": false,
+        "onRender": "\n(() => {\n  const pd=htmlGraphics.data||{};\n  const state=pd.state||'NotStarted';\n  if(state!=='Done'&&state!=='Error')return;\n\n  const frames=Array.isArray(pd.series)?pd.series:[];\n  const errors=[pd.error,...(Array.isArray(pd.errors)?pd.errors:[])].filter(Boolean);\n  const failed=errors.length>0 || (state==='Error'&&!frames.length);\n\n  const names=['dae','billing-service','billing-pix-api'];\n  const M={};names.forEach(s=>M[s]={name:s,total:null,fail:null,latencyMs:null});\n\n  const arr=v=>{\n    if(v==null)return[];\n    if(Array.isArray(v))return v;\n    if(typeof v.toArray==='function')return v.toArray();\n    if(v.buffer)return Array.from(v.buffer);\n    const out=[];for(let i=0;i<(v.length||0);i++)out.push(v.get?v.get(i):v[i]);return out;\n  };\n  const num=v=>{const n=Number(v);return Number.isFinite(n)?n:null};\n  const svc=v=>{\n    const s=String(v??'').trim().toLowerCase();\n    return names.includes(s)?s:null;\n  };\n  const byRef=ref=>frames.filter(f=>String(f?.refId||'')===ref);\n\n  if(!failed){\n    for(const f of byRef('TX_TOTAL')){\n      const fs=f.fields||[];\n      const nf=fs.find(x=>String(x?.name||'')==='service.name');\n      const cf=fs.find(x=>String(x?.name||'').toLowerCase().includes('count'));\n      const af=fs.find(x=>{\n        const n=String(x?.name||'').toLowerCase();\n        return n.includes('average')||n.includes('duration');\n      });\n      const ns=arr(nf?.values),cs=arr(cf?.values),av=arr(af?.values);\n      for(let i=0;i<ns.length;i++){\n        const s=svc(ns[i]);if(!s)continue;\n        const c=num(cs[i]),a=num(av[i]);\n        if(c!==null)M[s].total=c;\n        if(a!==null)M[s].latencyMs=a/1000;\n      }\n    }\n\n    for(const f of byRef('TX_FAIL')){\n      const fs=f.fields||[];\n      const nf=fs.find(x=>String(x?.name||'')==='service.name');\n      const cf=fs.find(x=>String(x?.name||'').toLowerCase().includes('count'));\n      const ns=arr(nf?.values),cs=arr(cf?.values);\n      for(let i=0;i<ns.length;i++){\n        const s=svc(ns[i]);if(!s)continue;\n        const c=num(cs[i]);if(c!==null)M[s].fail=c;\n      }\n    }\n  }\n\n  const services=names.map(name=>{\n    const x=M[name];\n    const rate=x.total!==null&&x.total>0 ? ((x.fail??0)/x.total*100) : null;\n    const severity=rate===null?'UNKNOWN':rate>=5?'CRITICAL':rate>=1?'WARNING':'OK';\n    const severityClass=severity==='CRITICAL'?'crit':severity==='WARNING'?'warn':severity==='OK'?'ok':'na';\n    const label=severity==='CRITICAL'?'CRÍTICO':severity==='WARNING'?'ATENÇÃO':severity==='OK'?'OK':'SEM DADOS';\n    return {...x,failureRate:rate,severity,severityClass,label};\n  });\n\n  const known=services.filter(x=>x.failureRate!==null);\n  const worst=known.slice().sort((a,b)=>(b.failureRate??-1)-(a.failureRate??-1))[0]||null;\n  const severity=failed||!known.length?'UNKNOWN':\n    known.some(x=>x.severity==='CRITICAL')?'CRITICAL':\n    known.some(x=>x.severity==='WARNING')?'WARNING':'OK';\n\n  const payload={\n    usable:!failed,\n    updatedAt:Date.now(),\n    received:known.length,\n    severity,\n    severityClass:severity==='CRITICAL'?'crit':severity==='WARNING'?'warn':severity==='OK'?'ok':'na',\n    label:severity==='CRITICAL'?'CRÍTICA':severity==='WARNING'?'ATENÇÃO':severity==='OK'?'NORMAL':'SEM DADOS',\n    worstRate:worst?.failureRate??0,\n    worstService:worst?.name??null,\n    services\n  };\n\n  globalThis.__demoBillingApm=payload;\n  try{\n    globalThis.dispatchEvent(new CustomEvent('demo-billing-apm',{detail:payload}));\n  }catch(_){}\n})();\n",
+        "overflow": "hidden",
+        "panelupdateOnMount": true,
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ]
+        },
+        "renderOnMount": true,
+        "rootCSS": "width:100%;height:100%;overflow:hidden;background:transparent;",
+        "useGrafanaScrollbar": false
+      },
+      "targets": [
+        {
+          "alias": "",
+          "bucketAggs": [
+            {
+              "field": "service.name",
+              "id": "2",
+              "settings": {
+                "min_doc_count": "1",
+                "order": "desc",
+                "orderBy": "_term",
+                "size": "300"
+              },
+              "type": "terms"
+            }
+          ],
+          "datasource": {
+            "type": "elasticsearch",
+            "uid": "REPLACE_ELASTICSEARCH_DATASOURCE_UID"
+          },
+          "hide": false,
+          "metrics": [
+            {
+              "id": "1",
+              "type": "count"
+            },
+            {
+              "field": "transaction.duration.us",
+              "id": "2",
+              "type": "avg"
+            }
+          ],
+          "query": "processor.event:\"transaction\" AND service.environment:production AND service.name:(billing OR billing-api OR billing-service)",
+          "refId": "TX_TOTAL",
+          "timeField": "@timestamp"
+        },
+        {
+          "alias": "",
+          "bucketAggs": [
+            {
+              "field": "service.name",
+              "id": "2",
+              "settings": {
+                "min_doc_count": "1",
+                "order": "desc",
+                "orderBy": "_term",
+                "size": "300"
+              },
+              "type": "terms"
+            }
+          ],
+          "datasource": {
+            "type": "elasticsearch",
+            "uid": "REPLACE_ELASTICSEARCH_DATASOURCE_UID"
+          },
+          "hide": false,
+          "metrics": [
+            {
+              "id": "1",
+              "type": "count"
+            }
+          ],
+          "query": "processor.event:\"transaction\" AND event.outcome:\"failure\" AND service.environment:production AND service.name:(billing OR billing-api OR billing-service)",
+          "refId": "TX_FAIL",
+          "timeField": "@timestamp"
+        }
+      ],
+      "transparent": true,
+      "type": "gapit-htmlgraphics-panel"
+    }
+  ],
+  "refresh": "1m",
+  "schemaVersion": 39,
+  "tags": [
+    "grafana",
+    "zabbix",
+    "elasticsearch",
+    "observability",
+    "demo"
+  ],
+  "templating": {
+    "list": []
+  },
+  "time": {
+    "from": "now-15m",
+    "to": "now"
+  },
+  "timepicker": {
+    "hidden": false
+  },
+  "timezone": "browser",
+  "title": "Critical Services Observability - Demo",
+  "uid": null,
+  "version": 1,
+  "weekStart": ""
+}

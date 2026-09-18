@@ -1,0 +1,609 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "datasource",
+          "uid": "grafana"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "target": {
+          "limit": 100,
+          "matchAny": false,
+          "tags": [],
+          "type": "dashboard"
+        },
+        "type": "dashboard"
+      }
+    ]
+  },
+  "description": "Public demo NOC dashboard combining Zabbix operational events with Jira ticket queues. Authentication material was removed.",
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "id": null,
+  "links": [],
+  "liveNow": true,
+  "panels": [
+    {
+      "datasource": {
+        "type": "mixed",
+        "uid": "-- Mixed --"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 28,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 2001,
+      "options": {
+        "SVGBaseFix": true,
+        "add100Percentage": true,
+        "calcsMutation": "standard",
+        "centerAlignContent": false,
+        "codeData": "{}",
+        "css": "*{box-sizing:border-box}html,body,#host{margin:0;width:100%;height:100%;overflow:hidden;background:#020812}.noc-dash{\n  --bg:#020812;--panel:#06111d;--line:rgba(80,119,154,.34);--text:#f4f8fb;--muted:#b4c3cf;\n  --red:#ff4c5c;--amber:#ffa526;--blue:#5b9cff;--green:#43cf83;\n  width:100%;height:100%;min-height:720px;padding:15px 18px 16px;color:var(--text);overflow:hidden;\n  background:#020812;\n  font-family:Bahnschrift,\"Segoe UI Variable Text\",\"Segoe UI\",Roboto,Arial,sans-serif;font-weight:500;letter-spacing:.005em;\n}\n.noc-header{height:58px;display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);align-items:center;border-bottom:1px solid rgba(81,119,151,.20);padding:0 2px 9px}.noc-demo-center{grid-column:2;justify-self:center;display:flex;align-items:center;justify-content:center;width:132px;height:48px}.noc-demo-logo{display:block;width:112px;max-height:44px;object-fit:contain}.noc-clock{grid-column:3;justify-self:end}\n.noc-brand{display:flex;align-items:center;gap:0;min-width:0}.noc-brand>strong{font-size:32px;line-height:1;font-weight:700;letter-spacing:.055em}.noc-brand>i{display:block;width:2px;height:38px;background:#d08a34}.noc-brand>div{display:flex;flex-direction:column;gap:4px}.noc-brand b{font-size:16px;font-weight:700;letter-spacing:.04em}.noc-brand span{font-size:12px;color:#d2dbe2;font-weight:500}\n.noc-clock{height:39px;min-width:206px;padding:0 10px;display:flex;align-items:center;gap:9px;border:1px solid rgba(84,123,158,.35);border-radius:5px;background:#04101b;color:#dce7ee;font-size:11px;letter-spacing:.02em}.noc-clock svg{width:18px;height:18px;fill:none;stroke:#64aaff;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}.noc-clock>i{height:24px;width:1px;background:rgba(86,124,157,.28);margin-left:auto}.noc-clock .refresh-mark{width:17px;height:17px;stroke:#d7e6ef}\n.noc-kpis{height:110px;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;padding:12px 0 10px}.noc-kpi{min-width:0;height:88px;position:relative;display:flex;align-items:center;justify-content:center;border:1px solid var(--line);border-radius:7px;background:linear-gradient(145deg,rgba(7,20,34,.98),rgba(4,13,23,.98));padding:10px 72px;overflow:hidden}.kpi-icon{position:absolute;left:13px;top:50%;transform:translateY(-50%);width:56px;height:56px;display:grid;place-items:center;border:2px solid currentColor;border-radius:50%}.kpi-icon svg{width:34px;height:34px;fill:none;stroke:currentColor;stroke-width:1.65;stroke-linecap:round;stroke-linejoin:round}.kpi-body{min-width:0;width:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}.kpi-body span{font-size:10px;font-weight:700;letter-spacing:.04em;white-space:nowrap;text-align:center}.kpi-body strong{font-size:28px;line-height:1.04;font-weight:700;margin-top:4px}.kpi-body small{font-size:9px;color:#d7dfe5;margin-top:5px;white-space:nowrap;text-align:center}.kpi-red{color:var(--red)}.kpi-amber{color:var(--amber)}.kpi-blue{color:var(--blue)}.kpi-green{color:var(--green)}.noc-kpi .kpi-body span,.noc-kpi .kpi-body small{color:#f4f8fb}\n.streams-grid{height:calc(100% - 58px - 110px - 192px);min-height:430px;display:grid;grid-template-columns:1.02fr .99fr 1.10fr;gap:10px}.stream-card{min-width:0;min-height:0;display:grid;grid-template-rows:48px minmax(0,1fr);border-radius:7px;overflow:hidden}.stream-zabbix{border:1px solid rgba(255,76,92,.78);background:linear-gradient(145deg,rgba(53,11,20,.64),rgba(20,6,13,.92))}.stream-ope{border:1px solid rgba(91,156,255,.78);background:linear-gradient(145deg,rgba(8,34,62,.76),rgba(4,18,34,.94))}.stream-demo{border:1px solid rgba(67,207,131,.78);background:linear-gradient(145deg,rgba(4,53,33,.74),rgba(2,24,18,.95))}.stream-head{display:flex;align-items:center;justify-content:space-between;padding:0 15px;border-bottom:1px solid rgba(255,255,255,.11)}.stream-head strong{font-size:14px;font-weight:700;letter-spacing:.02em}.stream-head span{font-size:10px;font-weight:700}.stream-zabbix .stream-head span{color:var(--red)}.stream-ope .stream-head span{color:var(--blue)}.stream-demo .stream-head span{color:var(--green)}\n.stream-list{min-height:0;display:grid;grid-template-rows:repeat(7,minmax(0,1fr));padding:0 8px}.stream-row{min-height:0;display:grid;align-items:center;border-bottom:1px solid rgba(210,229,241,.14);padding:7px 7px}.stream-row:last-child{border-bottom:0}.stream-row.empty-row{opacity:.16}.z-row{grid-template-columns:38px minmax(0,1fr)}.z-icon{width:31px;height:31px;display:grid;place-items:center;border:1px solid rgba(255,76,92,.45);border-radius:5px;background:rgba(255,255,255,.025);color:#d9dfe3}.z-icon svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}.z-copy{min-width:0;display:grid;grid-template-rows:auto auto;gap:4px}.z-top,.z-bottom,.jira-top,.jira-bottom{min-width:0;display:flex;align-items:center;gap:8px}.z-top strong{min-width:0;font-size:12px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.sev-chip,.tag-chip,.status-chip{height:20px;display:inline-flex;align-items:center;justify-content:center;padding:0 7px;border:1px solid currentColor;border-radius:4px;font-size:8px;font-weight:700;white-space:nowrap;flex:0 0 auto}.sev-chip.high{color:#ffb31a}.sev-chip.disaster{color:#ff4c5c}.z-bottom .summary,.jira-summary{min-width:0;flex:1;font-size:10px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:#f1f5f8}.row-time{font-size:9px;color:#d8e1e7;white-space:nowrap;flex:0 0 auto;font-variant-numeric:tabular-nums}.jira-row{display:grid;grid-template-rows:auto auto;gap:5px}.jira-top{align-items:flex-start}.jira-key{width:82px;flex:0 0 82px;color:var(--blue);font-size:11px;font-weight:700;text-decoration:none;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.stream-demo .jira-key{color:#4ae494}.jira-summary{font-size:10.4px;line-height:1.25;white-space:nowrap}.status-chip{max-width:155px;overflow:hidden;text-overflow:ellipsis;color:#dff2ff;border-color:#5f91bf;background:rgba(7,30,50,.28)}.stream-demo .status-chip{color:#e7fff1;border-color:#4b9b70;background:rgba(5,44,28,.30)}.jira-bottom{justify-content:space-between}.jira-meta{min-width:0;display:flex;align-items:center;gap:6px;overflow:hidden}.meta-text{max-width:180px;font-size:8.5px;color:#d4dfe5;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.tag-chip{height:18px;font-size:7.5px;color:#dce7ee;border-color:rgba(105,145,178,.45);background:rgba(4,15,25,.35)}.stream-demo .tag-chip{border-color:rgba(76,152,104,.50)}\n\n/* V27 — divisões visuais das colunas nas 3 listas */\n.stream-zabbix .z-top,.stream-zabbix .z-bottom{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:0}\n.stream-zabbix .z-top strong,.stream-zabbix .z-bottom .summary{padding-right:12px;margin-right:12px;border-right:1px solid rgba(255,76,92,.22)}\n.stream-zabbix .row-time{padding-left:12px}\n.stream-zabbix .sev-chip{margin-left:0}\n.stream-ope .jira-top,.stream-demo .jira-top{display:grid;grid-template-columns:92px minmax(0,1fr) auto;align-items:center;gap:0}\n.stream-ope .jira-bottom,.stream-demo .jira-bottom{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:0}\n.stream-ope .jira-key,.stream-demo .jira-key{width:auto;flex:initial;padding-right:12px;margin-right:12px;border-right:1px solid rgba(91,156,255,.22)}\n.stream-demo .jira-key{border-right-color:rgba(67,207,131,.24)}\n.stream-ope .jira-summary,.stream-demo .jira-summary{padding-right:12px;margin-right:12px;border-right:1px solid rgba(91,156,255,.18)}\n.stream-demo .jira-summary{border-right-color:rgba(67,207,131,.20)}\n.stream-ope .jira-meta,.stream-demo .jira-meta{padding-right:12px;margin-right:12px;border-right:1px solid rgba(91,156,255,.18)}\n.stream-demo .jira-meta{border-right-color:rgba(67,207,131,.20)}\n.stream-ope .row-time,.stream-demo .row-time{padding-left:12px}\n.stream-zabbix .stream-row,.stream-ope .stream-row,.stream-demo .stream-row{position:relative}\n\n.analytics-grid{height:192px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;padding-top:10px}.analytics-card{min-width:0;min-height:0;border:1px solid var(--line);border-radius:7px;background:linear-gradient(145deg,rgba(5,17,29,.99),rgba(3,12,21,.99));padding:12px 14px;overflow:hidden}.analytics-head{display:flex;align-items:flex-start;justify-content:space-between;gap:8px;padding-bottom:6px}.analytics-head strong{font-size:12px;font-weight:700;letter-spacing:.02em}.analytics-head span{font-size:9px;color:#d6e0e7;white-space:nowrap}.analytics-head b{font-weight:600;color:#f4f8fb}.bar-list{height:calc(100% - 28px);display:flex;flex-direction:column;justify-content:space-evenly}.bar-row{min-width:0;display:grid;grid-template-columns:minmax(95px,1.15fr) minmax(90px,1fr) 72px;align-items:center;gap:8px}.bar-name{min-width:0;display:flex;align-items:center;gap:7px;font-size:9.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.bar-name i{width:8px;height:8px;border-radius:1px;background:var(--c);flex:0 0 auto}.bar-track{height:9px;background:#0c1a27;border-radius:1px;overflow:hidden}.bar-fill{display:block;height:100%;width:var(--w);background:var(--c);transition:width .5s ease}.bar-row b{font-size:9px;font-weight:600;text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}\n.noc-dash.refresh-animate .noc-kpi,.noc-dash.refresh-animate .stream-card,.noc-dash.refresh-animate .analytics-card{animation:dashRefresh .6s ease both}.noc-dash.refresh-animate .stream-card{animation-delay:.08s}.noc-dash.refresh-animate .analytics-card{animation-delay:.14s}@keyframes dashRefresh{0%{opacity:.66;transform:translateY(2px)}100%{opacity:1;transform:none}}\n@media(max-width:1400px){.noc-dash{padding:10px 12px 12px}.noc-header{height:54px}.noc-demo-center{width:112px;height:44px}.noc-demo-logo{width:96px;max-height:40px}.noc-brand>strong{font-size:28px}.noc-kpis{height:104px}.noc-kpi{height:84px;padding-left:64px;padding-right:64px}.kpi-icon{width:50px;height:50px}.kpi-body strong{font-size:25px}.streams-grid{height:calc(100% - 54px - 104px - 184px)}.analytics-grid{height:184px}.stream-head strong{font-size:12px}.jira-key{width:76px;flex-basis:76px}.jira-summary{font-size:9.5px}.bar-row{grid-template-columns:minmax(88px,1.1fr) minmax(75px,1fr) 62px}.bar-name{font-size:8.8px}}\n\n\n/* ===== V26 | versão fiel ao conceito aprovado ===== */\n.noc-brand b{font-size:20px;font-weight:700;letter-spacing:.025em;color:#f5f8fb}\n.noc-brand>div{gap:0}.noc-brand span{display:none!important}\n.kpi-purple{color:#a86df5}.kpi-purple .kpi-icon{border-color:#a86df5;background:rgba(168,109,245,.045)}.kpi-purple .kpi-body strong{color:#b37cf8}\n.kpi-amber .kpi-body strong{color:#f7f9fb}.kpi-amber .kpi-body small{color:#ffd18a}\n.kpi-blue .kpi-body strong{color:#68a5ff}.kpi-green .kpi-body strong{color:#4cdb8d}.kpi-red .kpi-body strong{color:#ff5364}\n.important-host{color:#ffffff!important}.important-summary{color:#ffffff!important;font-weight:600!important}\n.sev-chip.medium{color:#63a7ff}\n.assignee-meta{display:inline-flex;align-items:center;gap:4px;min-width:0;max-width:220px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}\n.assignee-meta em{font-size:7.5px;font-style:normal;color:#9fb2c1;font-weight:500;letter-spacing:.03em}\n.assignee-meta strong{min-width:0;overflow:hidden;text-overflow:ellipsis;font-size:8.5px;color:#f5f8fb;font-weight:700}\n.stream-demo .assignee-meta strong{color:#f2fff7}.assignee-meta.is-unassigned strong{color:#c7d3dc;font-weight:600}\n.tag-chip.prio-critical{color:#ff6978;border-color:#ff4c5c;background:rgba(255,76,92,.12);box-shadow:inset 0 0 0 1px rgba(255,76,92,.07)}\n.tag-chip.prio-high{color:#ffbf38;border-color:#d98b00;background:rgba(255,165,38,.11)}\n.tag-chip.prio-medium{color:#76b2ff;border-color:#4d8ddd;background:rgba(91,156,255,.10)}\n.tag-chip.prio-low{color:#62dc9b;border-color:#3aa76e;background:rgba(67,207,131,.09)}\n.tag-chip.type-alert{color:#68e59f;border-color:#3db879;background:rgba(67,207,131,.08)}\n.tag-chip.type-incident{color:#ffd15a;border-color:#c99a1a;background:rgba(255,196,60,.07)}\n.tag-chip.type-request,.tag-chip.type-task{color:#78b6ff;border-color:#4e89c9;background:rgba(91,156,255,.08)}\n.jira-key{font-size:11.5px!important}.jira-summary{font-size:10.6px!important}.status-chip{font-size:8px!important;font-weight:700!important}\n.row-time{color:#eef3f7!important;font-weight:600!important}\n.analytics-grid{height:192px}.analytics-card{background:#06111d}.bar-track{background:#0c1a27}.bar-fill{box-shadow:none}\n\n/* V29 — SOMENTE divisões horizontais das linhas, mantendo todo o restante da V27 */\n.stream-zabbix .stream-row:not(:last-child){border-bottom:1px solid rgba(255,92,104,.48)!important}\n.stream-ope .stream-row:not(:last-child){border-bottom:1px solid rgba(91,156,255,.42)!important}\n.stream-demo .stream-row:not(:last-child){border-bottom:1px solid rgba(67,207,131,.42)!important}\n\n\n/* ===== V30 | COLUNAS RETAS E REALMENTE VISÍVEIS — SOMENTE NAS 3 LISTAS ===== */\n.stream-card{grid-template-rows:48px 31px minmax(0,1fr)!important}\n.stream-list{padding:0!important}\n.column-head{min-width:0;display:grid;align-items:stretch;height:31px;border-bottom:1px solid rgba(255,255,255,.28);font-size:8.5px;font-weight:700;letter-spacing:.035em;color:#dce7ee;text-transform:uppercase;background:rgba(0,0,0,.10)}\n.column-head>span{min-width:0;display:flex;align-items:center;padding:0 10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;border-right:1px solid currentColor}\n.column-head>span:last-child{border-right:0;justify-content:center}\n.z-column-head{grid-template-columns:40px minmax(120px,1.15fr) minmax(180px,1.85fr) 112px 92px;color:rgba(255,122,132,.68)}\n.ope-column-head{grid-template-columns:94px minmax(220px,1fr) 108px 110px;color:rgba(112,174,255,.72)}\n.demo-column-head{grid-template-columns:94px minmax(230px,1.45fr) minmax(165px,.82fr) 108px 132px;color:rgba(81,220,146,.72)}\n.column-head>span{color:#dfe8ee}.z-column-head>span{border-right-color:rgba(255,122,132,.46)}.ope-column-head>span{border-right-color:rgba(112,174,255,.44)}.demo-column-head>span{border-right-color:rgba(81,220,146,.44)}\n\n/* remove as divisões antigas por conteúdo para evitar linhas tortas/duplicadas */\n.stream-zabbix .z-top strong,.stream-zabbix .z-bottom .summary,.stream-ope .jira-key,.stream-demo .jira-key,.stream-ope .jira-summary,.stream-demo .jira-summary,.stream-ope .jira-meta,.stream-demo .jira-meta{border-right:0!important;margin-right:0!important;padding-right:0!important}\n.stream-ope .row-time,.stream-demo .row-time,.stream-zabbix .row-time{padding-left:0!important}\n\n/* grade real por coluna — cada borda atravessa a linha inteira */\n.z-grid-row{grid-template-columns:40px minmax(120px,1.15fr) minmax(180px,1.85fr) 112px 92px!important;padding:0!important;align-items:stretch!important}\n.ope-grid-row{grid-template-columns:94px minmax(220px,1fr) 108px 110px!important;padding:0!important;align-items:stretch!important}\n.demo-grid-row{grid-template-columns:94px minmax(230px,1.45fr) minmax(165px,.82fr) 108px 132px!important;padding:0!important;align-items:stretch!important}\n.z-grid-row>*{border-right:1px solid rgba(255,122,132,.42)}\n.ope-grid-row>*{border-right:1px solid rgba(112,174,255,.40)}\n.demo-grid-row>*{border-right:1px solid rgba(81,220,146,.40)}\n.z-grid-row>*:last-child,.ope-grid-row>*:last-child,.demo-grid-row>*:last-child{border-right:0}\n.stream-zabbix .stream-row:not(:last-child){border-bottom:1px solid rgba(255,122,132,.46)!important}\n.stream-ope .stream-row:not(:last-child){border-bottom:1px solid rgba(112,174,255,.44)!important}\n.stream-demo .stream-row:not(:last-child){border-bottom:1px solid rgba(81,220,146,.44)!important}\n\n/* células: alinhamento e leitura à distância */\n.grid-cell{min-width:0;display:flex;align-items:center;padding:7px 10px;overflow:hidden}\n.grid-cell.center{justify-content:center;text-align:center}\n.grid-cell.stack{flex-direction:column;align-items:flex-start;justify-content:center;gap:5px}\n.grid-cell .important-host{font-size:12.7px!important;font-weight:700!important;color:#fff!important}\n.grid-cell .important-summary{font-size:11.2px!important;font-weight:600!important;line-height:1.2;color:#fff!important;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:block;width:100%}\n.grid-cell .jira-key{width:auto!important;flex:0 0 auto!important;font-size:12px!important;font-weight:700!important;padding:0!important;margin:0!important;border:0!important}\n.grid-cell .row-time{font-size:9.5px!important;font-weight:600!important;color:#f1f5f8!important;text-align:center;line-height:1.25;white-space:normal!important}\n.grid-cell .sev-chip,.grid-cell .status-chip{font-size:8px!important;font-weight:700!important;max-width:100%;height:auto;min-height:20px;line-height:1.15;padding:4px 7px;text-align:center;white-space:normal}\n.grid-cell .meta-line{min-width:0;width:100%;font-size:8.8px;color:#d8e3e9;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}\n.grid-cell .meta-line strong{font-size:9.2px;font-weight:700;color:#fff}\n.grid-cell .mini-tags{display:flex;align-items:center;gap:6px;min-width:0;max-width:100%}\n.grid-cell .tag-chip{height:18px;font-size:7.8px!important}\n.z-grid-row .z-icon{align-self:center;justify-self:center;margin:auto;border-right:1px solid rgba(255,122,132,.42)}\n.empty-row{padding:0!important}\n\n@media(max-width:1400px){\n  .column-head{font-size:7.8px}\n  .z-column-head,.z-grid-row{grid-template-columns:36px minmax(108px,1.10fr) minmax(165px,1.75fr) 100px 84px!important}\n  .ope-column-head,.ope-grid-row{grid-template-columns:84px minmax(195px,1fr) 98px 100px!important}\n  .demo-column-head,.demo-grid-row{grid-template-columns:84px minmax(205px,1.35fr) minmax(145px,.80fr) 98px 116px!important}\n  .grid-cell{padding:6px 8px}.grid-cell .important-host{font-size:11.5px!important}.grid-cell .important-summary{font-size:10.2px!important}.grid-cell .jira-key{font-size:11px!important}\n}\n\n\n/* ===== V31 | SOMENTE TABELA DEMO — CENTRALIZAÇÃO E ALINHAMENTO ===== */\n/* Cabeçalhos centralizados dentro das cinco colunas */\n.demo-column-head>span{\n  justify-content:center!important;\n  text-align:center!important;\n  padding-left:8px!important;\n  padding-right:8px!important;\n}\n/* Todas as células da lista verde ficam centralizadas sem alterar larguras/grade */\n.stream-demo .demo-grid-row>.grid-cell{\n  justify-content:center!important;\n  align-items:center!important;\n  text-align:center!important;\n  padding-left:8px!important;\n  padding-right:8px!important;\n}\n/* Colunas em pilha: atribuído + prioridade/tipo alinhados no mesmo eixo central */\n.stream-demo .demo-grid-row>.grid-cell.stack{\n  align-items:center!important;\n  justify-content:center!important;\n}\n.stream-demo .demo-grid-row .jira-key{\n  width:100%!important;\n  text-align:center!important;\n}\n.stream-demo .demo-grid-row .important-summary{\n  width:100%!important;\n  text-align:center!important;\n}\n.stream-demo .demo-grid-row .meta-line{\n  width:100%!important;\n  text-align:center!important;\n}\n.stream-demo .demo-grid-row .mini-tags{\n  width:100%!important;\n  justify-content:center!important;\n}\n.stream-demo .demo-grid-row .row-time{\n  width:100%!important;\n  text-align:center!important;\n}\n.stream-demo .demo-grid-row .status-chip{\n  margin-left:auto!important;\n  margin-right:auto!important;\n}\n\n\n/* ===== V32 | TV — MAIS ÁREA PARA LISTAS, 6 ITENS E LEITURA À DISTÂNCIA ===== */\n/* Header e KPIs ficam mais compactos; estilo e conteúdo permanecem os mesmos */\n.noc-header{height:50px!important;padding-bottom:6px!important}\n.noc-demo-center{height:42px!important}.noc-demo-logo{width:96px!important;max-height:38px!important}\n.noc-clock{height:34px!important;min-width:190px!important}\n.noc-brand b{font-size:18px!important}\n.noc-kpis{height:94px!important;padding:8px 0 8px!important}\n.noc-kpi{height:78px!important;padding-left:62px!important;padding-right:62px!important}\n.kpi-icon{left:12px!important;width:48px!important;height:48px!important}.kpi-icon svg{width:29px!important;height:29px!important}\n.kpi-body span{font-size:9.5px!important}.kpi-body strong{font-size:26px!important;margin-top:2px!important}.kpi-body small{font-size:8.5px!important;margin-top:3px!important}\n\n/* Reduz apenas a altura analítica para devolver espaço às listas */\n.analytics-grid{height:164px!important;padding-top:8px!important}\n.analytics-card{padding:10px 12px!important}.analytics-head{padding-bottom:4px!important}\n.analytics-head strong{font-size:11.5px!important}.bar-row{gap:7px!important}.bar-name{font-size:9px!important}.bar-track{height:8px!important}\n\n/* Listas passam a ocupar a maior área da TV */\n.streams-grid{height:calc(100% - 50px - 94px - 164px)!important;min-height:470px!important}\n.stream-card{grid-template-rows:44px 32px minmax(0,1fr)!important}\n.stream-head{padding:0 13px!important}.stream-head strong{font-size:14px!important}.stream-head span{font-size:10px!important}\n.column-head{height:32px!important;font-size:8.8px!important}\n.stream-list{grid-template-rows:repeat(6,minmax(0,1fr))!important}\n\n/* Maior leitura dos dados operacionais sem alterar as colunas já aprovadas */\n.grid-cell{padding:9px 10px!important}\n.grid-cell .important-host{font-size:13.8px!important;line-height:1.15!important}\n.grid-cell .important-summary{font-size:12.0px!important;line-height:1.25!important;font-weight:600!important}\n.grid-cell .jira-key{font-size:13.0px!important;line-height:1.15!important}\n.grid-cell .meta-line{font-size:9.3px!important}.grid-cell .meta-line strong{font-size:10.0px!important}\n.grid-cell .row-time{font-size:10.0px!important;line-height:1.25!important}\n.grid-cell .sev-chip,.grid-cell .status-chip{font-size:8.7px!important;min-height:22px!important;padding:4px 8px!important}\n.grid-cell .tag-chip{font-size:8.4px!important;height:19px!important}\n.grid-cell .mini-tags{gap:7px!important}\n\n/* Mantém a centralização específica da tabela DEMO da V31 */\n.stream-demo .demo-grid-row>.grid-cell{padding-top:9px!important;padding-bottom:9px!important}\n\n/* Em TVs/browser com viewport <= 1400px, não reduzir novamente as fontes principais */\n@media(max-width:1400px){\n  .noc-header{height:50px!important}.noc-kpis{height:94px!important}.noc-kpi{height:78px!important}\n  .streams-grid{height:calc(100% - 50px - 94px - 164px)!important}\n  .analytics-grid{height:164px!important}\n  .stream-list{grid-template-rows:repeat(6,minmax(0,1fr))!important}\n  .column-head{font-size:8.3px!important}\n  .grid-cell{padding:8px 8px!important}\n  .grid-cell .important-host{font-size:12.8px!important}\n  .grid-cell .important-summary{font-size:11.3px!important}\n  .grid-cell .jira-key{font-size:12.2px!important}\n  .grid-cell .row-time{font-size:9.5px!important}\n  .grid-cell .meta-line{font-size:8.8px!important}.grid-cell .meta-line strong{font-size:9.5px!important}\n  .grid-cell .sev-chip,.grid-cell .status-chip{font-size:8.2px!important}\n  .grid-cell .tag-chip{font-size:8px!important}\n}\n\n\n/* ===== V33 | RESPONSIVO AO TAMANHO REAL DO PAINEL GRAFANA =====\n   Mantém o visual V32; remove dependência de altura fixa e faz a composição\n   ocupar exatamente o espaço disponível, inclusive em TV/zoom diferentes. */\nhtml,body,#host{width:100%!important;height:100%!important;min-width:0!important;min-height:0!important;overflow:hidden!important}\n#host{container-type:size}\n.noc-dash{\n  width:100%!important;\n  height:100%!important;\n  min-width:0!important;\n  min-height:0!important;\n  padding:clamp(7px,1.25cqh,15px) clamp(8px,1cqw,18px) clamp(7px,1.25cqh,16px)!important;\n  display:grid!important;\n  grid-template-rows:clamp(38px,6.5cqh,50px) clamp(68px,12cqh,94px) minmax(0,1fr) clamp(112px,19cqh,164px)!important;\n  overflow:hidden!important;\n}\n.noc-header,.noc-kpis,.streams-grid,.analytics-grid{height:100%!important;min-height:0!important;min-width:0!important}\n.noc-header{padding:0 2px clamp(4px,.7cqh,6px)!important}\n.noc-demo-center{height:100%!important;width:clamp(88px,6.9cqw,132px)!important}\n.noc-demo-logo{width:clamp(78px,5.2cqw,112px)!important;max-height:82%!important}\n.noc-clock{height:clamp(29px,4.4cqh,34px)!important;min-width:clamp(155px,10.5cqw,190px)!important;padding:0 clamp(6px,.55cqw,10px)!important;font-size:clamp(8px,.55cqw,11px)!important}\n.noc-clock svg{width:clamp(14px,1cqw,18px)!important;height:clamp(14px,1cqw,18px)!important}\n.noc-brand b{font-size:clamp(14px,1.05cqw,18px)!important}\n\n.noc-kpis{padding:clamp(4px,.75cqh,8px) 0!important;gap:clamp(5px,.55cqw,10px)!important;align-items:stretch!important}\n.noc-kpi{height:auto!important;min-height:0!important;padding:clamp(5px,.7cqh,10px) clamp(44px,3.4cqw,62px)!important}\n.kpi-icon{left:clamp(7px,.65cqw,12px)!important;width:clamp(34px,2.6cqw,48px)!important;height:clamp(34px,2.6cqw,48px)!important}\n.kpi-icon svg{width:62%!important;height:62%!important}\n.kpi-body span{font-size:clamp(7px,.50cqw,9.5px)!important}\n.kpi-body strong{font-size:clamp(19px,1.38cqw,26px)!important;margin-top:clamp(0px,.2cqh,2px)!important}\n.kpi-body small{font-size:clamp(6.7px,.46cqw,8.5px)!important;margin-top:clamp(1px,.35cqh,3px)!important}\n\n.streams-grid{height:100%!important;min-height:0!important;grid-template-columns:minmax(0,1.02fr) minmax(0,.99fr) minmax(0,1.10fr)!important;gap:clamp(5px,.55cqw,10px)!important;overflow:hidden!important}\n.stream-card{height:100%!important;min-height:0!important;grid-template-rows:clamp(34px,5cqh,44px) clamp(24px,3.6cqh,32px) minmax(0,1fr)!important}\n.stream-head{padding:0 clamp(8px,.7cqw,13px)!important}\n.stream-head strong{font-size:clamp(10px,.72cqw,14px)!important}\n.stream-head span{font-size:clamp(7px,.52cqw,10px)!important}\n.column-head{height:auto!important;min-height:0!important;font-size:clamp(6.4px,.45cqw,8.8px)!important}\n.column-head>span{padding:0 clamp(4px,.45cqw,9px)!important}\n.stream-list{min-height:0!important;height:100%!important;grid-template-rows:repeat(6,minmax(0,1fr))!important;overflow:hidden!important}\n.stream-row{min-height:0!important;height:auto!important;overflow:hidden!important}\n.grid-cell{min-width:0!important;min-height:0!important;padding:clamp(3px,.75cqh,8px) clamp(4px,.48cqw,9px)!important;overflow:hidden!important}\n\n/* Colunas fluidas: as mesmas colunas, sem mínimos que estouram o painel */\n.z-column-head,.z-grid-row{grid-template-columns:clamp(28px,2.1cqw,38px) minmax(0,1.18fr) minmax(0,1.90fr) minmax(70px,.92fr) minmax(58px,.70fr)!important}\n.ope-column-head,.ope-grid-row{grid-template-columns:minmax(62px,.78fr) minmax(0,2.25fr) minmax(72px,.90fr) minmax(68px,.88fr)!important}\n.demo-column-head,.demo-grid-row{grid-template-columns:minmax(62px,.70fr) minmax(0,2.05fr) minmax(0,1.42fr) minmax(72px,.88fr) minmax(76px,.98fr)!important}\n\n.grid-cell .important-host{font-size:clamp(9.8px,.70cqw,13.8px)!important;line-height:1.12!important}\n.grid-cell .important-summary{font-size:clamp(8.8px,.62cqw,12px)!important;line-height:1.18!important}\n.grid-cell .jira-key{font-size:clamp(9.8px,.66cqw,13px)!important;line-height:1.12!important}\n.grid-cell .row-time{font-size:clamp(7.4px,.52cqw,10px)!important;line-height:1.16!important}\n.grid-cell .meta-line{font-size:clamp(6.7px,.46cqw,9.3px)!important;line-height:1.12!important}\n.grid-cell .meta-line strong{font-size:clamp(7.2px,.50cqw,10px)!important}\n.grid-cell .sev-chip,.grid-cell .status-chip{font-size:clamp(6.5px,.45cqw,8.7px)!important;min-height:clamp(17px,2.6cqh,22px)!important;padding:clamp(2px,.35cqh,4px) clamp(4px,.4cqw,8px)!important}\n.grid-cell .tag-chip{font-size:clamp(6.2px,.43cqw,8.4px)!important;height:clamp(15px,2.3cqh,19px)!important;padding:0 clamp(4px,.35cqw,7px)!important}\n.grid-cell .mini-tags{gap:clamp(3px,.35cqw,7px)!important}\n\n.analytics-grid{height:100%!important;min-height:0!important;padding-top:clamp(5px,.8cqh,8px)!important;gap:clamp(5px,.55cqw,10px)!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;overflow:hidden!important}\n.analytics-card{min-height:0!important;height:100%!important;padding:clamp(6px,.85cqh,10px) clamp(7px,.65cqw,12px)!important}\n.analytics-head{padding-bottom:clamp(2px,.45cqh,4px)!important}\n.analytics-head strong{font-size:clamp(8.5px,.60cqw,11.5px)!important}\n.analytics-head span{font-size:clamp(6.7px,.45cqw,9px)!important}\n.bar-list{min-height:0!important;height:calc(100% - clamp(18px,3cqh,28px))!important}\n.bar-row{grid-template-columns:minmax(68px,1.12fr) minmax(48px,1fr) clamp(44px,4.2cqw,72px)!important;gap:clamp(3px,.38cqw,7px)!important;min-height:0!important}\n.bar-name{font-size:clamp(7px,.48cqw,9px)!important;gap:clamp(3px,.35cqw,7px)!important}\n.bar-name i{width:clamp(5px,.42cqw,8px)!important;height:clamp(5px,.42cqw,8px)!important}\n.bar-track{height:clamp(5px,1cqh,8px)!important}\n.bar-row b{font-size:clamp(6.8px,.47cqw,9px)!important}\n\n/* Alturas pequenas: comprime padding/ícones, nunca corta blocos */\n@container (max-height:700px){\n  .noc-dash{grid-template-rows:38px 68px minmax(0,1fr) 112px!important;padding-top:6px!important;padding-bottom:6px!important}\n  .noc-kpis{padding:4px 0!important}.noc-kpi{padding-top:4px!important;padding-bottom:4px!important}\n  .stream-card{grid-template-rows:34px 24px minmax(0,1fr)!important}\n  .grid-cell{padding-top:3px!important;padding-bottom:3px!important}\n  .analytics-grid{padding-top:5px!important}.analytics-card{padding-top:6px!important;padding-bottom:6px!important}\n}\n@container (max-height:590px){\n  .noc-dash{grid-template-rows:34px 60px minmax(0,1fr) 98px!important;padding:4px 7px!important}\n  .noc-demo-center{height:32px!important}.noc-clock{height:27px!important}\n  .noc-kpis{padding:3px 0!important}.kpi-icon{width:30px!important;height:30px!important}.noc-kpi{padding-left:38px!important;padding-right:38px!important}\n  .stream-card{grid-template-rows:30px 21px minmax(0,1fr)!important}.column-head{font-size:6.2px!important}\n  .analytics-grid{padding-top:4px!important}.analytics-card{padding:4px 6px!important}\n}\n\n/* Larguras menores: preserva as 3 listas e 4 analytics sem overflow horizontal */\n@container (max-width:1500px){\n  .noc-dash{padding-left:9px!important;padding-right:9px!important}\n  .noc-kpis,.streams-grid,.analytics-grid{gap:6px!important}\n  .noc-kpi{padding-left:48px!important;padding-right:48px!important}.kpi-icon{left:8px!important;width:36px!important;height:36px!important}\n  .z-column-head,.z-grid-row{grid-template-columns:30px minmax(0,1.12fr) minmax(0,1.72fr) minmax(64px,.90fr) minmax(54px,.68fr)!important}\n  .ope-column-head,.ope-grid-row{grid-template-columns:minmax(58px,.74fr) minmax(0,2.08fr) minmax(66px,.88fr) minmax(62px,.86fr)!important}\n  .demo-column-head,.demo-grid-row{grid-template-columns:minmax(56px,.66fr) minmax(0,1.90fr) minmax(0,1.32fr) minmax(64px,.84fr) minmax(68px,.92fr)!important}\n  .grid-cell{padding-left:5px!important;padding-right:5px!important}\n}\n@container (max-width:1180px){\n  .noc-dash{padding-left:6px!important;padding-right:6px!important}\n  .noc-kpis,.streams-grid,.analytics-grid{gap:4px!important}\n  .noc-clock{min-width:140px!important}\n  .noc-kpi{padding-left:38px!important;padding-right:34px!important}.kpi-icon{left:5px!important;width:28px!important;height:28px!important}\n  .z-column-head,.z-grid-row{grid-template-columns:25px minmax(0,1.08fr) minmax(0,1.58fr) minmax(56px,.84fr) minmax(48px,.64fr)!important}\n  .ope-column-head,.ope-grid-row{grid-template-columns:minmax(50px,.70fr) minmax(0,1.92fr) minmax(58px,.82fr) minmax(54px,.80fr)!important}\n  .demo-column-head,.demo-grid-row{grid-template-columns:minmax(48px,.62fr) minmax(0,1.74fr) minmax(0,1.18fr) minmax(56px,.78fr) minmax(60px,.86fr)!important}\n  .grid-cell{padding-left:3px!important;padding-right:3px!important}\n  .column-head>span{padding-left:3px!important;padding-right:3px!important}\n}\n\n\n/* ===== V47 | BASE V33 — BLACK + LISTAS SÓLIDAS + LOGOS CORRETAS + ANALYTICS REFINADOS ===== */\n\n/* Base neutra preta: não compete com vermelho/azul/verde das origens. */\nhtml,body,#host{background:#020304!important}\n.noc-dash{\n  --bg:#020304!important;\n  --panel:#070A0E!important;\n  --line:rgba(125,142,158,.25)!important;\n  background:#020304!important;\n}\n.noc-kpi{\n  background:#070A0E!important;\n  border-color:rgba(125,142,158,.27)!important;\n}\n.noc-clock{background:#05080B!important;border-color:rgba(125,142,158,.27)!important}\n.analytics-card{\n  background:#070A0E!important;\n  border-color:rgba(125,142,158,.27)!important;\n}\n\n/* Listas em cor sólida, sem gradiente e sem glow. */\n.stream-zabbix{\n  background:#300A12!important;\n  border-color:#B62B3D!important;\n}\n.stream-ope{\n  background:#0B2747!important;\n  border-color:#397FD0!important;\n}\n.stream-demo{\n  background:#0A321F!important;\n  border-color:#2C9960!important;\n}\n.stream-zabbix .stream-head,.stream-zabbix .column-head{background:#3A0D17!important}\n.stream-ope .stream-head,.stream-ope .column-head{background:#102F54!important}\n.stream-demo .stream-head,.stream-demo .column-head{background:#0E3C27!important}\n\n.stream-zabbix .stream-row:not(:last-child){border-bottom-color:rgba(230,92,108,.46)!important}\n.stream-ope .stream-row:not(:last-child){border-bottom-color:rgba(97,161,230,.42)!important}\n.stream-demo .stream-row:not(:last-child){border-bottom-color:rgba(78,190,128,.42)!important}\n.z-grid-row>*{border-right-color:rgba(230,92,108,.38)!important}\n.ope-grid-row>*{border-right-color:rgba(97,161,230,.36)!important}\n.demo-grid-row>*{border-right-color:rgba(78,190,128,.36)!important}\n\n/* Cabeçalhos com identidade real das ferramentas. */\n.source-brand{\n  min-width:0!important;\n  display:flex!important;\n  align-items:center!important;\n  gap:9px!important;\n  color:#F7F9FB!important;\n  font-size:clamp(11px,.74cqw,14px)!important;\n  font-weight:700!important;\n  letter-spacing:.02em!important;\n  line-height:1!important;\n}\n.source-title{\n  min-width:0!important;\n  color:#F7F9FB!important;\n  font-size:inherit!important;\n  font-weight:700!important;\n  white-space:nowrap!important;\n  overflow:hidden!important;\n  text-overflow:ellipsis!important;\n}\n.source-divider{\n  width:1px!important;\n  height:21px!important;\n  flex:0 0 auto!important;\n  background:rgba(255,255,255,.46)!important;\n}\n.zabbix-official{\n  height:28px!important;\n  min-width:82px!important;\n  padding:0 9px!important;\n  display:inline-flex!important;\n  align-items:center!important;\n  justify-content:center!important;\n  flex:0 0 auto!important;\n  border-radius:2px!important;\n  background:#D4001A!important;\n  color:#FFF!important;\n  font-family:Arial,Helvetica,sans-serif!important;\n  font-size:15px!important;\n  font-weight:800!important;\n  letter-spacing:.035em!important;\n  line-height:1!important;\n}\n.jira-official{\n  display:inline-flex!important;\n  align-items:center!important;\n  gap:6px!important;\n  flex:0 0 auto!important;\n  color:#F7F9FB!important;\n}\n.jira-official img{\n  width:27px!important;\n  height:27px!important;\n  display:block!important;\n  object-fit:contain!important;\n}\n.jira-official b{\n  color:#F7F9FB!important;\n  font-size:16px!important;\n  font-weight:700!important;\n  letter-spacing:.015em!important;\n  line-height:1!important;\n}\n\n/* Analytics no padrão dos dashboards mais recentes:\n   quatro cards irmãos, cinco linhas fixas, eixos label | barra | valor alinhados. */\n.analytics-grid{align-items:stretch!important}\n.analytics-card{\n  display:flex!important;\n  flex-direction:column!important;\n  padding:9px 11px!important;\n}\n.analytics-head{\n  display:grid!important;\n  grid-template-columns:minmax(0,1fr) auto!important;\n  align-items:center!important;\n  gap:8px!important;\n  min-height:25px!important;\n  margin-bottom:2px!important;\n  padding-bottom:6px!important;\n  border-bottom:1px solid rgba(132,148,164,.18)!important;\n}\n.analytics-head strong{\n  font-size:clamp(8.8px,.60cqw,11px)!important;\n  line-height:1.1!important;\n  white-space:nowrap!important;\n  overflow:hidden!important;\n  text-overflow:ellipsis!important;\n}\n.analytics-head span{\n  min-width:54px!important;\n  text-align:right!important;\n  font-size:clamp(6.8px,.47cqw,8.8px)!important;\n}\n.bar-list{\n  height:calc(100% - 29px)!important;\n  display:grid!important;\n  grid-template-rows:repeat(5,minmax(0,1fr))!important;\n  justify-content:stretch!important;\n}\n.bar-row{\n  min-width:0!important;\n  min-height:0!important;\n  display:grid!important;\n  grid-template-columns:minmax(118px,1.05fr) minmax(105px,.95fr) 68px!important;\n  align-items:center!important;\n  gap:0!important;\n  border-bottom:1px solid rgba(132,148,164,.10)!important;\n}\n.bar-row:last-child{border-bottom:0!important}\n.bar-row.bar-empty{opacity:.12!important}\n.bar-name{\n  min-width:0!important;\n  height:100%!important;\n  display:flex!important;\n  align-items:center!important;\n  gap:7px!important;\n  padding-right:10px!important;\n  margin-right:10px!important;\n  border-right:1px solid rgba(132,148,164,.20)!important;\n  font-size:clamp(7.2px,.49cqw,9px)!important;\n  white-space:nowrap!important;\n  overflow:hidden!important;\n}\n.bar-name>span{\n  min-width:0!important;\n  overflow:hidden!important;\n  text-overflow:ellipsis!important;\n}\n.bar-name i{\n  width:7px!important;\n  height:7px!important;\n  flex:0 0 7px!important;\n}\n.bar-track{\n  height:8px!important;\n  margin-right:10px!important;\n  border-radius:1px!important;\n  background:#111820!important;\n  overflow:hidden!important;\n}\n.bar-fill{box-shadow:none!important}\n.bar-row>b{\n  height:100%!important;\n  display:flex!important;\n  align-items:center!important;\n  justify-content:flex-end!important;\n  padding-left:10px!important;\n  border-left:1px solid rgba(132,148,164,.20)!important;\n  font-size:clamp(7px,.47cqw,8.7px)!important;\n  font-weight:700!important;\n  text-align:right!important;\n}\n\n/* Analista precisa de mais largura no nome, mas mantém os mesmos eixos visuais. */\n.analytics-card:nth-child(4) .bar-row{\n  grid-template-columns:minmax(158px,1.25fr) minmax(92px,.82fr) 62px!important;\n}\n\n/* Mantém a leitura de TV e evita espaçamento excessivo em viewport menor. */\n@container (max-width:1500px){\n  .bar-row{grid-template-columns:minmax(96px,.98fr) minmax(78px,.86fr) 58px!important}\n  .analytics-card:nth-child(4) .bar-row{grid-template-columns:minmax(126px,1.12fr) minmax(70px,.78fr) 54px!important}\n  .bar-name{padding-right:7px!important;margin-right:7px!important}\n  .bar-track{margin-right:7px!important}\n  .bar-row>b{padding-left:7px!important}\n}\n@container (max-width:1180px){\n  .bar-row{grid-template-columns:minmax(78px,.92fr) minmax(58px,.80fr) 50px!important}\n  .analytics-card:nth-child(4) .bar-row{grid-template-columns:minmax(102px,1.04fr) minmax(54px,.72fr) 48px!important}\n}\n\n\n/* ===== V48 | cor única para as 3 listas ===== */\n.stream-zabbix,\n.stream-ope,\n.stream-demo{\n  background:#121b26!important;\n  box-shadow:inset 0 0 0 1px rgba(255,255,255,.02)!important;\n}\n.stream-zabbix .stream-head,\n.stream-ope .stream-head,\n.stream-demo .stream-head{\n  background:#172231!important;\n}\n.stream-zabbix .column-head,\n.stream-ope .column-head,\n.stream-demo .column-head{\n  background:#16202d!important;\n}\n.stream-zabbix .stream-row,\n.stream-ope .stream-row,\n.stream-demo .stream-row{\n  background:transparent!important;\n}\n.stream-zabbix .stream-row:not(:last-child),\n.stream-ope .stream-row:not(:last-child),\n.stream-demo .stream-row:not(:last-child){\n  border-bottom:1px solid rgba(220,232,240,.16)!important;\n}\n.stream-zabbix .z-column-head,\n.stream-ope .ope-column-head,\n.stream-demo .demo-column-head{\n  color:#dbe5ec!important;\n}\n.stream-zabbix .z-column-head>span,\n.stream-ope .ope-column-head>span,\n.stream-demo .demo-column-head>span{\n  border-right-color:rgba(219,229,236,.14)!important;\n}\n.stream-zabbix .stream-list,\n.stream-ope .stream-list,\n.stream-demo .stream-list{\n  background:#121b26!important;\n}\n\n/* ===== V49 | BACKGROUND DEPLOY GUARD ===== */\nhtml,body,#host,.noc-dash{\n  background:#020812!important;\n}\n\n\n/* ===== V50 | fundo Deploy Guard em TODO o dashboard, incluindo cards ===== */\nhtml,body,#host,.noc-dash{\n  background:#020812!important;\n}\n.noc-header{\n  border-bottom:1px solid rgba(81,119,151,.18)!important;\n}\n.noc-kpi{\n  background:linear-gradient(180deg,#061320 0%, #04101b 100%)!important;\n  border-color:rgba(80,119,154,.34)!important;\n}\n.noc-clock{\n  background:#07111d!important;\n  border-color:rgba(84,123,158,.35)!important;\n}\n.stream-zabbix,\n.stream-ope,\n.stream-demo{\n  background:linear-gradient(180deg,#061320 0%, #04101b 100%)!important;\n}\n.stream-zabbix .stream-head,\n.stream-ope .stream-head,\n.stream-demo .stream-head{\n  background:#081522!important;\n}\n.stream-zabbix .column-head,\n.stream-ope .column-head,\n.stream-demo .column-head{\n  background:#0a1624!important;\n}\n.stream-zabbix .stream-list,\n.stream-ope .stream-list,\n.stream-demo .stream-list{\n  background:#04101b!important;\n}\n.stream-zabbix .stream-row,\n.stream-ope .stream-row,\n.stream-demo .stream-row{\n  background:transparent!important;\n}\n.analytics-card{\n  background:linear-gradient(180deg,#061320 0%, #04101b 100%)!important;\n  border-color:rgba(80,119,154,.34)!important;\n}\n.bar-track{\n  background:#0b1825!important;\n}\n\n\n/* ===== V51 | dashboard inteiro na cor do header de referência ===== */\nhtml,body,#host,.noc-dash,.panel-container,.panel-content{\n  background:#030812!important;\n}\n.noc-header,\n.noc-kpi,\n.noc-clock,\n.stream-card,\n.stream-head,\n.column-head,\n.stream-list,\n.analytics-card{\n  background:#030812!important;\n}\n.noc-header{\n  border-bottom:1px solid rgba(110,140,170,.16)!important;\n}\n.noc-kpi{\n  border:1px solid rgba(88,120,150,.34)!important;\n  box-shadow:none!important;\n}\n.noc-clock{\n  border:1px solid rgba(88,120,150,.34)!important;\n}\n.stream-zabbix,\n.stream-ope,\n.stream-demo{\n  background:#030812!important;\n  box-shadow:none!important;\n}\n.stream-zabbix .stream-head,\n.stream-ope .stream-head,\n.stream-demo .stream-head{\n  background:#030812!important;\n  border-bottom:1px solid rgba(255,255,255,.08)!important;\n}\n.stream-zabbix .column-head,\n.stream-ope .column-head,\n.stream-demo .column-head{\n  background:#030812!important;\n}\n.stream-zabbix .stream-list,\n.stream-ope .stream-list,\n.stream-demo .stream-list{\n  background:#030812!important;\n}\n.analytics-card{\n  border:1px solid rgba(88,120,150,.34)!important;\n  box-shadow:none!important;\n}\n.analytics-head{\n  border-bottom:1px solid rgba(110,140,170,.14)!important;\n}\n.bar-track{\n  background:#0a1420!important;\n}\n.column-head>span{\n  background:transparent!important;\n}\n/* Zabbix logo real em formato apenas Z */\n.zabbix-official{\n  min-width:auto!important;\n  width:30px!important;\n  height:30px!important;\n  padding:0!important;\n  background:transparent!important;\n  border-radius:6px!important;\n  overflow:hidden!important;\n  display:inline-flex!important;\n  align-items:center!important;\n  justify-content:center!important;\n}\n.zabbix-official img{\n  width:30px!important;\n  height:30px!important;\n  display:block!important;\n  object-fit:contain!important;\n  border-radius:6px!important;\n}\n",
+        "dynamicData": false,
+        "dynamicFieldDisplayValues": false,
+        "dynamicHtmlGraphics": false,
+        "dynamicProps": false,
+        "html": "<div id=\"host\">\n  <div class=\"noc-dash\" aria-label=\"NOC OPERATIONS OVERVIEW\">\n    <header class=\"noc-header\">\n      <div class=\"noc-brand\"><div><b>CHAMADOS NA FILA</b></div></div>\n      <div class=\"noc-demo-center\" aria-label=\"Demo Company\">\n        <img class=\"noc-demo-logo\" src=\"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMjAiIGhlaWdodD0iOTAiIHZpZXdCb3g9IjAgMCAzMjAgOTAiPjxyZWN0IHdpZHRoPSIzMjAiIGhlaWdodD0iOTAiIHJ4PSIxMiIgZmlsbD0iIzA3MTExZCIvPjxyZWN0IHg9IjIiIHk9IjIiIHdpZHRoPSIzMTYiIGhlaWdodD0iODYiIHJ4PSIxMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMWQ0ZDczIi8+PHRleHQgeD0iMTYwIiB5PSI1MyIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjI0IiBmb250LXdlaWdodD0iNzAwIiBmaWxsPSIjZjRmN2ZiIj5ERU1PIENPTVBBTlk8L3RleHQ+PC9zdmc+\" alt=\"DEMO\">\n      </div>\n      <div class=\"noc-clock\" aria-label=\"Data e hora da atualização\">\n        <svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"12\" r=\"9\"/><path d=\"M12 7v5l3 2\"/></svg>\n        <span id=\"clockText\">--/--/---- | --:--:--</span>\n        <i></i>\n        <svg class=\"refresh-mark\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M20 11a8 8 0 1 0-2.34 5.66\"/><path d=\"M20 4v7h-7\"/></svg>\n      </div>\n    </header>\n\n    <section class=\"noc-kpis\">\n      <article class=\"noc-kpi kpi-red\">\n        <div class=\"kpi-icon\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"12\" r=\"9\"/><path d=\"M12 7v6\"/><path d=\"M12 17h.01\"/></svg></div>\n        <div class=\"kpi-body\"><span>ALERTAS ATIVOS</span><strong id=\"kpiAlerts\">0</strong><small>ITENS</small></div>\n      </article>\n      <article class=\"noc-kpi kpi-blue\">\n        <div class=\"kpi-icon\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M5 4h14v16H5z\"/><path d=\"M8 8h8M8 12h8M8 16h5\"/></svg></div>\n        <div class=\"kpi-body\"><span>CHAMADOS NA FILA NOC</span><strong id=\"kpiQueue\">0</strong><small>CHAMADOS</small></div>\n      </article>\n      <article class=\"noc-kpi kpi-purple\">\n        <div class=\"kpi-icon\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><circle cx=\"9\" cy=\"8\" r=\"3\"/><path d=\"M3.5 19c.5-4 2.5-6 5.5-6s5 2 5.5 6\"/><path d=\"M17 11v6M14 14h6\"/></svg></div>\n        <div class=\"kpi-body\"><span>CHAMADOS EM ANDAMENTO</span><strong id=\"kpiProgress\">0</strong><small>EM EXECUÇÃO</small></div>\n      </article>\n      <article class=\"noc-kpi kpi-green\">\n        <div class=\"kpi-icon\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"12\" r=\"9\"/><path d=\"m8 12 2.5 2.5L16 9\"/></svg></div>\n        <div class=\"kpi-body\"><span>CHAMADOS RESOLVIDOS</span><strong id=\"kpiResolved\">0</strong><small>ÚLTIMAS 24H</small></div>\n      </article>\n      <article class=\"noc-kpi kpi-amber\">\n        <div class=\"kpi-icon\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"12\" r=\"9\"/><path d=\"M12 7v5l3 2\"/></svg></div>\n        <div class=\"kpi-body\"><span>TEMPO MÉDIO DE ATENDIMENTO</span><strong id=\"kpiAvgTime\">N/D</strong><small>CRIADO → RESOLVIDO</small></div>\n      </article>\n    </section>\n\n    <section class=\"streams-grid\">\n      <article class=\"stream-card stream-zabbix\">\n        <div class=\"stream-head\"><strong class=\"source-brand\"><span class=\"zabbix-official\" aria-label=\"Zabbix\"><img src=\"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMjAiIGhlaWdodD0iOTAiIHZpZXdCb3g9IjAgMCAzMjAgOTAiPjxyZWN0IHdpZHRoPSIzMjAiIGhlaWdodD0iOTAiIHJ4PSIxMiIgZmlsbD0iIzA3MTExZCIvPjxyZWN0IHg9IjIiIHk9IjIiIHdpZHRoPSIzMTYiIGhlaWdodD0iODYiIHJ4PSIxMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMWQ0ZDczIi8+PHRleHQgeD0iMTYwIiB5PSI1MyIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjI0IiBmb250LXdlaWdodD0iNzAwIiBmaWxsPSIjZjRmN2ZiIj5ERU1PIENPTVBBTlk8L3RleHQ+PC9zdmc+\" alt=\"Zabbix\"/></span><span class=\"source-divider\"></span><span class=\"source-title\">ALERTAS ATIVOS</span></strong><span id=\"zabbixCount\">0 ITENS</span></div>\n        <div class=\"column-head z-column-head\"><span></span><span>HOST / ID</span><span>PROBLEMA / RESUMO</span><span>ATUALIZADO</span><span>SEVERIDADE</span></div>\n        <div id=\"zabbixList\" class=\"stream-list\"></div>\n      </article>\n\n      <article class=\"stream-card stream-ope\">\n        <div class=\"stream-head\"><strong class=\"source-brand\"><span class=\"jira-official\"><img src=\"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMjAiIGhlaWdodD0iOTAiIHZpZXdCb3g9IjAgMCAzMjAgOTAiPjxyZWN0IHdpZHRoPSIzMjAiIGhlaWdodD0iOTAiIHJ4PSIxMiIgZmlsbD0iIzA3MTExZCIvPjxyZWN0IHg9IjIiIHk9IjIiIHdpZHRoPSIzMTYiIGhlaWdodD0iODYiIHJ4PSIxMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMWQ0ZDczIi8+PHRleHQgeD0iMTYwIiB5PSI1MyIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjI0IiBmb250LXdlaWdodD0iNzAwIiBmaWxsPSIjZjRmN2ZiIj5ERU1PIENPTVBBTlk8L3RleHQ+PC9zdmc+\" alt=\"\" aria-hidden=\"true\"><b>JIRA</b></span><span class=\"source-divider\"></span><span class=\"source-title\">FILA NOC</span></strong><span id=\"opeCount\">0 CHAMADOS</span></div>\n        <div class=\"column-head ope-column-head\"><span>ID DO CHAMADO</span><span>RESUMO / TÍTULO</span><span>ATUALIZADO</span><span>STATUS</span></div>\n        <div id=\"opeList\" class=\"stream-list\"></div>\n      </article>\n\n      <article class=\"stream-card stream-demo\">\n        <div class=\"stream-head\"><strong class=\"source-brand\"><span class=\"jira-official\"><img src=\"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMjAiIGhlaWdodD0iOTAiIHZpZXdCb3g9IjAgMCAzMjAgOTAiPjxyZWN0IHdpZHRoPSIzMjAiIGhlaWdodD0iOTAiIHJ4PSIxMiIgZmlsbD0iIzA3MTExZCIvPjxyZWN0IHg9IjIiIHk9IjIiIHdpZHRoPSIzMTYiIGhlaWdodD0iODYiIHJ4PSIxMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMWQ0ZDczIi8+PHRleHQgeD0iMTYwIiB5PSI1MyIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjI0IiBmb250LXdlaWdodD0iNzAwIiBmaWxsPSIjZjRmN2ZiIj5ERU1PIENPTVBBTlk8L3RleHQ+PC9zdmc+\" alt=\"\" aria-hidden=\"true\"><b>JIRA</b></span><span class=\"source-divider\"></span><span class=\"source-title\">ALERTAS E CHAMADOS NOC</span></strong><span id=\"demoCount\">0 CHAMADOS</span></div>\n        <div class=\"column-head demo-column-head\"><span>ID DO CHAMADO</span><span>RESUMO / TÍTULO</span><span>ATRIBUÍDO / PRIORIDADE</span><span>ATUALIZADO</span><span>STATUS</span></div>\n        <div id=\"demoList\" class=\"stream-list\"></div>\n      </article>\n    </section>\n\n    <section class=\"analytics-grid\">\n      <article class=\"analytics-card\">\n        <div class=\"analytics-head\"><strong>ALERTAS POR SEVERIDADE</strong><span>Total: <b id=\"severityTotal\">0</b></span></div>\n        <div id=\"severityBars\" class=\"bar-list\"></div>\n      </article>\n      <article class=\"analytics-card\">\n        <div class=\"analytics-head\"><strong>CHAMADOS POR PRIORIDADE</strong><span>Total: <b id=\"priorityTotal\">0</b></span></div>\n        <div id=\"priorityBars\" class=\"bar-list\"></div>\n      </article>\n      <article class=\"analytics-card\">\n        <div class=\"analytics-head\"><strong>CHAMADOS POR CATEGORIA</strong><span>Total: <b id=\"categoryTotal\">0</b></span></div>\n        <div id=\"categoryBars\" class=\"bar-list\"></div>\n      </article>\n      <article class=\"analytics-card\">\n        <div class=\"analytics-head\"><strong>CHAMADOS POR ANALISTA</strong><span>Total: <b id=\"analystTotal\">0</b></span></div>\n        <div id=\"analystBars\" class=\"bar-list\"></div>\n      </article>\n    </section>\n  </div>\n</div>",
+        "onInit": "",
+        "onInitOnResize": false,
+        "onRender": "const R=(typeof htmlGraphics!==\"undefined\"&&htmlGraphics.htmlNode)||htmlNode;\nconst F=Array.isArray(data?.series)?data.series:[];\nconst $=s=>R.querySelector(s);\nconst V=v=>Array.isArray(v)?v:(v?.toArray?v.toArray():(v?.get&&Number.isFinite(v.length)?Array.from({length:v.length},(_,i)=>v.get(i)):[]));\nconst N=s=>String(s??\"\").toLowerCase().normalize(\"NFD\").replace(/[\\u0300-\\u036f]/g,\"\").replace(/[^a-z0-9]/g,\"\");\nconst E=v=>String(v??\"\").replace(/[&<>\"']/g,c=>({\"&\":\"&amp;\",\"<\":\"&lt;\",\">\":\"&gt;\",\"\\\"\":\"&quot;\",\"'\":\"&#39;\"}[c]));\nconst U=v=>String(v??\"\").toLocaleUpperCase(\"pt-BR\");\nfunction rows(ref){return F.filter(f=>String(f.refId||\"\")==ref).flatMap(f=>{let c=(f.fields||[]).map(x=>[x.name,V(x.values)]),n=Math.max(0,...c.map(x=>x[1].length));return Array.from({length:n},(_,i)=>Object.fromEntries(c.map(x=>[x[0],x[1][i]])))})}\nfunction p(o,ns){let e=Object.entries(o||{});for(const n of ns){let x=e.find(([k])=>N(k)==N(n));if(x&&x[1]!=null&&x[1]!==\"\")return x[1]}return\"\"}\nfunction dt(v){if(v==null||v===\"\")return\"N/D\";let n=Number(v),d;if(Number.isFinite(n)){if(n<946684800)return\"N/D\";d=new Date(n<1e12?n*1000:n)}else d=new Date(v);if(isNaN(d))return\"N/D\";const z=x=>String(x).padStart(2,\"0\");return `${z(d.getDate())}/${z(d.getMonth()+1)}/${d.getFullYear()} ${z(d.getHours())}:${z(d.getMinutes())}:${z(d.getSeconds())}`}\nfunction flatten(obj,out={},prefix=\"\"){if(!obj||typeof obj!==\"object\"||obj instanceof Date)return out;for(const [k,v] of Object.entries(obj)){let key=prefix?prefix+\".\"+k:k;if(v&&typeof v===\"object\"&&!Array.isArray(v)){flatten(v,out,key)}else if(v!=null&&v!==\"\"){out[key]=v;if(out[k]==null)out[k]=v}}return out}\nfunction alertRows(ref){let all=[];for(const f of F.filter(x=>String(x.refId||\"\")==ref)){let base={};if(f.name)base.frameName=f.name;if(f.meta)flatten(f.meta,base,\"meta\");let fields=f.fields||[],n=Math.max(1,...fields.map(x=>V(x.values).length));for(let i=0;i<n;i++){let r={...base};for(const fld of fields){if(fld.labels)Object.assign(r,flatten(fld.labels,{},\"labels\"));if(fld.config)flatten(fld.config,r,\"config\");let a=V(fld.values),v=a[i];r[fld.name]=v;if(v&&typeof v===\"object\")flatten(v,r)}all.push(r)}}return all}\nfunction sev(x){let v=p(x,[\"severity\",\"priority\",\"triggerSeverity\",\"labels.severity\",\"labels.priority\",\"config.custom.severity\"]),n=Number(v),t=N(v);if(n===5||t.includes(\"disaster\")||t.includes(\"desastre\"))return 5;if(n===4||t.includes(\"high\")||t.includes(\"alto\"))return 4;if(n===3||t.includes(\"average\")||t.includes(\"media\"))return 3;return 4}\nfunction good(v){let s=String(v??\"\").trim();return s&&N(s)!==\"problems\"&&N(s)!==\"problem\"&&N(s)!==\"time\"}\nfunction firstGood(x,names){for(const n of names){let v=p(x,[n]);if(good(v))return v}return\"\"}\nfunction hostText(v,depth=0){if(v==null||depth>6)return\"\";if(typeof v===\"string\"||typeof v===\"number\"){const s=String(v).trim();if(!s||s===\"[object Object]\"||N(s)===\"problems\"||N(s)===\"problem\"||N(s)===\"time\")return\"\";return s}if(Array.isArray(v)){for(const item of v){const s=hostText(item,depth+1);if(s)return s}return\"\"}if(typeof v===\"object\"){for(const key of [\"name\",\"host\",\"hostname\",\"host_name\",\"hostName\",\"displayName\",\"label\",\"text\",\"value\"]){if(Object.prototype.hasOwnProperty.call(v,key)){const s=hostText(v[key],depth+1);if(s)return s}}for(const [k,val] of Object.entries(v)){const nk=N(k);if(nk.includes(\"host\")||nk.includes(\"server\")||nk.includes(\"apresentador\")||nk.includes(\"presenter\")){const s=hostText(val,depth+1);if(s)return s}}}return\"\"}\nfunction alertView(x){let host=\"\";for(const c of [p(x,[\"host\"]),p(x,[\"hostname\"]),p(x,[\"host.name\"]),p(x,[\"host_name\"]),p(x,[\"hostName\"]),p(x,[\"Host\"]),p(x,[\"labels.host\"]),p(x,[\"labels.hostname\"]),p(x,[\"server\"]),p(x,[\"servidor\"]),p(x,[\"apresentador\"])]){const s=hostText(c);if(s){host=s;break}}if(!host){for(const [k,v] of Object.entries(x||{})){const nk=N(k);if(nk.includes(\"host\")||nk.includes(\"server\")||nk.includes(\"apresentador\")){const s=hostText(v);if(s){host=s;break}}}}let problem=firstGood(x,[\"name\",\"problem\",\"description\",\"trigger\",\"triggerName\",\"trigger.name\",\"eventName\",\"labels.name\",\"labels.problem\",\"labels.trigger\",\"frameName\"]);let lc=p(x,[\"lastchange\",\"lastChange\",\"clock\",\"timestamp\",\"Time\",\"time\"]);return{host:host||\"N/D\",problem:problem||\"N/D\",lastchange:lc,severity:sev(x)}}\n\nconst AR=alertRows(\"A\").map(alertView).filter(x=>x.host||x.problem);\nconst DR=alertRows(\"D\").map(alertView).filter(x=>x.host||x.problem);\nconst HR=alertRows(\"H\").map(alertView).filter(x=>x.host||x.problem);\nconst O=rows(\"O\"),S=rows(\"S\"),N2=rows(\"N2\"),R24=rows(\"R24\");\nR.__cache={AR,O,S,N2,R24};\n\nfunction setText(id,val){const el=$(id);if(el)el.textContent=val}\nfunction issueType(x){return U(p(x,[\"Tipo\",\"issuetype\"])||\"N/D\")}\nfunction issueStatus(x){return U(p(x,[\"Status\",\"status\"])||\"N/D\")}\nfunction issuePriority(x){return U(p(x,[\"Prioridade\",\"priority\"])||\"N/D\")}\nfunction inProgressStatus(s){const n=N(s);return /emandamento|ematendimento|executando|projetando|emprogresso|inprogress|doing|emexecucao/.test(n)}\nconst inProgress=S.filter(x=>inProgressStatus(issueStatus(x))).length;\nfunction toMs(v){if(v==null||v===\"\")return NaN;const n=Number(v);if(Number.isFinite(n)){if(n<946684800)return NaN;return n<1e12?n*1000:n}const d=new Date(v);return isNaN(d)?NaN:d.getTime()}\nfunction fmtDuration(ms){if(!Number.isFinite(ms)||ms<0)return\"N/D\";const mins=Math.round(ms/60000),h=Math.floor(mins/60),m=mins%60;return `${String(h).padStart(2,\"0\")}:${String(m).padStart(2,\"0\")}`}\nconst rDurations=R24.map(x=>{const a=toMs(p(x,[\"Criado\",\"created\"])),b=toMs(p(x,[\"Resolução\",\"Resolucao\",\"resolutiondate\"]));return Number.isFinite(a)&&Number.isFinite(b)&&b>=a?b-a:NaN}).filter(Number.isFinite);\nconst avgResolutionMs=rDurations.length?rDurations.reduce((a,b)=>a+b,0)/rDurations.length:NaN;\nsetText(\"#kpiAlerts\",AR.length);setText(\"#kpiQueue\",O.length);setText(\"#kpiProgress\",inProgress);setText(\"#kpiResolved\",R24.length);setText(\"#kpiAvgTime\",fmtDuration(avgResolutionMs));\nsetText(\"#zabbixCount\",`${AR.length} ITENS`);setText(\"#opeCount\",`${O.length} CHAMADOS`);setText(\"#demoCount\",`${S.length} CHAMADOS`);\n\nfunction clock(){const d=new Date(),z=x=>String(x).padStart(2,\"0\");setText(\"#clockText\",`${z(d.getDate())}/${z(d.getMonth()+1)}/${d.getFullYear()} | ${z(d.getHours())}:${z(d.getMinutes())}:${z(d.getSeconds())}`)}\nclock();if(!R.__clockTimer){R.__clockTimer=setInterval(clock,1000)}\n\nconst DASH=R.querySelector(\".noc-dash\");\nfunction refreshKey(){const req=data?.request||{};if(req.requestId!=null&&req.requestId!==\"\")return \"REQ:\"+req.requestId;if(req.startTime!=null&&req.startTime!==\"\")return \"START:\"+req.startTime;return \"DATA:\"+F.map(f=>String(f.refId||\"\")+\":\"+(f.fields||[]).map(x=>V(x.values).length).join(\",\")).join(\"|\")}\nif(DASH){const k=refreshKey(),old=DASH.dataset.refreshKey||\"\";if(!old||k!==old){DASH.dataset.refreshKey=k;DASH.classList.remove(\"refresh-animate\");void DASH.offsetWidth;DASH.classList.add(\"refresh-animate\");clearTimeout(DASH.__anim);DASH.__anim=setTimeout(()=>DASH.classList.remove(\"refresh-animate\"),900)}}\n\nconst PAGE=6;\nfunction serverIcon(){return `<span class=\"z-icon\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><rect x=\"4\" y=\"4\" width=\"16\" height=\"6\" rx=\"2\"/><rect x=\"4\" y=\"14\" width=\"16\" height=\"6\" rx=\"2\"/><path d=\"M8 7h.01M8 17h.01M12 7h5M12 17h5\"/></svg></span>`}\nfunction padRows(listEl,count){for(let i=count;i<PAGE;i++){listEl.insertAdjacentHTML(\"beforeend\",`<div class=\"stream-row empty-row\"></div>`)}}\nfunction renderZabbix(){const el=$(\"#zabbixList\");if(!el)return;const pages=Math.max(1,Math.ceil(AR.length/PAGE));R.__zp=Math.min(R.__zp||0,pages-1);const items=AR.slice(R.__zp*PAGE,R.__zp*PAGE+PAGE);el.innerHTML=items.map(x=>{const label=x.severity===5?\"DISASTER\":x.severity===3?\"MÉDIA\":\"HIGH\",cls=x.severity===5?\"disaster\":x.severity===3?\"medium\":\"high\";return `<div class=\"stream-row z-grid-row\"><div class=\"grid-cell center\">${serverIcon()}</div><div class=\"grid-cell\"><strong class=\"important-host\">${E(U(x.host))}</strong></div><div class=\"grid-cell\"><span class=\"important-summary\">${E(U(x.problem))}</span></div><div class=\"grid-cell center\"><span class=\"row-time\">${dt(x.lastchange)}</span></div><div class=\"grid-cell center\"><span class=\"sev-chip ${cls}\">${label}</span></div></div>`}).join(\"\");padRows(el,items.length)}\nfunction priorityClass(v){const n=N(v);if(n.includes(\"muitoalta\")||n.includes(\"highest\"))return\"prio-critical\";if(n===\"alta\"||n.includes(\"high\"))return\"prio-high\";if(n.includes(\"media\")||n.includes(\"medium\"))return\"prio-medium\";if(n.includes(\"baixa\")||n.includes(\"low\"))return\"prio-low\";return\"prio-neutral\"}\nfunction typeClass(v){const n=N(v);if(n.includes(\"alerta\"))return\"type-alert\";if(n.includes(\"incidente\"))return\"type-incident\";if(n.includes(\"requis\"))return\"type-request\";if(n.includes(\"tarefa\")||n.includes(\"subtarefa\"))return\"type-task\";return\"type-neutral\"}\nfunction jiraRow(x,own){const k=p(x,[\"Chamado\",\"key\"])||\"N/D\",summary=U(p(x,[\"Resumo\",\"summary\"])||\"N/D\"),status=issueStatus(x),prio=issuePriority(x),tipo=issueType(x),rawAssignee=String(p(x,[\"Atribuído\",\"assignee\"])||\"\").trim(),assignee=U(rawAssignee||\"NÃO ATRIBUÍDO\"),time=dt(p(x,[\"Atualização\",\"updated\"]));if(own){return `<div class=\"stream-row demo-grid-row\"><div class=\"grid-cell\"><a class=\"jira-key\" href=\"https://demo-company.atlassian.net/browse/${encodeURIComponent(k)}\" target=\"_blank\">${E(k)}</a></div><div class=\"grid-cell\"><span class=\"important-summary\">${E(summary)}</span></div><div class=\"grid-cell stack\"><span class=\"meta-line\"><strong>${E(assignee)}</strong></span><span class=\"mini-tags\"><span class=\"tag-chip ${priorityClass(prio)}\">${E(prio)}</span><span class=\"tag-chip ${typeClass(tipo)}\">${E(tipo)}</span></span></div><div class=\"grid-cell center\"><span class=\"row-time\">${time}</span></div><div class=\"grid-cell center\"><span class=\"status-chip\">${E(status)}</span></div></div>`}return `<div class=\"stream-row ope-grid-row\"><div class=\"grid-cell\"><a class=\"jira-key\" href=\"https://demo-company.atlassian.net/browse/${encodeURIComponent(k)}\" target=\"_blank\">${E(k)}</a></div><div class=\"grid-cell stack\"><span class=\"important-summary\">${E(summary)}</span><span class=\"mini-tags\"><span class=\"tag-chip ${priorityClass(prio)}\">${E(prio)}</span><span class=\"tag-chip ${typeClass(tipo)}\">${E(tipo)}</span></span></div><div class=\"grid-cell center\"><span class=\"row-time\">${time}</span></div><div class=\"grid-cell center\"><span class=\"status-chip\">${E(status)}</span></div></div>`}\nfunction renderJira(arr,sel,pageKey,own){const el=$(sel);if(!el)return;const pages=Math.max(1,Math.ceil(arr.length/PAGE));R[pageKey]=Math.min(R[pageKey]||0,pages-1);const items=arr.slice(R[pageKey]*PAGE,R[pageKey]*PAGE+PAGE);el.innerHTML=items.map(x=>jiraRow(x,own)).join(\"\");padRows(el,items.length)}\nfunction renderStreams(){renderZabbix();renderJira(O,\"#opeList\",\"__op\",false);renderJira(S,\"#demoList\",\"__sp\",true)}\nrenderStreams();R.__renderStreams=renderStreams;\nif(!R.__pageTimer){R.__pageTimer=setInterval(()=>{const c=R.__cache||{};const z=Math.max(1,Math.ceil((c.AR||[]).length/PAGE)),o=Math.max(1,Math.ceil((c.O||[]).length/PAGE)),s=Math.max(1,Math.ceil((c.S||[]).length/PAGE));if(z>1)R.__zp=((R.__zp||0)+1)%z;if(o>1)R.__op=((R.__op||0)+1)%o;if(s>1)R.__sp=((R.__sp||0)+1)%s;R.__renderStreams?.()},15000)}\n\nfunction countBy(arr,fn){const m={};for(const x of arr){const k=String(fn(x)||\"NÃO INFORMADO\").trim()||\"NÃO INFORMADO\";m[k]=(m[k]||0)+1}return m}\nfunction ordered(obj,preferred=[]){const entries=Object.entries(obj);return entries.sort((a,b)=>{const ai=preferred.indexOf(U(a[0])),bi=preferred.indexOf(U(b[0]));if(ai>=0||bi>=0){if(ai<0)return 1;if(bi<0)return-1;if(ai!==bi)return ai-bi}return b[1]-a[1]})}\nfunction renderBars(sel,total,entries,colorFn){\n  const el=$(sel);if(!el)return;\n  const rows=entries.slice(0,5);\n  const max=Math.max(1,...rows.map(x=>x[1]));\n  const html=rows.map(([k,v],i)=>{\n    const c=colorFn(U(k),i),pct=total?((v/total)*100):0;\n    return `<div class=\"bar-row\"><span class=\"bar-name\"><i style=\"--c:${c}\"></i><span>${E(U(k))}</span></span><span class=\"bar-track\"><span class=\"bar-fill\" style=\"--w:${(v/max)*100}%;--c:${c}\"></span></span><b>${v} (${pct.toFixed(0)}%)</b></div>`;\n  });\n  while(html.length<5)html.push(`<div class=\"bar-row bar-empty\"><span class=\"bar-name\"></span><span class=\"bar-track\"></span><b></b></div>`);\n  el.innerHTML=html.join(\"\");\n}\n\nconst med=Math.max(0,AR.length-DR.length-HR.length),sevEntries=[[\"DISASTER\",DR.length],[\"HIGH\",HR.length],[\"MÉDIA\",med]];\nsetText(\"#severityTotal\",AR.length);renderBars(\"#severityBars\",AR.length,sevEntries,(k)=>k===\"DISASTER\"?\"#ff4c5c\":k===\"HIGH\"?\"#ffa526\":\"#5b9cff\");\nconst prio=ordered(countBy(O,x=>issuePriority(x)),[\"MUITO ALTA\",\"ALTA\",\"MÉDIA\",\"BAIXA\"]);setText(\"#priorityTotal\",O.length);renderBars(\"#priorityBars\",O.length,prio,(k)=>k.includes(\"MUITO\")?\"#ff4c5c\":k===\"ALTA\"?\"#ffa526\":k===\"MÉDIA\"?\"#5b9cff\":\"#43cf83\");\nfunction category(x){const s=N((p(x,[\"Resumo\",\"summary\"])||\"\")+\" \"+issueType(x));if(/rede|interface|wan|lan|switch|firewall|vpn|circuito|link/.test(s))return\"REDES\";if(/host|cpu|memoria|memory|disco|disk|mount|vmware|backup|servidor|server|storage|weblogic|oracle/.test(s))return\"INFRAESTRUTURA\";if(/portal|aplicacao|application|app|workflow|job|processa|servico|service|api|erro/.test(s))return\"APLICAÇÕES\";return\"OUTROS\"}\nconst cat=ordered(countBy(S,category),[\"INFRAESTRUTURA\",\"APLICAÇÕES\",\"REDES\",\"OUTROS\"]);setText(\"#categoryTotal\",S.length);renderBars(\"#categoryBars\",S.length,cat,(k)=>k===\"INFRAESTRUTURA\"?\"#ff4c5c\":k===\"APLICAÇÕES\"?\"#ffa526\":k===\"REDES\"?\"#5b9cff\":\"#43cf83\");\nconst assignedN2=N2.map(x=>U(p(x,[\"Atribuído\",\"Atribuido\",\"assignee\"])||\"\")).filter(v=>v&&N(v)!==\"naoatribuido\");\nconst analystMap={};for(const name of assignedN2)analystMap[name]=(analystMap[name]||0)+1;\nconst analystEntries=ordered(analystMap);const analystTotal=assignedN2.length;setText(\"#analystTotal\",analystTotal);renderBars(\"#analystBars\",analystTotal,analystEntries,()=>\"#5b9cff\");\n",
+        "overflow": "hidden",
+        "panelupdateOnMount": true,
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull",
+            "last",
+            "firstNotNull",
+            "first",
+            "min",
+            "max",
+            "mean",
+            "sum",
+            "count",
+            "range",
+            "delta",
+            "step",
+            "diff",
+            "logmin",
+            "allIsZero",
+            "allIsNull",
+            "diffperc"
+          ]
+        },
+        "renderOnMount": true,
+        "rootCSS": "background:#030812;font-family:Bahnschrift,\"Segoe UI Variable Text\",\"Segoe UI\",Roboto,Arial,sans-serif;",
+        "useGrafanaScrollbar": false
+      },
+      "targets": [
+        {
+          "application": {
+            "filter": ""
+          },
+          "countTriggersBy": "",
+          "datasource": {
+            "type": "alexanderzobnin-zabbix-datasource",
+            "uid": "REPLACE_ZABBIX_DATASOURCE_UID"
+          },
+          "evaltype": "0",
+          "functions": [],
+          "group": {
+            "filter": "/.*/"
+          },
+          "host": {
+            "filter": "/^(?!.*test).*/"
+          },
+          "item": {
+            "filter": "/.*/"
+          },
+          "itemTag": {
+            "filter": ""
+          },
+          "macro": {
+            "filter": ""
+          },
+          "options": {
+            "acknowledged": 0,
+            "count": false,
+            "disableDataAlignment": false,
+            "hostProxy": false,
+            "hostsInMaintenance": false,
+            "limit": 1001,
+            "minSeverity": 0,
+            "severities": [
+              4,
+              5
+            ],
+            "showDisabledItems": false,
+            "showSuppressed": false,
+            "skipEmptyValues": false,
+            "sortProblems": "lastchange",
+            "useTimeRange": false,
+            "useTrends": "default",
+            "useZabbixValueMapping": false
+          },
+          "proxy": {
+            "filter": ""
+          },
+          "queryType": "5",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "schema": 12,
+          "showProblems": "problems",
+          "table": {
+            "skipEmptyValues": false
+          },
+          "tags": {
+            "filter": ""
+          },
+          "textFilter": "",
+          "trigger": {
+            "filter": ""
+          }
+        },
+        {
+          "application": {
+            "filter": ""
+          },
+          "countTriggersBy": "",
+          "datasource": {
+            "type": "alexanderzobnin-zabbix-datasource",
+            "uid": "REPLACE_ZABBIX_DATASOURCE_UID"
+          },
+          "evaltype": "0",
+          "functions": [],
+          "group": {
+            "filter": "/.*/"
+          },
+          "host": {
+            "filter": "/^(?!.*test).*/"
+          },
+          "item": {
+            "filter": "/.*/"
+          },
+          "itemTag": {
+            "filter": ""
+          },
+          "macro": {
+            "filter": ""
+          },
+          "options": {
+            "acknowledged": 0,
+            "count": false,
+            "disableDataAlignment": false,
+            "hostProxy": false,
+            "hostsInMaintenance": false,
+            "limit": 1001,
+            "minSeverity": 0,
+            "severities": [
+              5
+            ],
+            "showDisabledItems": false,
+            "showSuppressed": false,
+            "skipEmptyValues": false,
+            "sortProblems": "lastchange",
+            "useTimeRange": false,
+            "useTrends": "default",
+            "useZabbixValueMapping": false
+          },
+          "proxy": {
+            "filter": ""
+          },
+          "queryType": "5",
+          "refId": "D",
+          "resultFormat": "time_series",
+          "schema": 12,
+          "showProblems": "problems",
+          "table": {
+            "skipEmptyValues": false
+          },
+          "tags": {
+            "filter": ""
+          },
+          "textFilter": "",
+          "trigger": {
+            "filter": ""
+          }
+        },
+        {
+          "application": {
+            "filter": ""
+          },
+          "countTriggersBy": "",
+          "datasource": {
+            "type": "alexanderzobnin-zabbix-datasource",
+            "uid": "REPLACE_ZABBIX_DATASOURCE_UID"
+          },
+          "evaltype": "0",
+          "functions": [],
+          "group": {
+            "filter": "/.*/"
+          },
+          "host": {
+            "filter": "/^(?!.*test).*/"
+          },
+          "item": {
+            "filter": "/.*/"
+          },
+          "itemTag": {
+            "filter": ""
+          },
+          "macro": {
+            "filter": ""
+          },
+          "options": {
+            "acknowledged": 0,
+            "count": false,
+            "disableDataAlignment": false,
+            "hostProxy": false,
+            "hostsInMaintenance": false,
+            "limit": 1001,
+            "minSeverity": 0,
+            "severities": [
+              4
+            ],
+            "showDisabledItems": false,
+            "showSuppressed": false,
+            "skipEmptyValues": false,
+            "sortProblems": "lastchange",
+            "useTimeRange": false,
+            "useTrends": "default",
+            "useZabbixValueMapping": false
+          },
+          "proxy": {
+            "filter": ""
+          },
+          "queryType": "5",
+          "refId": "H",
+          "resultFormat": "time_series",
+          "schema": 12,
+          "showProblems": "problems",
+          "table": {
+            "skipEmptyValues": false
+          },
+          "tags": {
+            "filter": ""
+          },
+          "textFilter": "",
+          "trigger": {
+            "filter": ""
+          }
+        },
+        {
+          "columns": [
+            {
+              "selector": "key",
+              "text": "Chamado",
+              "type": "string"
+            },
+            {
+              "selector": "fields.summary",
+              "text": "Resumo",
+              "type": "string"
+            },
+            {
+              "selector": "fields.status.name",
+              "text": "Status",
+              "type": "string"
+            },
+            {
+              "selector": "fields.priority.name",
+              "text": "Prioridade",
+              "type": "string"
+            },
+            {
+              "selector": "fields.issuetype.name",
+              "text": "Tipo",
+              "type": "string"
+            },
+            {
+              "selector": "fields.assignee.displayName",
+              "text": "Atribuído",
+              "type": "string"
+            },
+            {
+              "selector": "fields.updated",
+              "text": "Atualização",
+              "type": "timestamp"
+            }
+          ],
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "REPLACE_INFINITY_DATASOURCE_UID"
+          },
+          "filters": [],
+          "format": "table",
+          "global_query_id": "",
+          "refId": "O",
+          "root_selector": "issues",
+          "source": "url",
+          "type": "json",
+          "url": "https://demo-company.atlassian.net/rest/api/3/search/jql",
+          "url_options": {
+            "data": "",
+            "headers": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "params": [
+              {
+                "key": "jql",
+                "value": "project=OPS AND statusCategory != Done AND assignee IS EMPTY ORDER BY key DESC"
+              },
+              {
+                "key": "fields",
+                "value": "key,summary,status,issuetype,created,priority,assignee,updated"
+              },
+              {
+                "key": "keymaxResults",
+                "value": "500"
+              }
+            ]
+          }
+        },
+        {
+          "columns": [
+            {
+              "selector": "key",
+              "text": "Chamado",
+              "type": "string"
+            },
+            {
+              "selector": "fields.summary",
+              "text": "Resumo",
+              "type": "string"
+            },
+            {
+              "selector": "fields.status.name",
+              "text": "Status",
+              "type": "string"
+            },
+            {
+              "selector": "fields.priority.name",
+              "text": "Prioridade",
+              "type": "string"
+            },
+            {
+              "selector": "fields.issuetype.name",
+              "text": "Tipo",
+              "type": "string"
+            },
+            {
+              "selector": "fields.assignee.displayName",
+              "text": "Atribuído",
+              "type": "string"
+            },
+            {
+              "selector": "fields.updated",
+              "text": "Atualização",
+              "type": "timestamp"
+            }
+          ],
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "REPLACE_INFINITY_DATASOURCE_UID"
+          },
+          "filters": [],
+          "format": "table",
+          "global_query_id": "",
+          "refId": "S",
+          "root_selector": "issues",
+          "source": "url",
+          "type": "json",
+          "url": "https://demo-company.atlassian.net/rest/api/3/search/jql",
+          "url_options": {
+            "data": "",
+            "headers": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "params": [
+              {
+                "key": "jql",
+                "value": "project=SUPPORT AND statusCategory != Done ORDER BY key DESC"
+              },
+              {
+                "key": "fields",
+                "value": "valuekey,summary,status,issuetype,created,priority,assignee,updated"
+              }
+            ]
+          }
+        },
+        {
+          "columns": [
+            {
+              "selector": "key",
+              "text": "Chamado",
+              "type": "string"
+            },
+            {
+              "selector": "fields.summary",
+              "text": "Resumo",
+              "type": "string"
+            },
+            {
+              "selector": "fields.status.name",
+              "text": "Status",
+              "type": "string"
+            },
+            {
+              "selector": "fields.priority.name",
+              "text": "Prioridade",
+              "type": "string"
+            },
+            {
+              "selector": "fields.issuetype.name",
+              "text": "Tipo",
+              "type": "string"
+            },
+            {
+              "selector": "fields.assignee.displayName",
+              "text": "Atribuído",
+              "type": "string"
+            },
+            {
+              "selector": "fields.updated",
+              "text": "Atualização",
+              "type": "timestamp"
+            }
+          ],
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "REPLACE_INFINITY_DATASOURCE_UID"
+          },
+          "filters": [],
+          "format": "table",
+          "global_query_id": "",
+          "refId": "N2",
+          "root_selector": "issues",
+          "source": "url",
+          "type": "json",
+          "url": "https://demo-company.atlassian.net/rest/api/3/search/jql",
+          "url_options": {
+            "data": "",
+            "headers": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "params": [
+              {
+                "key": "jql",
+                "value": "project=SUPPORT AND statusCategory != Done ORDER BY key DESC"
+              },
+              {
+                "key": "fields",
+                "value": "key,summary,status,issuetype,created,priority,assignee,updated"
+              },
+              {
+                "key": "maxResults",
+                "value": "500"
+              }
+            ]
+          }
+        },
+        {
+          "columns": [
+            {
+              "selector": "key",
+              "text": "Chamado",
+              "type": "string"
+            },
+            {
+              "selector": "fields.created",
+              "text": "Criado",
+              "type": "timestamp"
+            },
+            {
+              "selector": "fields.status.name",
+              "text": "Status",
+              "type": "string"
+            },
+            {
+              "selector": "fields.resolutiondate",
+              "text": "Resolução",
+              "type": "timestamp"
+            }
+          ],
+          "datasource": {
+            "type": "yesoreyeram-infinity-datasource",
+            "uid": "REPLACE_INFINITY_DATASOURCE_UID"
+          },
+          "filters": [],
+          "format": "table",
+          "global_query_id": "",
+          "refId": "R24",
+          "root_selector": "issues",
+          "source": "url",
+          "type": "json",
+          "url": "https://demo-company.atlassian.net/rest/api/3/search/jql",
+          "url_options": {
+            "data": "",
+            "headers": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "params": [
+              {
+                "key": "jql",
+                "value": "project=SUPPORT AND statusCategory = Done AND resolved >= -24h ORDER BY resolved DESC"
+              },
+              {
+                "key": "fields",
+                "value": "key,status,created,resolutiondate"
+              },
+              {
+                "key": "maxResults",
+                "value": "100"
+              }
+            ]
+          }
+        }
+      ],
+      "type": "gapit-htmlgraphics-panel"
+    }
+  ],
+  "refresh": "5s",
+  "schemaVersion": 39,
+  "tags": [
+    "grafana",
+    "zabbix",
+    "jira",
+    "noc",
+    "itsm",
+    "demo"
+  ],
+  "templating": {
+    "list": []
+  },
+  "time": {
+    "from": "now-6h",
+    "to": "now"
+  },
+  "timepicker": {
+    "hidden": false
+  },
+  "timezone": "",
+  "title": "NOC Ticket Queue Overview - Demo",
+  "uid": null,
+  "version": 1,
+  "weekStart": ""
+}

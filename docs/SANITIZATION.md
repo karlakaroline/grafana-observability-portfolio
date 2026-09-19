@@ -7,16 +7,18 @@ The sanitization process removes or replaces:
 - organization/customer branding and logos;
 - internal hostnames, application/service names and data-center references;
 - IP addresses, MAC addresses and device serial numbers;
-- Jira tenant URLs and project-specific JQL;
-- embedded authorization headers and credential material;
+- private tenant URLs, project-specific filters and internal API references;
+- embedded authentication headers and credential material;
 - Grafana datasource UIDs and dashboard IDs/UIDs;
 - embedded organization-specific font/logo assets;
 - internal drill-down/dashboard identifiers where found.
 
-## Important credential note
+## Credential safety
 
-One source dashboard contained a Jira `Authorization` header embedded in the exported JSON. The public copy removes that header. The source credential should still be revoked/rotated because it existed in plaintext-equivalent exported configuration.
+Public dashboard exports must not contain passwords, API tokens, authentication headers, cookies or other credential material.
+
+If credential material is ever discovered in an exported dashboard, remove it from the public copy and revoke or rotate the credential at its provider.
 
 ## What was intentionally preserved
 
-The public copies retain the technical structure where possible: Grafana panel configuration, HTML Graphics/CSS/JavaScript logic, metric names that are generic to the integration, threshold/state handling and the overall dashboard design.
+The public copies retain the technical structure where possible: Grafana panel configuration, HTML Graphics/CSS/JavaScript logic, generic integration metric names, threshold/state handling and the overall dashboard design.

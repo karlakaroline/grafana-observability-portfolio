@@ -36,6 +36,16 @@ Backup operations dashboard using **Grafana, Prometheus and Veeam metrics** to m
 
 ---
 
+### Palo Alto Firewall Health Monitoring
+
+![Palo Alto Firewall Health Monitoring](dashboards/palo-alto-monitoring/screenshots/palo-alto-preview.png)
+
+Network security and firewall observability dashboard using **Grafana and Zabbix**, with visibility into device health, CPU, memory, temperature, interfaces, throughput, sessions and HA status.
+
+[View project](dashboards/palo-alto-monitoring/)
+
+---
+
 ## Projects
 
 | Dashboard | Main technologies | What it demonstrates |
@@ -44,7 +54,6 @@ Backup operations dashboard using **Grafana, Prometheus and Veeam metrics** to m
 | [FortiGate Monitoring](dashboards/fortigate-monitoring/) | Grafana, Zabbix, FortiGate | Firewall health, HA status, CPU/memory/temperature, sessions, interfaces and traffic |
 | [Veeam Backup Monitoring](dashboards/veeam-backup-monitoring/) | Grafana, Prometheus, Veeam | Backup job status, next/last run, repository capacity and collector health |
 | [Palo Alto Monitoring](dashboards/palo-alto-monitoring/) | Grafana, Zabbix, Palo Alto Networks | Firewall availability, resource health, interface state, throughput and custom visualization |
-| [NOC Ticket Queue](dashboards/noc-ticket-queue/) | Grafana, Zabbix, Jira, Infinity | Unified operational view of monitoring events and service-management queues |
 
 ## Skills Demonstrated
 
@@ -88,5 +97,8 @@ grafana-observability-portfolio/
     │   └── screenshots/
     │       └── veeam-backup-preview.png
     │
-    ├── palo-alto-monitoring/
-    └── noc-ticket-queue/
+    └── palo-alto-monitoring/
+        ├── README.md
+        ├── dashboard.sanitized.json
+        └── screenshots/
+            └── palo-alto-preview.png
